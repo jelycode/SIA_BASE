@@ -1,0 +1,9 @@
+<div class="ui-label-wrapper" [style.width]="width()">
+  <label [class]="labelClass()">
+    {{ text() }}
+    @if (required()) {
+      <span class="required-mark" title="Campo requerido">*</span>
+    }
+  </label>
+  <ng-content></ng-content>
+</div>

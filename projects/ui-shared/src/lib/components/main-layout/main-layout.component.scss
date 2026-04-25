@@ -1,0 +1,188 @@
+@use "../../styles/tokens" as *; // O la ruta a tu archivo de variables
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--bg-main); // El gris azulado relajante
+}
+
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  /* Esto asegura que el contenido nunca esté pegado a los bordes */
+}
+
+
+.glass-header {
+  display: flex;
+  justify-content: space-between; // Esto separa los 3 grupos (izq, centro, der)
+  align-items: center;
+  height: 64px;
+  padding: 0 10px;
+  margin: 12px;
+  //border-radius: 12px;
+  background: linear-gradient(90deg, 
+  #3b88a3 0%,    /* Azul Petróleo inicial */
+  #4ca9bd 70%,   /* Azul Océano (se mantiene hasta casi el final) */
+  #3eb082 100%   /* Verde Esmeralda (solo un toque al cerrar) */
+);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  
+
+
+  .header-section {
+    display: flex;
+    align-items: center;
+    flex: 0 1 250px; // Hace que las secciones ocupen espacio equitativo
+  }
+
+  .search-container {
+    flex: 1 1 500px; // El buscador no ocupará más de 400px
+    margin: 0 1rem;
+  }
+
+  .brand {
+    justify-content: flex-start;
+    font-weight: 700;
+    font-size: var(--main-layout-brand-font-size);
+    letter-spacing: -0.5px;
+  }
+
+  
+
+  .profile {
+    justify-content: flex-end; // Alinea el usuario a la derecha
+    gap: 15px;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .avatar-circle {
+        width: 35px;
+        height: 35px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: var(--main-layout-avatar-circle-font-size);
+      }
+
+      .user-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+
+        .user-name { font-weight: 600; font-size: var(--main-layout-user-name-font-size); }
+        .user-role { 
+          font-size: var(--main-layout-user-role-font-size); 
+          opacity: 0.9; 
+          background: rgba(0,0,0,0.1); 
+          padding: 2px 6px; 
+          border-radius: 4px;
+          margin-top: 2px;
+        }
+      }
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: var(--main-layout-icon-btn-font-size);
+      opacity: 0.8;
+      &:hover { opacity: 1; }
+    }
+  }
+}
+
+.content-area {
+  padding: 20px 40px;
+}
+
+
+
+.layout-body {
+  display: flex;
+  height: calc(100vh - 90px); // Restamos la altura del header + margen
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 12px 12px 12px;
+  gap: 12px;
+
+  .sidebar {
+    width: 260px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color, #eee);
+    padding:5px;
+    .sidebar-nav {
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 8px;
+        color: var(--main-layout-nav-item-color);
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.2s;
+
+        &:hover { background: var(--main-layout-nav-item-hover-background-color); color: var(--main-layout-nav-item-hover-color); }
+        lucide-icon { width: 20px; height: 20px; }
+      }
+    }
+  }
+
+  .content-area {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color, #eee);
+    overflow-y: auto;
+  }
+
+  // Estado cuando el sidebar está cerrado
+  &.sidebar-closed {
+    .sidebar {
+      width: 0;
+      margin-left: -12px; // Compensa el gap
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  
+  lucide-icon { width: 24px; height: 24px; }
+
+::ng-deep svg {
+    width: 20px !important;
+    height: 20px !important;
+  }  
+}

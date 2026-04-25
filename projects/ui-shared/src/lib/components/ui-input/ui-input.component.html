@@ -1,0 +1,40 @@
+<div class="ui-input-row" [style.width]="width()">
+ 
+
+  <div class="ui-input-field-group">
+    <div class="ui-input-container" [class.ui-input--disabled]="disabled">
+      @if (icon()) {
+        <i [class]="icon()" class="ua-input-icon-prefix"></i>
+      }
+
+      <input
+        [id]="id()"
+        [type]="type()"
+        [value]="value"
+        [placeholder]="placeholder()"
+        [disabled]="disabled"
+        [readonly]="readonly()"
+        [attr.aria-invalid]="isInvalid()"
+        [attr.aria-describedby]="isInvalid() ? id() + '-error' : (hint() ? id() + '-hint' : null)"
+        (input)="handleInput($event)"
+        (blur)="onBlur()"
+        class="ui-input-field"
+        [class.has-icon]="icon()"
+        [width]="width()"
+      />
+
+      <div class="ui-input-suffix-slot">
+        <ng-content select="[suffix]"></ng-content>
+      </div>
+    </div>
+
+    @if (hint() && !isInvalid()) {
+      <span class="ui-input-hint">{{ hint() }}</span>
+    }
+    @if (isInvalid()) {
+      <span class="ui-input-error-msg" [id]="id() + '-error'" role="alert">
+        {{ getErrorMessage() }}
+      </span>
+    }
+  </div>
+</div>

@@ -1,0 +1,68 @@
+// :host {
+//   display: block;
+//   width: 100%;
+// }
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    width: 18px;
+    height: 18px;
+    color: var(--top-search-icon-color);
+    pointer-events: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+     z-index: 2;
+  }
+
+  .search-input {
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    color: var(--top-search-input-color);
+    padding: 10px 16px 10px 44px;
+    border-radius: 10px;
+    font-size: var(--font-size);
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: var(--font-family);
+    position: relative;
+    z-index: 1;
+
+    &::placeholder {
+      color: var(--top-search-placeholder-color);
+    }
+
+    &:hover {
+      background: var(--glass-bg-hover);
+    }
+
+    &:focus {
+      background: var(--glass-bg-hover);
+      border-color: var(--top-search-focus-border-color);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      // El icono de búsqueda es un hermano del input, así que podemos cambiar su color al enfocar el input
+      & + .search-icon { color: var(--top-search-icon-focus-color); }
+    }
+  }
+
+  .search-badge {
+    position: absolute;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--top-search-badge-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: var(--font-size);
+    pointer-events: none;
+     z-index: 2;
+  }
+}

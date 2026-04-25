@@ -1,0 +1,271 @@
+// Importamos una fuente limpia y moderna (Roboto es excelente para seguros)
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+
+  
+  /* --- Colores de Base (Relajantes) --- */
+  --bg-main: #F4F7FA;          /* Un gris muy claro con tinte azul (descanso visual) */
+  --bg-card: #2C3E50;          /* Blanco puro para contraste limpio */
+  --bg-top: #3498DB;
+  
+  /* --- Marca y Concentración --- */
+  --primary-deep: #254d75;     /* Azul oscuro petróleo (transmite seriedad y orden) */
+  --primary-accent: #3498DB;   /* Azul claro para elementos de acción */
+
+  /* --- brand --- */
+  --fore-brand:#ffffff;
+  --bg-brand: #3498DB;
+
+
+  /* --- Texto (Lectura clara) --- */
+  --text-main: #2E3A48;        /* No es negro puro, es un gris muy oscuro (menos fatiga) */
+  --text-muted: #7F8C8D;       /* Para info secundaria */
+
+  /* --- Semántica (Relajante) --- */
+  --success-soft: #27AE60;     /* Verde bosque (para "Aprobado" o "Correcto") */
+  --info-soft: #5DADE2;        /* Azul cielo (para mensajes informativos) */
+  --border-color: #D6DBDF;     /* Gris suave para separar secciones sin ensuciar */
+
+/* --- Éxito (Confirmaciones, Pólizas Activas) --- */
+  --state-success-bg: #E8F5E9;    /* Verde menta pálido */
+  --state-success-text: #2E7D32;  /* Verde bosque oscuro */
+  --state-success-border: #C8E6C9;
+
+  /* --- Alerta (Pendientes de pago, Revisión necesaria) --- */
+  --state-warning-bg: #FFF9C4;    /* Amarillo crema */
+  --state-warning-text: #F57F17;  /* Ámbar profundo */
+  --state-warning-border: #FFF176;
+
+  /* --- Error (Póliza cancelada, Error de validación) --- */
+  --state-error-bg: #FFEBEE;      /* Rosa muy tenue */
+  --state-error-text: #C62828;    /* Rojo ladrillo (menos chillón) */
+  --state-error-border: #FFCDD2;  
+
+
+  /* --- Tipografia del proyecto --- */
+  --font-family: sans-serif, 'Inter', Roboto, Helvetica, Arial;
+  --font-size:0.9rem;
+
+  /*  --- Input Container (Label)   */
+  --ui-label-font-size:12px;
+  --ui-label-font-weight:bold;
+  --ui-label-color: #334155;
+  --ui-label-section-font-size: 14px;
+  --ui-label-section-color: #1e293b;
+  --ui-label-required-mark-color: #ef4444;
+
+  /* --- ui-button --- */
+  --ui-button-base-font-size: 14px;
+  --ui-button-sm-font-size: 12px;
+  --ui-button-lg-font-size: 16px;
+  --ui-button-icon-font-size: 16px;
+  --ui-button-spinner-font-size: 14px;
+
+  /* --- ui-multi-select --- */
+  --ui-select-label-top-font-size: 13px;
+  --ui-select-label-top-color: #334155;
+  --ui-select-container-background-color: #fff;
+  --ui-select-disabled-background-color: #f8fafc;
+  --ui-select-disabled-border-color: #cbd5e1;
+  --ui-tag-background-color: #e2e8f0;
+  --ui-tag-text-font-size: 13px;
+  --ui-tag-text-color: #1e293b;
+  --ui-tag-remove-color: #94a3b8;
+  --ui-tag-remove-font-size: 14px;
+  --ui-tag-remove-hover-color: #ef4444;
+  --ui-placeholder-text-color: #94a3b8;
+  --ui-placeholder-text-font-size: 14px;
+  --ui-arrow-color: #64748b;
+  --ui-arrow-font-size: 12px;
+  --ui-dropdown-background-color: white;
+  --ui-option-font-size: 14px;
+  --ui-option-hover-background-color: #f1f5f9;
+  --ui-option-selected-background-color: #3b82f6;
+  --ui-option-selected-color: white;
+  --ui-select-dropdown-background-color: white;
+  --ui-select-option-hover-background-color: #f3f4f6;
+  --ui-select-option-selected-background-color: #3b82f6;
+  --ui-select-option-selected-color: white;
+  --ui-select-label-font-size: 13px;
+  --ui-select-label-color: #4b5563;
+
+  /* --- user-info --- */
+  --user-badge-color: #155724;
+  --user-badge-background-color: #d4edda;
+  --user-notification-dot-background-color: #ff4b4b;
+
+  /* --- main-layout --- */
+  --main-layout-nav-item-color: #555;
+  --main-layout-nav-item-hover-background-color: #f0f4f8;
+  --main-layout-nav-item-hover-color: #2c7a9d;
+  --main-layout-brand-font-size: 1.2rem;
+  --main-layout-avatar-circle-font-size: 0.8rem;
+  --main-layout-user-name-font-size: 0.9rem;
+  --main-layout-user-role-font-size: 0.7rem;
+  --main-layout-icon-btn-font-size: 1.1rem;
+
+  --user-name-font-size: 0.9rem;
+  --user-badge-font-size: 0.65rem;
+
+  /* --- top-search --- */
+  --top-search-icon-color: rgba(255, 255, 255, 0.6);
+  --top-search-icon-focus-color: white;
+  --top-search-input-color: white;
+  --top-search-placeholder-color: rgba(255, 255, 255, 0.5);
+  --top-search-focus-border-color: rgba(255, 255, 255, 0.5);
+  --top-search-badge-color: rgba(255, 255, 255, 0.7);
+ 
+
+  --primary-accent-shadow: rgba(59, 130, 246, 0.2); /* Sombra para focus de inputs */
+  --ui-input-label-input-container-color: #4a5568;
+  --ui-input-container-border:#d1d5db;
+  --ui-input-container-background-color: #d1d5db51;
+  --ui-input-container-focus-within-border-color: #0079c1; /* Azul BUPA */
+  --ui-input-container-box-shadow: 0 0 0 1px #0079c1;
+  --ui-input-container-ua-input-icon-prefix-color:  #9ca3af;
+  --ui-input-container-ua-input-icon-prefix-font-size: 14px;
+  --ui-input-required-mark-color: #dc2626;
+--ui-input-container-focus-withi-border-color:#79f63b;
+  
+
+
+  --btn-width-standard: 100px;
+  --btn-width-large: 300px;
+  --btn-width-filter: 120px;
+  --btn-icon-size: 16px; /* Tamaño por defecto para iconos en botones */
+
+  /* --- Tokens para ui-tree --- */
+  --tree-node-margin-y: 2px;
+  --tree-node-hover-bg: #f3f4f6;
+  --tree-node-active-bg: #e0f2fe;
+  --tree-node-active-text: #0369a1;
+  --tree-node-active-indicator-height: 60%;
+  --tree-node-active-indicator-width: 4px;
+  --tree-node-active-indicator-color: #0284c7;
+  --tree-icon-margin-right: 8px;
+  --tree-icon-color: #9ca3af;
+  --tree-icon-margin-right-leaf: 12px;
+  --tree-icon-circle-margin-left: 24px;
+  --tree-child-indent: 20px;
+
+  /* --- Tokens de Superficie (Glassmorphism) --- */
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-bg-hover: rgba(255, 255, 255, 0.20);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(12px);
+  --glass-border-notification: #4ca9bd; /* Color específico para el borde de la notificación */
+  --radius-full: 9999px; /* Token para border-radius circular */
+  
+  /* Colores corporativos */
+  --color-bg-primary: #3b88a3;
+  --color-bg-primary-hover: #3197bc;   
+  
+  --color-bg-secondary: #3ba35f;
+  --color-bg-secondary-hover: #31bc3d;   
+  --color-on-brand: #ffffff;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-family);
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  -webkit-font-smoothing: antialiased; /* Mejora la suavidad en macOS */
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-main); // Usamos el token que definimos antes
+}
+
+// Estilos base para títulos para evitar el cansancio visual
+h1, h2, h3, h4 {
+  font-family: var(--font-family);
+  color: var(--primary-deep);
+  margin-top: 0;
+}
+
+lib-ui-button {
+  display: inline-block;
+}
+
+
+ui-tree-container{
+  font-size:10px;
+}
+
+
+/* Mutiselect */
+
+/* apps.scss */
+
+.ui-select-container {
+  min-height: 36px; /* Evita que el control se "aplane" como en image_e36ed9.png */
+  display: flex;
+  align-items: center;
+
+}
+
+.ui-select-wrapper {
+  margin-bottom: 5px; /* Espacio consistente */
+}
+
+.ui-chips-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex: 1;
+  min-height: 24px;      /* Mantiene el espacio aunque esté vacío */
+  align-items: center;
+}
+
+.ui-placeholder {
+  color: #9ca3af;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+// Icono del selector (Chevron)
+.ui-select-arrow {
+  font-family: "FontAwesome" !important;
+  font-style: normal;
+  color: #9ca3af;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+// Icono de eliminar en los chips (X)
+.ui-chip-remove {
+  font-family: "FontAwesome" !important;
+  cursor: pointer;
+  margin-left: 8px;
+  font-size: 12px;
+  color: #6b7280;
+  
+  &:hover {
+    color: #ef4444;
+  }
+}
+
+// Icono de check en el dropdown
+.ui-check-icon {
+  font-family: "FontAwesome" !important;
+  color: #3b82f6;
+  float: right;
+}
+
+.ui-select-option {
+  display: flex;
+  justify-content: space;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+}

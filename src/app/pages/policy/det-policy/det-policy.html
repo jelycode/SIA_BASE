@@ -1,0 +1,50 @@
+<form [formGroup]="policyForm" class="policy-container">
+  <header class="header-section">
+    <div class="breadcrumb">BUPA Seguros / BUPA / Colectivo / <b>20454</b></div>
+    <h2 class="title">Pólizas Colectivo</h2>
+  </header>
+
+  <fieldset class="section-group">
+    <legend>Detalle de Póliza</legend>
+    
+    <table>
+      <tr>
+        <td>
+          <lib-ui-label text="Póliza" variant="bold" ></lib-ui-label>
+        </td>
+        <td>
+          <lib-ui-input label="Póliza" formControlName="txtPoliza" width="60px"></lib-ui-input>
+        </td>
+        <td>
+          <lib-ui-label text="Nombre" variant="bold" ></lib-ui-label>
+        </td>
+        <td>
+          <lib-ui-input  formControlName="txtNombre"  width="320px"></lib-ui-input>
+        </td>
+        <td>
+          <lib-ui-label text="Fecha Inicio" variant="bold" ></lib-ui-label>
+        </td>
+        <td>
+          <lib-ui-input formControlName="txtFechaInicio"  width="90px"></lib-ui-input>
+        </td>
+        <td>
+          <lib-ui-label text="Fecha Fin" variant="bold" ></lib-ui-label>
+        </td>
+        <td>
+          <lib-ui-input formControlName="txtFechaFin"  width="90px"></lib-ui-input>
+        </td>
+        <td>
+          <lib-ui-label text="Tipos de Coberturas" variant="bold" ></lib-ui-label>
+        </td>
+        <td>
+          <lib-ui-multi-select [options]="tipoCoberturas" formControlName="tipoCoberturas"> </lib-ui-multi-select>
+        </td>
+      </tr>
+    </table>
+
+    <div class="actions-footer">
+      <lib-ui-button text="Grabar" [icon]="SaveIcon" variant="--color-bg-primary" width="140px"></lib-ui-button>
+      <lib-ui-button text="Buscar" [icon]="SearchIcon" variant="--color-bg-secondary" width="140px"></lib-ui-button>
+    </div>
+  </fieldset>
+</form>

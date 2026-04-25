@@ -1,0 +1,29 @@
+<div class="ui-tree-container">
+  <ng-container *ngTemplateOutlet="treeNode; context: { $implicit: nodes }"></ng-container>
+</div>
+
+<ng-template #treeNode let-list>
+  <ul>
+    <li *ngFor="let node of list">
+      <div class="node-row" 
+           [class.active]="node.id === activeId"
+           (click)="toggleNode(node)">
+        
+        <lucide-icon 
+          *ngIf="node.children" 
+          [img]="IconRight" 
+          [class.expanded]="node.isOpen"
+          class="chevron-icon">
+        </lucide-icon>
+
+        
+
+        <span class="node-label">{{ node.label }}</span>
+      </div>
+
+      <div class="node-children" *ngIf="node.children && node.isOpen">
+        <ng-container *ngTemplateOutlet="treeNode; context: { $implicit: node.children }"></ng-container>
+      </div>
+    </li>
+  </ul>
+</ng-template>

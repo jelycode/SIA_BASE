@@ -1,0 +1,44 @@
+<div class="ui-select-wrapper" [style.width]="width()">
+  <div class="ui-select-main-container">
+    @if (label()) {
+      <label class="ui-select-label-top">
+        {{ label() }}
+      </label>
+    }
+
+    <div class="ui-select-content-box">
+      <div class="ui-select-field" 
+           [class.ui-select--disabled]="disabled()"
+           (click)="toggleDropdown()">
+        
+        <div class="ui-tag-container">
+          @for (item of value(); track item[bindValue()]) {
+            <div class="ui-tag">
+              <span class="ui-tag-text">{{ item[bindLabel()] }}</span>
+              <i class="fa fa-times-circle ui-tag-remove" (click)="removeOption(item, $event)"></i>
+            </div>
+          } @empty {
+            <span class="ui-select-placeholder">{{ placeholder() }}</span>
+          }
+        </div>
+        
+        <i class="fa fa-chevron-down ui-arrow-icon" [class.fa-rotate-180]="isOpen()"></i>
+      </div>
+
+      @if (isOpen()) {
+        <div class="ui-dropdown-list shadow-lg">
+          @for (opt of options(); track opt[bindValue()]) {
+            <div class="ui-option-item" 
+                 [class.ui-option--selected]="isSelected(opt)"
+                 (click)="toggleOption(opt)">
+              <span>{{ opt[bindLabel()] }}</span>
+              @if (isSelected(opt)) {
+                <i class="fa fa-check"></i>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

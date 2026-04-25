@@ -53,3 +53,30 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+## Mi estructura
+<!-- Actúa como un Arquitecto Senior de Angular. Quiero desarrollar un sistema de diseño basado en la Regla de las 4 Capas:
+
+Lógica: Uso estricto de ControlValueAccessor y formularios reactivos.
+
+Estructura: HTML semántico y paramétrico (usando @Input para anchos y etiquetas).
+
+Estado Visual: Clases dinámicas para errores, focus y deshabilitado.
+
+Flexibilidad: Uso de ng-content para slots y configuración de iconos (Lucide).
+Todos los componentes deben ser standalone.
+
+El estilo visual debe ser 'Business Desktop' (estilo VB/SAP). Reglas clave:
+
+Layout Inline: Las etiquetas (labels) van a la izquierda del input con un ancho fijo (por defecto 120px) usando un sistema de flex o grid.
+
+Inputs: Altura compacta (34px a 36px), fondo gris muy claro (#f9fafb) y bordes que cambian a azul al hacer focus.
+
+Multi-select: Los elementos seleccionados aparecen como 'chips' grises con una 'x' para eliminar.
+
+Globalización: Los estilos visuales se definen en apps.scss, el componente solo maneja el posicionamiento.
+
+usa siempre la regla de las 4 capas: Lógica de Formulario (CVA), Accesibilidad (A11y), Estado Visual (Validación) y Flexibilidad (Slots/Iconos).
+
+cada vez que quiero crear un componente nuevo este debe ser parametrizable, con la mayor parte de la gráfica definida desde apps.scss
+ -->

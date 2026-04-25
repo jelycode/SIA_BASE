@@ -1,0 +1,94 @@
+/* ui-tree.component.scss - REVISIÓN TOTAL */
+
+.ui-tree-container {
+  // Cambiamos a la fuente 'Inter' o similar si puedes para ese look SAP/Ingentis
+  color: var(--text-main); // Gris profesional, no negro puro
+  user-select: none;
+  
+  // Limpiamos los ul/li clásicos
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+}
+
+/* Fila de ítem base */
+.node-row {
+  display: flex;
+  align-items: center;
+  /* 3. ESPACIADO REVISADO: Más aire, alineado con el chevron */
+  padding: 8px 12px; 
+  margin: var(--tree-node-margin-y) 0;
+  border-radius: 6px; // Bordes suaves
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+
+  &:hover:not(.active) {
+    background-color: var(--tree-node-hover-bg);
+  }
+
+  /* 4. ESTADO ACTIVO (PÍLDORA) REVISADO */
+  &.active {
+    background-color: var(--tree-node-active-bg); // Azul muy suave de fondo
+    color: var(--tree-node-active-text);           // Texto azul fuerte
+    font-weight: 500;         // Un poco más pesado
+
+    // Un indicador lateral más sutil
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      height: var(--tree-node-active-indicator-height);
+      width: var(--tree-node-active-indicator-width);
+      background-color: var(--tree-node-active-indicator-color);
+      border-radius: 0 4px 4px 0;
+    }
+    
+    // Si el item activo es una hoja final, el color del icono también cambia
+    .item-icon { color: inherit; }
+  }
+}
+
+/* 5. ARREGLO DE ICONOS: Flechitas vs Puntos */
+
+.chevron-icon {
+  width: 12px;
+  height: 12px;
+  margin-right: var(--tree-icon-margin-right);
+  color: var(--tree-icon-color); // Gris neutro
+  transition: transform 0.2s;
+
+  &.expanded {
+    transform: rotate(90deg); // Gira la flechita
+  }
+}
+
+.item-icon {
+  width: 12px; // Íconos finales más pequeños y discretos
+  height: 12px;
+  margin-right: var(--tree-icon-margin-right-leaf);
+  color: var(--tree-icon-color);
+  opacity: 0.7;
+  
+  // Para los iconos 'Circle', los queremos alineados con el chevron
+  &.icon-circle {
+    margin-left: var(--tree-icon-circle-margin-left); // Sangría para alinearlo con el chevron superior
+  }
+}
+
+/* 6. ARREGLO DE TEXTO */
+.node-label {
+  /* 7. TAMAÑO DE LETRA REVISADO: Más grande y legible (estilo Ingentis) */
+  font-size: var(--font-size);
+  letter-spacing: -0.01em; // Un toque moderno
+  white-space: nowrap;
+}
+
+/* 8. SANGRÍA DE NIVELES */
+.node-children {
+  // Sangría limpia para guiar la vista
+  padding-left: var(--tree-child-indent);
+}

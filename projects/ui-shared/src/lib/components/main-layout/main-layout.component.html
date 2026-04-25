@@ -1,0 +1,35 @@
+<div class="layout-wrapper">
+  <header class="glass-header">
+    <div class="header-section brand">
+      <button class="hamburger-btn" (click)="toggleSidebar()">
+        <lucide-icon [name]="MenuIcon"></lucide-icon>
+      </button>      
+      <span class="system-name">APEX</span>
+    </div>
+
+    <div class="search-container" >
+      <lib-top-search></lib-top-search>
+    </div>
+
+    <div class="divider"></div>
+
+    <lib-user-info></lib-user-info>
+
+  </header>
+
+  <div class="layout-body" [class.sidebar-closed]="!isSidebarOpen">
+    <aside class="sidebar">
+        <lib-ui-tree 
+          [nodes]="menuItems" 
+          [activeId]="activeMenuId"
+          (nodeClick)="cambiarVista($event)">
+        </lib-ui-tree>
+    </aside>
+
+    <main class="content-area">
+      <router-outlet>
+        
+      </router-outlet>
+    </main>
+  </div>
+</div>

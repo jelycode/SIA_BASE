@@ -1,0 +1,27 @@
+<button 
+  [type]="type()"
+  class="ui-button-base"
+  [class.ui-button--sm]="size() === 'sm'"
+  [class.ui-button--md]="size() === 'md'"
+  [class.ui-button--lg]="size() === 'lg'"
+  [class]="customClass()"
+  [style.width]="width()"
+  [style.--ui-btn-bg]="'var(' + variant() + ')'"
+  [disabled]="disabled() || loading()"
+  (click)="handleClick($event)"
+  >
+  
+  @if (loading()) {
+    <i class="fa fa-circle-o-notch fa-spin btn-spinner"></i>
+  } @else {
+    @if (icon()) {
+      <i [class]="icon()" class="btn-icon" aria-hidden="true"></i>
+    }
+  }
+
+  @if (text() && !loading()) {
+    <span class="btn-text">{{ text() }}</span>
+  }
+
+  <ng-content></ng-content>
+</button>

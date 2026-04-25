@@ -1,0 +1,40 @@
+:host {
+  display: block; // Permite que el grid controle el ancho
+  width: 100%;
+}
+
+.ui-label-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ui-label {
+  display: block;
+  font-size: var(--ui-label-font-size);
+  color: var(--ui-label-color);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &--bold {
+    font-weight: var(--ui-label-font-weight);
+  }
+
+  &--section {
+    font-size: var(--ui-label-section-font-size);
+    font-weight: 700;
+    color: var(--ui-label-section-color);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0; // Línea sutil para separar secciones
+    padding-bottom: 4px;
+  }
+
+  .required-mark {
+    color: var(--ui-label-required-mark-color);
+    margin-left: 2px;
+    font-weight: bold;
+  }
+}

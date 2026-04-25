@@ -1,0 +1,125 @@
+:host {
+  display: block; 
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: white;
+  font-family: var(--font-family);
+
+  .btn-add {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 6px 14px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: var(--font-size);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--glass-bg-hover);
+      transform: translateY(-1px);
+    }
+    
+    lucide-icon { width: var(--btn-icon-size); height: var(--btn-icon-size); stroke-width: 1px; }
+  }
+
+  .divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    .avatar-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      object-fit: cover;
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+      
+      .name-row {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        
+        .user-name {
+          font-size: var(--user-name-font-size);
+          font-weight: 600;
+          white-space: nowrap;
+        }
+
+        .icon-chevron { width: 14px; height: 14px; opacity: 0.8; }
+      }
+
+      .user-badge {
+        font-size: var(--user-badge-font-size);
+        font-weight: 800;
+        color: var(--user-badge-color);
+        background: var(--user-badge-background-color);
+        padding: 1px 8px;
+        border-radius: 10px;
+        width: fit-content;
+        text-transform: uppercase;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  .system-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .notification-wrapper {
+      position: relative;
+      display: flex;
+      
+      .notification-dot {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        width: 8px;
+        height: 8px;
+        background: var(--user-notification-dot-background-color);
+        border-radius: var(--radius-full); // Usamos el token para consistencia
+        border: 1.5px solid var(--glass-border-notification); 
+      }
+    }
+
+    
+
+    .icon-action {
+      width: 20px !important;
+      height: 20px !important;
+      padding:2px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.1s;
+
+      &:hover { opacity: 1; }
+      ::ng-deep svg {
+          width: 20px !important;
+          height: 20px !important;
+        }      
+    }
+  }
+}

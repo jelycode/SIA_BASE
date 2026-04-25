@@ -5,7 +5,7 @@
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
-      "vitest/globals"
+      "jasmine" // Cambiar a 'jasmine' si usas Karma/Jasmine, o mantener 'vitest/globals' si usas Vitest
     ]
   },
   "include": [

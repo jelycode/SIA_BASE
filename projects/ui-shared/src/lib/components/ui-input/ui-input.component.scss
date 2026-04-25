@@ -1,0 +1,68 @@
+/* ui-input.component.scss */
+:host {
+  display: block;
+}
+
+.ui-input-row {
+  display: flex;
+  vertical-align: center;
+  //flex-direction: column; // Label ARRIBA
+  gap: var(--ui-input-row-gap, 15px);
+  width: 100%;
+}
+
+.ui-input-field-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ui-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  // Bordes y fondos se definen en apps.scss
+  border: 1px solid var(--ui-input-container-border, #d1d5db);
+  background-color: var(--ui-input-container-bg, #d1d5db51);
+  border-radius: 4px;
+}
+
+.ui-input-field {
+  width: var(width);
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: var(--ui-input-field-padding, 8px 10px);
+  width: 100%;
+  
+  &.has-icon {
+    padding-left: var(--ui-input-icon-padding-left, 32px);
+  }
+}
+
+.ua-input-icon-prefix {
+  position: absolute;
+  left: var(--ui-input-icon-left, 10px);
+  pointer-events: none;
+  color: var(--ui-input-icon-color, #9ca3af);
+}
+
+.ui-input-suffix-slot {
+  display: flex;
+  align-items: center;
+}
+
+
+/* apps.scss */
+.ui-input-label {
+  padding-top: var(--ui-input-label-padding-top, 10px);
+  font-size: var(--ui-input-label-font-size);
+  font-weight: var(--ui-input-label-font-weight);
+  color: var(--ui-input-label-color);
+}
+
+.required-mark {
+  color: var(--ui-input-required-mark-color, #ef4444);
+  margin-left: 2px;
+}

@@ -10,7 +10,9 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "type": "component"
+
         }
       },
       "root": "",
@@ -30,8 +32,13 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
-            ]
+              "src/app/app.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/ui-shared/src/lib/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -70,7 +77,40 @@
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/ui-shared/src/lib/styles"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ui-shared": {
+      "projectType": "library",
+      "root": "projects/ui-shared",
+      "sourceRoot": "projects/ui-shared/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ui-shared/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ui-shared/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/ui-shared/tsconfig.spec.json"
+          }
         }
       }
     }
