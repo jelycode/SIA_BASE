@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width:var(width);
 }
 
 .ui-select-label-top {
@@ -123,4 +124,19 @@
   font-size: var(--ui-select-label-font-size);
   font-weight: 600;
   color: var(--ui-select-label-color);
+}
+// ─── Cabecera de grupo ────────────────────────────────────────────────────────
+.ui-group-header {
+  padding: 8px 12px 4px;
+  font-size: var(--ms-group-header-font-size, 13px);
+  font-weight: 700;
+  color: var(--ms-group-header-color, #1e293b);
+  background-color: var(--ui-dropdown-background-color);
+  cursor: default;
+  user-select: none;
+}
+
+// ─── Transición flecha ────────────────────────────────────────────────────────
+.ui-arrow {
+  transition: transform 0.2s ease;
 }

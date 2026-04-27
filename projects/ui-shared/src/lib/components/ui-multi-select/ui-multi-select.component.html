@@ -1,44 +1,68 @@
-<div class="ui-select-wrapper" [style.width]="width()">
-  <div class="ui-select-main-container">
-    @if (label()) {
-      <label class="ui-select-label-top">
-        {{ label() }}
-      </label>
-    }
+<div class="ui-select-wrapper" [class.ui-select-wrapper--disabled]="disabled">
 
-    <div class="ui-select-content-box">
-      <div class="ui-select-field" 
-           [class.ui-select--disabled]="disabled()"
-           (click)="toggleDropdown()">
-        
-        <div class="ui-tag-container">
-          @for (item of value(); track item[bindValue()]) {
-            <div class="ui-tag">
-              <span class="ui-tag-text">{{ item[bindLabel()] }}</span>
-              <i class="fa fa-times-circle ui-tag-remove" (click)="removeOption(item, $event)"></i>
-            </div>
-          } @empty {
-            <span class="ui-select-placeholder">{{ placeholder() }}</span>
-          }
-        </div>
-        
-        <i class="fa fa-chevron-down ui-arrow-icon" [class.fa-rotate-180]="isOpen()"></i>
+  <!-- Label superior -->
+  <label *ngIf="label" class="ui-select-label-top">{{ label() }}</label>
+
+  <div class="ui-select-main"  [style.width]="width()">
+
+    <!-- Control principal -->
+    <div
+      class="ui-select-container"
+      [class.ui-select--disabled]="disabled"
+      [class.ui-select--open]="isOpen"
+      (click)="toggleDropdown()"
+    >
+      <!-- Tags de seleccionados -->
+      <div class="ui-tag-area">
+        <span
+          *ngFor="let item of selectedItems"
+          class="ui-tag"
+          (click)="$event.stopPropagation()"
+        >
+          <span class="ui-tag-text">{{ item.label }}</span>
+          <span
+            class="ui-tag-remove"
+            (click)="removeItem(item, $event)"
+            role="button"
+            [attr.aria-label]="'Quitar ' + item.label"
+          >&#x2715;</span>
+        </span>
+
+        <!-- Placeholder -->
+        <span
+          class="ui-placeholder-text"
+          *ngIf="selectedItems.length === 0"
+        >{{ placeholder }}</span>
       </div>
 
-      @if (isOpen()) {
-        <div class="ui-dropdown-list shadow-lg">
-          @for (opt of options(); track opt[bindValue()]) {
-            <div class="ui-option-item" 
-                 [class.ui-option--selected]="isSelected(opt)"
-                 (click)="toggleOption(opt)">
-              <span>{{ opt[bindLabel()] }}</span>
-              @if (isSelected(opt)) {
-                <i class="fa fa-check"></i>
-              }
-            </div>
-          }
-        </div>
-      }
+      <!-- Flecha -->
+      <span class="ui-arrow" [style.transform]="isOpen ? 'rotate(180deg)' : 'rotate(0deg)'">
+        &#9660;
+      </span>
     </div>
+
+    <!-- Dropdown -->
+    <div class="ui-dropdown" *ngIf="isOpen">
+      <ng-container *ngFor="let group of groups">
+
+        <!-- Cabecera de grupo -->
+        <div class="ui-group-header" *ngIf="group.label">
+          {{ group.label }}
+        </div>
+
+        <!-- Opciones -->
+        <div
+          *ngFor="let opt of group.options"
+          class="ui-option"
+          [class.ui-option--selected]="isSelected(opt)"
+          (click)="toggleOption(opt, $event)"
+          
+        >
+          {{ opt.label }}
+        </div>
+
+      </ng-container>
+    </div>
+
   </div>
 </div>

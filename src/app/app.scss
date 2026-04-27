@@ -164,6 +164,76 @@
   --color-bg-secondary: #3ba35f;
   --color-bg-secondary-hover: #31bc3d;   
   --color-on-brand: #ffffff;
+
+
+
+ /* --- ui-multiselect --- */
+  --ms-font-size: 13px;
+ 
+  /* Label */
+  --ms-label-font-size: 12px;
+  --ms-label-font-weight: 600;
+  --ms-label-color: #334155;
+ 
+  /* Control (caja principal) */
+  --ms-control-min-height: 34px;
+  --ms-control-padding: 4px 6px;
+  --ms-control-bg: #ffffff;
+  --ms-control-border-width: 1px;
+  --ms-control-border-color: #3b82f6;         /* Borde azul de la imagen */
+  --ms-control-border-color-focus: #3b82f6;
+  --ms-control-border-color-disabled: #cbd5e1;
+  --ms-control-bg-disabled: #f8fafc;
+  --ms-control-border-radius: 3px;
+ 
+  /* Chips (tags seleccionados) */
+  --ms-chip-bg: #f1f5f9;
+  --ms-chip-color: #1e293b;
+  --ms-chip-border-color: #cbd5e1;
+  --ms-chip-border-radius: 3px;
+  --ms-chip-padding: 3px 7px;
+  --ms-chip-font-size: 12px;
+  --ms-chip-remove-color: #64748b;
+  --ms-chip-remove-font-size: 10px;
+  --ms-chip-remove-color-hover: #ef4444;
+ 
+  /* Cursor parpadeante */
+  --ms-cursor-color: #334155;
+ 
+  /* Placeholder */
+  --ms-placeholder-color: #94a3b8;
+  --ms-placeholder-font-size: 13px;
+ 
+  /* Flecha */
+  --ms-arrow-color: #64748b;
+  --ms-arrow-font-size: 9px;
+ 
+  /* Dropdown */
+  --ms-dropdown-bg: #ffffff;
+  --ms-dropdown-max-height: 220px;
+ 
+  /* Scrollbar decorativa */
+  --ms-scrollbar-width: 16px;
+  --ms-scrollbar-track-bg: #f8fafc;
+  --ms-scrollbar-border-color: #e2e8f0;
+  --ms-scrollbar-thumb-width: 10px;
+  --ms-scrollbar-thumb-height: 30px;
+  --ms-scrollbar-thumb-bg: #94a3b8;
+ 
+  /* Cabecera de grupo */
+  --ms-group-header-padding: 8px 10px 4px;
+  --ms-group-header-font-size: 13px;
+  --ms-group-header-font-weight: 700;
+  --ms-group-header-color: #1e293b;
+ 
+  /* Opciones */
+  --ms-option-padding: 7px 10px;
+  --ms-option-font-size: 13px;
+  --ms-option-color: #1e293b;
+  --ms-option-bg: #ffffff;
+  --ms-option-hover-bg: #f1f5f9;           /* Gris claro al hover */
+  --ms-option-selected-bg: #3b82f6;        /* Azul seleccionado (imagen) */
+  --ms-option-selected-color: #ffffff;  
 }
 
 html, body {

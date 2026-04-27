@@ -1,87 +1,149 @@
-import { Component, input, signal, ElementRef, HostListener, inject, OnInit } from '@angular/core';
+import {
+  Component, Input, Output, EventEmitter,
+  forwardRef, HostListener, ElementRef, OnInit, OnChanges, SimpleChanges,
+  input
+} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+
+// Formato interno del componente
+export interface MultiSelectOption {
+  value: string | number;
+  label: string;
+  group?: string;
+}
+
+export interface MultiSelectGroup {
+  label: string;
+  options: MultiSelectOption[];
+}
+
+// Formato externo flexible: soporta {value, label} o {id, nombre}
+export type RawOption =
+  | MultiSelectOption
+  | { id: string | number; nombre: string; group?: string };
 
 @Component({
-  selector: 'lib-ui-multi-select',
+  selector: 'ui-multi-select',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './ui-multi-select.component.html',
-  styleUrl: './ui-multi-select.component.scss'
+  styleUrls: ['./ui-multi-select.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => UiMultiSelectComponent),
+      multi: true
+    }
+  ]
 })
-export class UiMultiSelectComponent implements ControlValueAccessor, OnInit {
-  private elementRef = inject(ElementRef);
-  // Inyectamos NgControl de forma segura para evitar el error del constructor
-  public ngControl = inject(NgControl, { self: true, optional: true });
+export class UiMultiSelectComponent implements ControlValueAccessor, OnInit, OnChanges {
 
+  /** Acepta tanto { value, label } como { id, nombre } */
+  @Input() options: RawOption[] = [];
+  @Input() placeholder = 'Seleccione...';
+  @Input() disabled = false;
   label = input<string>('');
-  placeholder = input<string>('Seleccione...');
   width = input<string>('100%');
-  options = input<any[]>([]);
-  bindLabel = input<string>('nombre');
-  bindValue = input<string>('id');
 
-  value = signal<any[]>([]);
-  isOpen = signal(false);
-  disabled = signal(false);
+  @Output() selectionChange = new EventEmitter<MultiSelectOption[]>();
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  isOpen = false;
+  selectedItems: MultiSelectOption[] = [];
+  groups: MultiSelectGroup[] = [];
+  normalizedOptions: MultiSelectOption[] = [];
 
-  constructor() {
-    // Vinculamos el valueAccessor manualmente
-    if (this.ngControl) {
-      this.ngControl.valueAccessor = this;
+  private onChange: (value: any[]) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  constructor(private elRef: ElementRef) {}
+
+  ngOnInit(): void {
+    this.normalizeAndBuildGroups();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['options']) {
+      this.normalizeAndBuildGroups();
     }
   }
 
-  ngOnInit(): void {}
-
-  toggleDropdown() {
-    if (!this.disabled()) this.isOpen.update(v => !v);
+  private normalizeOption(raw: RawOption): MultiSelectOption {
+    if ('id' in raw && 'nombre' in raw) {
+      return { value: raw.id, label: raw.nombre, group: raw.group };
+    }
+    return raw as MultiSelectOption;
   }
 
-  toggleOption(option: any) {
-    const current = this.value();
-    const val = option[this.bindValue()];
-    const isSelected = current.some(i => i[this.bindValue()] === val);
-
-    let newValue = isSelected 
-      ? current.filter(i => i[this.bindValue()] !== val)
-      : [...current, option];
-    
-    this.value.set(newValue);
-    this.onChange(newValue.map(i => i[this.bindValue()]));
+  private normalizeAndBuildGroups(): void {
+    this.normalizedOptions = this.options.map(o => this.normalizeOption(o));
+    this.buildGroups();
   }
 
-  isSelected(option: any): boolean {
-    return this.value().some(i => i[this.bindValue()] === option[this.bindValue()]);
+  buildGroups(): void {
+    const groupMap = new Map<string, MultiSelectOption[]>();
+    const ungrouped: MultiSelectOption[] = [];
+
+    for (const opt of this.normalizedOptions) {
+      if (opt.group) {
+        if (!groupMap.has(opt.group)) groupMap.set(opt.group, []);
+        groupMap.get(opt.group)!.push(opt);
+      } else {
+        ungrouped.push(opt);
+      }
+    }
+
+    this.groups = [];
+    if (ungrouped.length) {
+      this.groups.push({ label: '', options: ungrouped });
+    }
+    groupMap.forEach((opts, lbl) => {
+      this.groups.push({ label: lbl, options: opts });
+    });
   }
 
-  removeOption(option: any, event: Event) {
+  toggleDropdown(): void {
+    if (this.disabled) return;
+    this.isOpen = !this.isOpen;
+    if (this.isOpen) this.onTouched();
+  }
+
+  isSelected(option: MultiSelectOption): boolean {
+    return this.selectedItems.some(s => s.value === option.value);
+  }
+
+  toggleOption(option: MultiSelectOption, event: MouseEvent): void {
     event.stopPropagation();
-    const newValue = this.value().filter(i => i[this.bindValue()] !== option[this.bindValue()]);
-    this.value.set(newValue);
-    this.onChange(newValue.map(i => i[this.bindValue()]));
+    const exists = this.selectedItems.some(s => s.value === option.value);
+    if (exists) {
+      this.selectedItems = this.selectedItems.filter(s => s.value !== option.value);
+    } else {
+      this.selectedItems = [...this.selectedItems, option];
+    }
+    this.onChange(this.selectedItems.map(s => s.value));
+    this.selectionChange.emit(this.selectedItems);
+  }
+
+  removeItem(item: MultiSelectOption, event: MouseEvent): void {
+    event.stopPropagation();
+    this.selectedItems = this.selectedItems.filter(s => s.value !== item.value);
+    this.onChange(this.selectedItems.map(s => s.value));
+    this.selectionChange.emit(this.selectedItems);
   }
 
   @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (!this.elementRef.nativeElement.contains(event.target)) {
-      this.isOpen.set(false);
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.elRef.nativeElement.contains(event.target)) {
+      this.isOpen = false;
     }
   }
 
-  writeValue(val: any): void {
-    if (val && Array.isArray(val)) {
-      const selected = this.options().filter(o => val.includes(o[this.bindValue()]));
-      this.value.set(selected);
-    } else {
-      this.value.set([]);
-    }
+  writeValue(values: any[]): void {
+    if (!values?.length) { this.selectedItems = []; return; }
+    this.selectedItems = this.normalizedOptions.filter(o => values.includes(o.value));
   }
-
   registerOnChange(fn: any): void { this.onChange = fn; }
   registerOnTouched(fn: any): void { this.onTouched = fn; }
-  setDisabledState(isDisabled: boolean): void { this.disabled.set(isDisabled); }
+  setDisabledState(isDisabled: boolean): void { this.disabled = isDisabled; }
 }
