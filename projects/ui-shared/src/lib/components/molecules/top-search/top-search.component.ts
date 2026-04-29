@@ -3,6 +3,7 @@ import { LucideAngularModule, Search } from 'lucide-angular';
 
 @Component({
   selector: 'lib-top-search',
+  standalone: true,
   imports: [
     LucideAngularModule  
   ],

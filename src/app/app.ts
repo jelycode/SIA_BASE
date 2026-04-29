@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-// Importa tu layout (ajusta la ruta según tu estructura, probablemente sea esta)
-import { MainLayoutComponent } from '../../projects/ui-shared/src/public-api';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule,  MainLayoutComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class AppComponent {
   title = 'frontend';

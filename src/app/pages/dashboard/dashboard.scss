@@ -1,0 +1,21 @@
+.dashboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.btn-sign-out {
+  cursor: pointer;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #d6dbdf);
+  background: #fff;
+  color: var(--text-main, #2e3a48);
+}
+
+.btn-sign-out:hover {
+  background: var(--bg-main, #f4f7fa);
+}

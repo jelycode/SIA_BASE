@@ -16,8 +16,9 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "ui-shared": ["./dist/ui-shared",
-      "./projects/ui-shared/src/public-api.ts"
+      "ui-shared": [
+        "./projects/ui-shared/src/public-api.ts",
+        "./dist/ui-shared"
 
      ]
     }

@@ -25,7 +25,7 @@ export type RawOption =
   | { id: string | number; nombre: string; group?: string };
 
 @Component({
-  selector: 'ui-multi-select',
+  selector: 'lib-ui-multi-select',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './ui-multi-select.component.html',

@@ -1,15 +1,16 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopSearchComponent } from '../top-search/top-search.component'; // Asegúrate de que la ruta sea correcta
-import { UserInfoComponent } from '../user-info/user-info.component';
+import { TopSearchComponent } from '../molecules/top-search/top-search.component';
+import { UserInfoComponent } from '../molecules/user-info/user-info.component';
 import { LucideAngularModule, Search, Settings, Bell, ChevronDown, Plus ,    Menu,   House,   FileText,   Users} from 'lucide-angular';
-import { UiTreeComponent } from '../ui-tree/ui-tree.component';
+import { UiTreeComponent } from '../../../navigation/ui-tree/ui-tree.component';
 
 
 import { RouterModule } from '@angular/router'; // <--- 1. IMPORTA ESTO
 
 @Component({
   selector: 'lib-main-layout',
+  standalone: true,
   // 2. AÑADE RouterModule AQUÍ
   imports: [
       CommonModule 

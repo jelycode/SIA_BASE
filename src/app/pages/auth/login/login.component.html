@@ -1,0 +1,41 @@
+<div class="login-page">
+  <div class="login-card">
+    <header class="login-header">
+      <h1 class="login-brand">APEX</h1>
+      <p class="login-subtitle">Ingreso al sistema</p>
+    </header>
+
+    <form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
+      @if (errorMsg()) {
+        <div class="login-error" role="alert">{{ errorMsg() }}</div>
+      }
+
+      <lib-ui-input
+        label="Correo"
+        formControlName="email"
+        type="email"
+        placeholder="usuario@empresa.com"
+        width="100%"
+      />
+
+      <lib-ui-input
+        label="Contraseña"
+        formControlName="password"
+        type="password"
+        placeholder="••••••••"
+        width="100%"
+      />
+
+      <lib-ui-button
+        text="Ingresar"
+        type="submit"
+        variant="--color-bg-primary"
+        width="100%"
+        [loading]="loading()"
+        [disabled]="loading()"
+      />
+    </form>
+
+    <p class="login-hint">Usa cualquier correo válido y contraseña de al menos 4 caracteres (modo demo).</p>
+  </div>
+</div>

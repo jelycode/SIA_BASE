@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UiMultiSelect } from './ui-multi-select.component';
+import { UiMultiSelectComponent } from './ui-multi-select.component';
 
-describe('UiMultiSelect', () => {
-  let component: UiMultiSelect;
-  let fixture: ComponentFixture<UiMultiSelect>;
+describe('UiMultiSelectComponent', () => {
+  let component: UiMultiSelectComponent;
+  let fixture: ComponentFixture<UiMultiSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UiMultiSelect],
+      imports: [UiMultiSelectComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UiMultiSelect);
+    fixture = TestBed.createComponent(UiMultiSelectComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

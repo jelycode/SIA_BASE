@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { UiInputComponent } from '../../../../../projects/ui-shared/src/lib/components/ui-input/ui-input.component';
 import { FileText, Search } from 'lucide-angular';
-import { UiButtonComponent} from '../../../../../projects/ui-shared/src/lib/components/ui-button/ui-button.component';
+import { UiButtonComponent, UiInputComponent } from 'ui-shared';
 
 
 

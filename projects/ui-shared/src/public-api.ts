@@ -1,11 +1,15 @@
 /*
  * Public API Surface of ui-shared
+ *
+ * Capas:
+ * - atoms: controles genéricos reutilizables
+ * - molecules: bloques combinados (búsqueda superior, usuario, etc.)
+ * - navigation: árboles/menús de navegación
+ * Layout y shell viven fuera de atoms cuando no son reusables como primitivas.
  */
 
-// Exportar Servicios
-//export * from './lib/services/ui-shared.service';
-
 export * from './lib/components/main-layout/main-layout.component';
-export * from './lib/components/top-search/top-search.component';
-export * from './lib/components/user-info/user-info.component'; // Verifica que la ruta sea correcta
-export * from './lib/components/ui-input/ui-input.component';
+
+export * from './lib/components/atoms';
+export * from './lib/components/molecules';
+export * from './navigation';

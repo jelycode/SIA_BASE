@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { UiInputComponent } from '../../../../../projects/ui-shared/src/lib/components/ui-input/ui-input.component';
-import { UiButtonComponent} from '../../../../../projects/ui-shared/src/lib/components/ui-button/ui-button.component';
-import { UiMultiSelectComponent } from '../../../../../projects/ui-shared/src/lib/components/ui-multi-select/ui-multi-select.component'; 
-import { UiLabelComponent } from '../../../../../projects/ui-shared/src/lib/components/ui-label/ui-label.component'; 
-import { MultiSelectOption } from '../../../../../projects/ui-shared/src/lib/components/ui-multi-select/ui-multi-select.component'; 
+import {
+  UiInputComponent,
+  UiButtonComponent,
+  UiMultiSelectComponent,
+  UiLabelComponent,
+  MultiSelectOption
+} from 'ui-shared';
 
 @Component({
   selector: 'app-det-policy',
