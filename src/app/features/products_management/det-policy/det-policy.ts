@@ -14,7 +14,9 @@ import {
   RadioOption,
   UiCheckComponent,
   CheckboxOption,
+  UiInputFileComponent,
 } from 'ui-shared';
+
 
 @Component({
   selector: 'app-det-policy',
@@ -31,31 +33,29 @@ import {
     UiSelectComponent,
     UiRadioComponent,
     UiCheckComponent,
+    UiInputFileComponent,
   ],
   templateUrl: './det-policy.html',
   styleUrl: './det-policy.scss'
 })
 export class DetPolicy {
   readonly SearchIcon = 'fa fa-search';
-  readonly SaveIcon = 'fa fa-save';
+  readonly SaveIcon   = 'fa fa-save';
 
   policyForm = new FormGroup({
-    txtPoliza: new FormControl('20454', [Validators.required]), 
-    txtNombre: new FormControl('Bupa Administración y servicios'),    
-    txtFechaInicio: new FormControl('01/01/2026'),    
-    txtFechaFin: new FormControl('31/12/2027'),
-    tipoCoberturas: new FormControl<string[]>([]),
-    /** Una sola cobertura (lib-ui-select); no reutilizar el mismo control que el multi */
-    tipoCoberturaUnica: new FormControl<string | number | null>(null),
-    txtTipoProducto: new FormControl('Colectivo'),
-    /** Ejemplo radio en línea */
+    txtPoliza:           new FormControl('20454', [Validators.required]),
+    txtNombre:           new FormControl('Bupa Administración y servicios'),
+    txtFechaInicio:      new FormControl('01/01/2026'),
+    txtFechaFin:         new FormControl('31/12/2027'),
+    tipoCoberturas:      new FormControl<string[]>([]),
+    tipoCoberturaUnica:  new FormControl<string | number | null>(null),
+    txtTipoProducto:     new FormControl('Colectivo'),
     renovacionAutomatica: new FormControl<string>('no'),
-    /** Ejemplo radio vertical (estilo «forma de pago») */
-    metodoPago: new FormControl<string>('credito'),
-    /** Checkboxes en línea (notificaciones) */
+    metodoPago:          new FormControl<string>('credito'),
     canalesNotificacion: new FormControl<string[]>(['email']),
-    /** Checkboxes en columna + ejemplo indeterminado */
     documentosIncluidos: new FormControl<string[]>([]),
+    /** Archivo adjunto de la póliza */
+    archivoPoliza:       new FormControl<File | null>(null),
   });
 
   tipoCoberturas = [
@@ -77,14 +77,14 @@ export class DetPolicy {
 
   readonly opcionesNotificacion: CheckboxOption[] = [
     { value: 'email', label: 'Correo electrónico' },
-    { value: 'sms', label: 'SMS' },
-    { value: 'app', label: 'App móvil' },
+    { value: 'sms',   label: 'SMS' },
+    { value: 'app',   label: 'App móvil' },
   ];
 
   readonly opcionesDocumentos: CheckboxOption[] = [
-    { value: 'poliza', label: 'Copia póliza' },
+    { value: 'poliza',      label: 'Copia póliza' },
     { value: 'condiciones', label: 'Condiciones generales', indeterminate: true },
-    { value: 'anexos', label: 'Anexos' },
+    { value: 'anexos',      label: 'Anexos' },
   ];
 
   onCoberturaChange(selected: MultiSelectOption[]): void {
@@ -94,5 +94,4 @@ export class DetPolicy {
   onTipoCoberturaChange(selected: SelectOption | null): void {
     console.log('Cobertura seleccionada (select):', selected);
   }
-
 }

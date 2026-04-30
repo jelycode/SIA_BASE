@@ -4,7 +4,6 @@ import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

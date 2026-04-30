@@ -1,0 +1,61 @@
+<div class="ui-input-file-row" [style.width]="width()">
+
+  @if (label()) {
+    <label [for]="id()" class="ui-input-file-label">
+      {{ label() }}
+      @if (required()) {
+        <span class="required-mark">*</span>
+      }
+    </label>
+  }
+
+  <div class="ui-input-file-field-group">
+    <div
+      class="ui-input-file-container"
+      [class.ui-input-file--disabled]="disabled"
+      [class.ui-input-file--dragover]="isDragOver()"
+      [class.ui-input-file--invalid]="isInvalid()"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave()"
+      (drop)="onDrop($event)"
+    >
+      <!-- Texto del archivo seleccionado o placeholder -->
+      <span class="ui-input-file-text" [class.has-file]="hasFile()">
+        {{ displayText() }}
+      </span>
+
+      <!-- Botón Browse -->
+      <button
+        type="button"
+        class="ui-input-file-browse-btn"
+        [disabled]="disabled"
+        (click)="triggerFileInput()"
+      >
+        {{ browseLabel() }}
+      </button>
+
+      <!-- Input file oculto -->
+      <input
+        #fileInput
+        [id]="id()"
+        type="file"
+        [accept]="accept()"
+        [multiple]="multiple()"
+        [disabled]="disabled"
+        [attr.aria-invalid]="isInvalid()"
+        [attr.aria-describedby]="isInvalid() ? id() + '-error' : (hint() ? id() + '-hint' : null)"
+        (change)="handleFileChange($event)"
+        class="ui-input-file-native"
+      />
+    </div>
+
+    @if (hint() && !isInvalid()) {
+      <span class="ui-input-file-hint" [id]="id() + '-hint'">{{ hint() }}</span>
+    }
+    @if (isInvalid()) {
+      <span class="ui-input-file-error-msg" [id]="id() + '-error'" role="alert">
+        {{ getErrorMessage() }}
+      </span>
+    }
+  </div>
+</div>

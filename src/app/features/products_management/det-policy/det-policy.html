@@ -42,27 +42,36 @@
           />
         </td>
       </tr>
+
       <tr>
-        <td>
-          <!-- <lib-ui-label text="Póliza" variant="bold"></lib-ui-label> -->
-        </td>
-        <td>
-          <!-- <lib-ui-input  formControlName="txtPoliza" width="60px"></lib-ui-input> -->
-        </td>
+        <td></td>
+        <td></td>
         <td>
           <lib-ui-label text="Tipo Producto" variant="bold"></lib-ui-label>
         </td>
         <td>
-          <lib-ui-input  formControlName="txtTipoProducto" value="Colectivo" [disabled]=true [readonly]=true width="150px"></lib-ui-input>
+          <lib-ui-input
+            formControlName="txtTipoProducto"
+            value="Colectivo"
+            [disabled]="true"
+            [readonly]="true"
+            width="150px"
+          ></lib-ui-input>
         </td>
         <td>
           <lib-ui-label text="Tipos de Coberturas" variant="bold"></lib-ui-label>
         </td>
         <td colspan="3">
-          <lib-ui-multi-select  [options]="tipoCoberturas" width="300px" formControlName="tipoCoberturas"
-            placeholder="Seleccione coberturas..." (selectionChange)="onCoberturaChange($event)"></lib-ui-multi-select>
+          <lib-ui-multi-select
+            [options]="tipoCoberturas"
+            width="300px"
+            formControlName="tipoCoberturas"
+            placeholder="Seleccione coberturas..."
+            (selectionChange)="onCoberturaChange($event)"
+          ></lib-ui-multi-select>
         </td>
       </tr>
+
       <tr>
         <td>
           <lib-ui-label text="Cobertura (select simple)" variant="bold"></lib-ui-label>
@@ -77,6 +86,7 @@
           />
         </td>
       </tr>
+
       <tr>
         <td>
           <lib-ui-label text="Renovación automática" variant="bold"></lib-ui-label>
@@ -90,6 +100,7 @@
           />
         </td>
       </tr>
+
       <tr>
         <td colspan="8">
           <lib-ui-radio
@@ -101,6 +112,7 @@
           />
         </td>
       </tr>
+
       <tr>
         <td colspan="8">
           <lib-ui-check
@@ -112,6 +124,7 @@
           />
         </td>
       </tr>
+
       <tr>
         <td colspan="8">
           <lib-ui-check
@@ -123,11 +136,31 @@
           />
         </td>
       </tr>
+
+      <!-- ── Archivo adjunto ─────────────────────────────────── -->
+      <tr>
+        <td>
+          <lib-ui-label text="Archivo póliza" variant="bold"></lib-ui-label>
+        </td>
+        <td colspan="7">
+          <lib-ui-input-file
+            formControlName="archivoPoliza"
+            label="File input"
+            placeholder="Choose file"
+            browseLabel="Browse"
+            accept=".pdf,.doc,.docx,.xlsx"
+            hint="Formatos permitidos: PDF, Word, Excel"
+            [width]="'350px'"
+          />
+        </td>
+      </tr>
+      <!-- ─────────────────────────────────────────────────────── -->
+
     </table>
 
     <div class="actions-footer">
-      <lib-ui-button text="Grabar" [icon]="SaveIcon" variant="--color-bg-primary" width="140px"></lib-ui-button>
-      <lib-ui-button text="Buscar" [icon]="SearchIcon" variant="--color-bg-secondary" width="140px"></lib-ui-button>
+      <lib-ui-button text="Grabar"  [icon]="SaveIcon"   variant="--color-bg-primary"   width="140px"></lib-ui-button>
+      <lib-ui-button text="Buscar"  [icon]="SearchIcon" variant="--color-bg-secondary"  width="140px"></lib-ui-button>
     </div>
   </fieldset>
 </form>

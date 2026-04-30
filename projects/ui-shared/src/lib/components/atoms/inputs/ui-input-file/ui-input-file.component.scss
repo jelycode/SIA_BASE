@@ -1,0 +1,127 @@
+/* ui-input-file.component.scss */
+:host {
+  display: block;
+}
+
+.ui-input-file-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-input-row-gap, 15px);
+  width: 100%;
+}
+
+.ui-input-file-field-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Contenedor principal — imita .ui-input-container */
+.ui-input-file-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--ui-input-container-border, #d1d5db);
+  background-color: var(--ui-input-container-bg, #d1d5db51);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+
+  &:hover:not(.ui-input-file--disabled) {
+    border-color: var(--ui-input-file-hover-border, #2563eb);
+  }
+
+  &.ui-input-file--dragover {
+    border-color: var(--ui-input-file-dragover-border, #2563eb);
+    background-color: var(--ui-input-file-dragover-bg, #eff6ff);
+  }
+
+  &.ui-input-file--invalid {
+    border-color: var(--ui-input-file-error-border, #ef4444);
+  }
+
+  &.ui-input-file--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* Texto / placeholder dentro del campo */
+.ui-input-file-text {
+  flex: 1;
+  padding: var(--ui-input-field-padding, 6px 10px);
+  font-size: var(--ui-input-field-font-size, 11px);
+  color: var(--ui-input-file-placeholder-color, #9ca3af);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+
+  &.has-file {
+    color: var(--ui-input-file-text-color, #111827);
+  }
+}
+
+/* Botón "Browse" */
+.ui-input-file-browse-btn {
+  flex-shrink: 0;
+  padding: var(--ui-input-file-btn-padding, 6px 14px);
+  font-size: var(--ui-input-field-font-size, 11px);
+  font-weight: 500;
+  color: var(--ui-input-file-btn-color, #374151);
+  background-color: var(--ui-input-file-btn-bg, #ffffff);
+  border: none;
+  border-left: 1px solid var(--ui-input-container-border, #d1d5db);
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background-color: var(--ui-input-file-btn-hover-bg, #f3f4f6);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--ui-input-file-focus-ring, #2563eb);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* Input nativo oculto */
+.ui-input-file-native {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Label */
+.ui-input-file-label {
+  font-size: var(--ui-input-label-font-size, 11px);
+  font-weight: var(--ui-input-label-font-weight, 500);
+  color: var(--ui-input-label-color, #374151);
+}
+
+.required-mark {
+  color: var(--ui-input-required-mark-color, #ef4444);
+  margin-left: 2px;
+}
+
+/* Hint & Error */
+.ui-input-file-hint {
+  margin-top: 4px;
+  font-size: var(--ui-input-field-font-size, 11px);
+  color: var(--ui-input-hint-color, #6b7280);
+}
+
+.ui-input-file-error-msg {
+  margin-top: 4px;
+  font-size: var(--ui-input-field-font-size, 11px);
+  color: var(--ui-input-file-error-color, #ef4444);
+}

@@ -18,10 +18,11 @@ export class LoginComponent {
   readonly errorMsg = signal<string | null>(null);
   readonly loading = signal(false);
 
+  // Asi se asignan valores en Angualr con reactiveForms 
   readonly form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(4)]),
-  });
+    email:    new FormControl('info-jelycode@gmail.com', [Validators.required, Validators.email]),
+    password: new FormControl('1234',                   [Validators.required, Validators.minLength(4)]),
+   });
 
   submit(): void {
     this.errorMsg.set(null);
@@ -40,4 +41,5 @@ export class LoginComponent {
       this.errorMsg.set('No se pudo iniciar sesión. Verifica los datos.');
     }
   }
+
 }

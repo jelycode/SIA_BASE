@@ -1,52 +1,60 @@
-<form [formGroup]="policyForm" (ngSubmit)="buscar()" class="main-container">
+<!-- Vista DETALLE -->
+@if (activeMenuId === 'policy') {
+  <app-det-policy />
+}
 
-  <header class="path">
-    BUPA Seguros / BUPA / <B>Colectivo</B>
-  </header>
-  <header class="title">
-    <h2>Pólizas Colectivo</h2>
-  </header>
+<!-- Vista LISTA -->
+@if (activeMenuId !== 'policy') {
+  <form [formGroup]="policyForm" (ngSubmit)="buscar()" class="main-container">
 
-  <div class="grid-layout">
-    <fieldset class="section-group prop-grid" style="width:100%">
-      <legend>Filtro</legend>
+    <header class="path">
+      BUPA Seguros / BUPA / <b>Colectivo</b>
+    </header>
+    <header class="title">
+      <h2>Pólizas Colectivo</h2>
+    </header>
 
-      <lib-ui-input label="Póliza" formControlName="txtPoliza" width="150px"></lib-ui-input>
-      <lib-ui-input label="Nombre" formControlName="txtNombre" width="400px"></lib-ui-input>
 
-      <lib-ui-button text="Buscar" icon="SearchIcon" variant="--color-bg-primary"
-        customClass="shadow-lg mt-3 my-custom-border" width="150px">
-      </lib-ui-button>
+    <div class="grid-layout">
+      <fieldset class="section-group prop-grid" style="width:100%">
+        <legend>Filtro</legend>
 
-    </fieldset>
-    <br>
+        <lib-ui-input label="Póliza" formControlName="txtPoliza" width="150px"></lib-ui-input>
+        <lib-ui-input label="Nombre" formControlName="txtNombre" width="400px"></lib-ui-input>
 
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th *ngFor="let col of columns">{{ col.label }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of datosPolizas">
-            <td><strong>{{ row.poliza }}</strong></td>
-            <td>{{ row.nombre }}</td>
-            <td>{{ row.fechaInicio | date:'dd/MM/yyyy' }}</td>
-            <td>{{ row.fechaFin | date:'dd/MM/yyyy' }}</td>
-            <td>
-              <span class="status-pill" [ngClass]="getEstadoClass(row.estado)">
-                {{ row.estado }}
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <lib-ui-button text="Buscar" icon="SearchIcon" variant="--color-bg-primary"
+          customClass="shadow-lg mt-3 my-custom-border" width="150px">
+        </lib-ui-button>
+
+      </fieldset>
+      <br>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th *ngFor="let col of columns">{{ col.label }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of datosPolizas"
+                (click)="cambiarVista('policy', row)"
+                style="cursor: pointer;">
+              <td><strong>{{ row.poliza }}</strong></td>
+              <td>{{ row.nombre }}</td>
+              <td>{{ row.fechaInicio | date:'dd/MM/yyyy' }}</td>
+              <td>{{ row.fechaFin | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <span class="status-pill" [ngClass]="getEstadoClass(row.estado)">
+                  {{ row.estado }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
 
-
-  </div>
-
-
-
-</form>
+  </form>
+}

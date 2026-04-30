@@ -27,9 +27,9 @@ export class UiInputComponent implements ControlValueAccessor {
   hint = input<string>('');
   icon = input<string>(); // Recibe clase de Font Awesome: 'fa fa-search'
   width = input<string>('100%');
-
   // Estado
-  value = '';
+  value =  signal<string>('');
+
   disabled = false;
   isInvalid = signal(false); // Simulación de estado de validación
 
@@ -37,10 +37,9 @@ export class UiInputComponent implements ControlValueAccessor {
   onTouched: any = () => {};
 
   handleInput(event: any) {
-    this.value = event.target.value;
-    this.onChange(this.value);
+    this.value.set(event.target.value);   // ← .set()
+    this.onChange(this.value());
   }
-
   onBlur() {
     this.onTouched();
   }
@@ -49,8 +48,13 @@ export class UiInputComponent implements ControlValueAccessor {
     return 'Este campo es requerido'; // Lógica de error simplificada
   }
 
+
+
   // ControlValueAccessor
-  writeValue(val: any): void { this.value = val || ''; }
+  writeValue(val: any): void { 
+    this.value.set(val || '');  
+    console.log('writeValue llamado con:', val);  // ← agrega esto          // ← .set()
+  }
   registerOnChange(fn: any): void { this.onChange = fn; }
   registerOnTouched(fn: any): void { this.onTouched = fn; }
   setDisabledState(isDisabled: boolean): void { this.disabled = isDisabled; }
