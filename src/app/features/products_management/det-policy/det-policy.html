@@ -25,13 +25,21 @@
           <lib-ui-label text="Fecha Inicio" variant="bold"></lib-ui-label>
         </td>
         <td>
-          <lib-ui-input formControlName="txtFechaInicio" width="90px"></lib-ui-input>
+          <lib-ui-input-date
+            formControlName="txtFechaInicio"
+            [width]="'170px'"
+            placeholder="dd/mm/aaaa"
+          />
         </td>
         <td>
           <lib-ui-label text="Fecha Fin" variant="bold"></lib-ui-label>
         </td>
         <td>
-          <lib-ui-input formControlName="txtFechaFin" width="90px"></lib-ui-input>
+          <lib-ui-input-date
+            formControlName="txtFechaFin"
+            [width]="'170px'"
+            placeholder="dd/mm/aaaa"
+          />
         </td>
       </tr>
       <tr>
@@ -53,6 +61,66 @@
         <td colspan="3">
           <lib-ui-multi-select  [options]="tipoCoberturas" width="300px" formControlName="tipoCoberturas"
             placeholder="Seleccione coberturas..." (selectionChange)="onCoberturaChange($event)"></lib-ui-multi-select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <lib-ui-label text="Cobertura (select simple)" variant="bold"></lib-ui-label>
+        </td>
+        <td colspan="7">
+          <lib-ui-select
+            [options]="tipoCoberturas"
+            [width]="'300px'"
+            formControlName="tipoCoberturaUnica"
+            placeholder="Seleccione una cobertura..."
+            (selectionChange)="onTipoCoberturaChange($event)"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <lib-ui-label text="Renovación automática" variant="bold"></lib-ui-label>
+        </td>
+        <td colspan="7">
+          <lib-ui-radio
+            formControlName="renovacionAutomatica"
+            [options]="opcionesRenovacion"
+            orientation="horizontal"
+            [width]="'100%'"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="8">
+          <lib-ui-radio
+            formControlName="metodoPago"
+            label="Forma de pago"
+            [options]="opcionesMetodoPago"
+            orientation="vertical"
+            [width]="'100%'"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="8">
+          <lib-ui-check
+            formControlName="canalesNotificacion"
+            label="Notificaciones (inline)"
+            [options]="opcionesNotificacion"
+            orientation="horizontal"
+            [width]="'100%'"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="8">
+          <lib-ui-check
+            formControlName="documentosIncluidos"
+            label="Documentación a incluir"
+            [options]="opcionesDocumentos"
+            orientation="vertical"
+            [width]="'100%'"
+          />
         </td>
       </tr>
     </table>

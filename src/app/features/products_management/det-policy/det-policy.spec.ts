@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DetPolicy } from './det-policy';
 
 

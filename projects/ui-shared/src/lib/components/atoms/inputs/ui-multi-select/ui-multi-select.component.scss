@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 4px;
   width:var(width);
+  
 }
 
 .ui-select-label-top {
@@ -20,7 +21,7 @@
 .ui-select-container {
   display: flex;
   align-items: center;
-  min-height: 36px;
+  min-height: 15px;
   padding: 4px 10px;
   background: var(--ui-select-container-background-color);
   border: 1px solid #3b82f6; // Azul del borde de la imagen

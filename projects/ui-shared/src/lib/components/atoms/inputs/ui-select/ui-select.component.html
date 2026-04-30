@@ -1,0 +1,56 @@
+<div class="ui-select-wrapper" [class.ui-select-wrapper--disabled]="disabled">
+  @if (label()) {
+    <label class="ui-select-label-top">{{ label() }}</label>
+  }
+
+  <div class="ui-select-main" [style.width]="width()">
+    <div
+      class="ui-select-container"
+      [class.ui-select--disabled]="disabled"
+      [class.ui-select--open]="isOpen"
+      (click)="toggleDropdown()"
+      role="combobox"
+      [attr.aria-expanded]="isOpen"
+      [attr.aria-disabled]="disabled"
+    >
+      <span
+        class="ui-select-value"
+        [class.ui-select-value--placeholder]="!selected"
+      >{{ displayText() }}</span>
+
+      @if (selected && !disabled) {
+        <button
+          type="button"
+          class="ui-select-clear"
+          (click)="clearSelection($event)"
+          [attr.aria-label]="'Limpiar ' + selected.label"
+        >&#x2715;</button>
+      }
+
+      <span class="ui-arrow" [style.transform]="isOpen ? 'rotate(180deg)' : 'rotate(0deg)'">
+        &#9660;
+      </span>
+    </div>
+
+    @if (isOpen) {
+      <div class="ui-dropdown" role="listbox">
+        @for (group of groups; track group.label + $index) {
+          @if (group.label) {
+            <div class="ui-group-header">{{ group.label }}</div>
+          }
+          @for (opt of group.options; track opt.value) {
+            <div
+              class="ui-option"
+              [class.ui-option--selected]="isSelected(opt)"
+              (click)="pickOption(opt, $event)"
+              role="option"
+              [attr.aria-selected]="isSelected(opt)"
+            >
+              {{ opt.label }}
+            </div>
+          }
+        }
+      </div>
+    }
+  </div>
+</div>

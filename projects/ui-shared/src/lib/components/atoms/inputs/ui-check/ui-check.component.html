@@ -1,0 +1,38 @@
+<div
+  class="uic-root"
+  [style.width]="width()"
+  role="group"
+  [attr.aria-labelledby]="label() ? groupTitleId : null"
+>
+  @if (label()) {
+    <div class="uic-group-label" [id]="groupTitleId">{{ label() }}</div>
+  }
+
+  <div
+    class="uic-options"
+    [class.uic-options--horizontal]="orientation() === 'horizontal'"
+    [class.uic-options--vertical]="orientation() === 'vertical'"
+  >
+    @for (opt of options(); track optionTrack(opt)) {
+      <label class="uic-option" [class.uic-option--disabled]="isDisabled()">
+        <input
+          type="checkbox"
+          class="uic-native"
+          [attr.name]="resolvedGroupName()"
+          [checked]="isSelected(opt)"
+          [indeterminate]="isIndeterminate(opt)"
+          [disabled]="isDisabled()"
+          (change)="toggle(opt, $event)"
+          (blur)="onBlur()"
+        />
+        <span
+          class="uic-visual"
+          [class.uic-visual--checked]="isSelected(opt)"
+          [class.uic-visual--indeterminate]="isIndeterminate(opt)"
+          aria-hidden="true"
+        ></span>
+        <span class="uic-text">{{ opt.label }}</span>
+      </label>
+    }
+  </div>
+</div>

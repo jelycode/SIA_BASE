@@ -44,10 +44,10 @@
 
   /* --- Tipografia del proyecto --- */
   --font-family: sans-serif, 'Inter', Roboto, Helvetica, Arial;
-  --font-size:0.9rem;
+  --font-size:0.6875rem;
 
   /*  --- Input Container (Label)   */
-  --ui-label-font-size:12px;
+  --ui-label-font-size:11px;
   --ui-label-font-weight:bold;
   --ui-label-color: #334155;
   --ui-label-section-font-size: 14px;
@@ -55,30 +55,30 @@
   --ui-label-required-mark-color: #ef4444;
 
   /* --- ui-button --- */
-  --ui-button-base-font-size: 14px;
-  --ui-button-sm-font-size: 12px;
-  --ui-button-lg-font-size: 16px;
-  --ui-button-icon-font-size: 16px;
+  --ui-button-base-font-size: 11px;
+  --ui-button-sm-font-size: 11px;
+  --ui-button-lg-font-size: 11px;
+  --ui-button-icon-font-size: 12px;
   --ui-button-spinner-font-size: 14px;
 
   /* --- ui-multi-select --- */
-  --ui-select-label-top-font-size: 13px;
+  --ui-select-label-top-font-size: 11px;
   --ui-select-label-top-color: #334155;
   --ui-select-container-background-color: #fff;
   --ui-select-disabled-background-color: #f8fafc;
   --ui-select-disabled-border-color: #cbd5e1;
   --ui-tag-background-color: #e2e8f0;
-  --ui-tag-text-font-size: 13px;
+  --ui-tag-text-font-size: 11px;
   --ui-tag-text-color: #1e293b;
   --ui-tag-remove-color: #94a3b8;
-  --ui-tag-remove-font-size: 14px;
+  --ui-tag-remove-font-size: 11px;
   --ui-tag-remove-hover-color: #ef4444;
   --ui-placeholder-text-color: #94a3b8;
-  --ui-placeholder-text-font-size: 14px;
+  --ui-placeholder-text-font-size: 11px;
   --ui-arrow-color: #64748b;
-  --ui-arrow-font-size: 12px;
+  --ui-arrow-font-size: 11px;
   --ui-dropdown-background-color: white;
-  --ui-option-font-size: 14px;
+  --ui-option-font-size: 11px;
   --ui-option-hover-background-color: #f1f5f9;
   --ui-option-selected-background-color: #3b82f6;
   --ui-option-selected-color: white;
@@ -86,7 +86,7 @@
   --ui-select-option-hover-background-color: #f3f4f6;
   --ui-select-option-selected-background-color: #3b82f6;
   --ui-select-option-selected-color: white;
-  --ui-select-label-font-size: 13px;
+  --ui-select-label-font-size: 11x;
   --ui-select-label-color: #4b5563;
 
   /* --- user-info --- */
@@ -125,8 +125,8 @@
   --ui-input-container-ua-input-icon-prefix-color:  #9ca3af;
   --ui-input-container-ua-input-icon-prefix-font-size: 14px;
   --ui-input-required-mark-color: #dc2626;
---ui-input-container-focus-withi-border-color:#79f63b;
-  
+  --ui-input-container-focus-withi-border-color:#79f63b;
+  --ui-input-field-font-size:11px;
 
 
   --btn-width-standard: 100px;
@@ -167,10 +167,10 @@
 
 
  /* --- ui-multiselect --- */
-  --ms-font-size: 13px;
+  --ms-font-size: 11px;
  
   /* Label */
-  --ms-label-font-size: 12px;
+  --ms-label-font-size: 11px;
   --ms-label-font-weight: 600;
   --ms-label-color: #334155;
  

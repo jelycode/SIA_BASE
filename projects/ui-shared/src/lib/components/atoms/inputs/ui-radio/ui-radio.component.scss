@@ -1,0 +1,100 @@
+:host {
+  display: block;
+}
+
+.uir-root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.uir-group-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.3;
+}
+
+.uir-options {
+  display: flex;
+  gap: 12px;
+
+  &.uir-options--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &.uir-options--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 28px;
+    row-gap: 8px;
+  }
+}
+
+.uir-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+}
+
+.uir-native {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* Misma escala que ui-check: anillo 18px, interior ~11px centrado */
+$uir-outer-size: 14px;
+$uir-inner-icon: 11px;
+
+.uir-visual {
+  box-sizing: border-box;
+  width: $uir-outer-size;
+  height: $uir-outer-size;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  background: #fff;
+  flex-shrink: 0;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.uir-text {
+  font-size: 11px;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.uir-native:checked + .uir-visual {
+  border-color: #3b82f6;
+  border-width: 2px;
+  background-color: #fff;
+  /* Círculo interior ~11px (viewBox 11), centrado como el check */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Ccircle cx='5.5' cy='5.5' r='4.5' fill='%233b82f6'/%3E%3C/svg%3E");
+  background-size: $uir-inner-icon $uir-inner-icon;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.uir-native:focus-visible + .uir-visual {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.uir-option:hover:not(.uir-option--disabled) .uir-visual {
+  border-color: #94a3b8;
+}
+
+.uir-native:checked:focus-visible + .uir-visual {
+  outline-color: #3b82f6;
+}

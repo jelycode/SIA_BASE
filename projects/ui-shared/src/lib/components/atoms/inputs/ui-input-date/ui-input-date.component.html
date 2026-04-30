@@ -1,0 +1,88 @@
+<div class="uid-root" [style.width]="width()">
+  @if (label()) {
+    <label class="uid-label" [attr.for]="id()">{{ label() }}</label>
+  }
+
+  <div
+    class="uid-field"
+    [class.uid-field--open]="pickerOpen()"
+    [class.uid-field--disabled]="isDisabled()"
+  >
+    <input
+      type="text"
+      class="uid-input"
+      [class.uid-input--manual]="allowManualInput()"
+      [id]="id()"
+      [readonly]="!allowManualInput()"
+      [value]="textDraft()"
+      [attr.placeholder]="placeholder()"
+      [disabled]="isDisabled()"
+      (click)="onInputClick($event)"
+      (input)="onTextInput($event)"
+      (blur)="commitTextInput()"
+      (keydown)="onEnterKey($event)"
+      [attr.aria-expanded]="pickerOpen()"
+      aria-haspopup="dialog"
+      autocomplete="off"
+    />
+
+    <div class="uid-suffix" aria-hidden="true">
+      <button
+        type="button"
+        class="uid-suffix-btn"
+        [disabled]="isDisabled()"
+        (click)="togglePicker($event)"
+        aria-label="Abrir calendario"
+      >
+        <i class="fa fa-calendar"></i>
+      </button>
+      <button
+        type="button"
+        class="uid-suffix-btn"
+        [disabled]="isDisabled() || !selectedDate()"
+        (click)="clear($event)"
+        aria-label="Limpiar fecha"
+      >
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    @if (pickerOpen()) {
+      <div
+        class="uid-popover"
+        role="dialog"
+        [attr.aria-labelledby]="id() + '-title'"
+        (click)="$event.stopPropagation()"
+        (mousedown)="$event.preventDefault()"
+      >
+        <div class="uid-popover-header">
+          <button type="button" class="uid-nav-btn" (click)="prevMonth($event)" aria-label="Mes anterior">&lt;</button>
+          <div class="uid-month-title" [id]="id() + '-title'">{{ monthTitle() }}</div>
+          <button type="button" class="uid-nav-btn" (click)="nextMonth($event)" aria-label="Mes siguiente">&gt;</button>
+        </div>
+
+        <div class="uid-weekdays">
+          @for (wd of weekDayLabels; track wd) {
+            <span class="uid-weekday">{{ wd }}</span>
+          }
+        </div>
+
+        <div class="uid-grid">
+          @for (week of calendarWeeks(); track $index) {
+            @for (cell of week; track cell.date.getTime()) {
+              <button
+                type="button"
+                class="uid-cell"
+                [class.uid-cell--muted]="!cell.inCurrentMonth"
+                [class.uid-cell--selected]="cell.isSelected"
+                (click)="selectDay(cell, $event)"
+              >
+                {{ cell.date.getDate() }}
+              </button>
+            }
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

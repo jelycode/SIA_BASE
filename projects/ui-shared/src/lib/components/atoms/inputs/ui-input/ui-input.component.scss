@@ -29,16 +29,19 @@
 }
 
 .ui-input-field {
+  height:10px;
   width: var(width);
   border: none;
   background: transparent;
   outline: none;
-  padding: var(--ui-input-field-padding, 8px 10px);
+  padding: var(--ui-input-field-padding, 6px 5px);
   width: 100%;
-  
+  font-size: var(--ui-input-field-font-size, 11px);
   &.has-icon {
     padding-left: var(--ui-input-icon-padding-left, 32px);
   }
+  
+
 }
 
 .ua-input-icon-prefix {

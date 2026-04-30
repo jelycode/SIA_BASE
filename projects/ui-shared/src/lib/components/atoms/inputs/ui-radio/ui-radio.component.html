@@ -1,0 +1,28 @@
+<div class="uir-root" [style.width]="width()" role="radiogroup" [attr.aria-labelledby]="label() ? groupTitleId : null">
+  @if (label()) {
+    <div class="uir-group-label" [id]="groupTitleId">{{ label() }}</div>
+  }
+
+  <div
+    class="uir-options"
+    [class.uir-options--horizontal]="orientation() === 'horizontal'"
+    [class.uir-options--vertical]="orientation() === 'vertical'"
+  >
+    @for (opt of options(); track optionTrack(opt)) {
+      <label class="uir-option" [class.uir-option--disabled]="isDisabled()">
+        <input
+          type="radio"
+          class="uir-native"
+          [attr.name]="resolvedGroupName()"
+          [value]="optionValueStr(opt)"
+          [checked]="isChecked(opt)"
+          [disabled]="isDisabled()"
+          (change)="pick(opt)"
+          (blur)="onBlur()"
+        />
+        <span class="uir-visual" aria-hidden="true"></span>
+        <span class="uir-text">{{ opt.label }}</span>
+      </label>
+    }
+  </div>
+</div>

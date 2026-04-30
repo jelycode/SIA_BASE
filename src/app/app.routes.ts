@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from 'ui-shared';
 import { authGuard, guestGuard } from './core/auth/auth.guards';
-import { LstPolicy } from './pages/policy/lst-policy/lst-policy';
-import { DetPolicy } from './pages/policy/det-policy/det-policy';
+import { LstPolicy } from './features/products_management/lst-policy/lst-policy';
+import { DetPolicy } from './features/products_management/det-policy/det-policy';
 
 export const routes: Routes = [
   {
