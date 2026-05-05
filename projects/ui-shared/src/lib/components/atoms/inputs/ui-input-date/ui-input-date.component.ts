@@ -32,9 +32,7 @@ function isSameDay(a: Date, b: Date): boolean {
 
 /** Acepta `yyyy-MM-dd`, `dd/MM/yyyy` o `Date` */
 function parseIncomingValue(raw: unknown): Date | null {
-  if (raw == null || raw === '') {
-    return null;
-  }
+  if (raw == null || raw === '') return null;
   if (raw instanceof Date) {
     return isNaN(raw.getTime()) ? null : new Date(raw.getFullYear(), raw.getMonth(), raw.getDate());
   }
@@ -49,7 +47,6 @@ function parseIncomingValue(raw: unknown): Date | null {
     const d = new Date(Number(dm[3]), Number(dm[2]) - 1, Number(dm[1]));
     return isNaN(d.getTime()) ? null : d;
   }
-  /** dd-MM-yyyy con guión */
   const dmy = /^(\d{1,2})-(\d{1,2})-(\d{4})$/.exec(s);
   if (dmy) {
     const d = new Date(Number(dmy[3]), Number(dmy[2]) - 1, Number(dmy[1]));
@@ -60,8 +57,8 @@ function parseIncomingValue(raw: unknown): Date | null {
 
 function formatDdMmYyyy(d: Date): string {
   const day = String(d.getDate()).padStart(2, '0');
-  const m = String(d.getMonth() + 1).padStart(2, '0');
-  const y = d.getFullYear();
+  const m   = String(d.getMonth() + 1).padStart(2, '0');
+  const y   = d.getFullYear();
   return `${day}/${m}/${y}`;
 }
 
@@ -87,39 +84,34 @@ export interface UiInputDateCalendarCell {
   ],
 })
 export class UiInputDateComponent implements ControlValueAccessor {
-  label = input<string>('');
-  placeholder = input<string>('dd/mm/aaaa');
-  width = input<string>('100%');
-  id = input<string>(`ui-input-date-${Math.random().toString(36).slice(2, 9)}`);
-  disabled = input(false);
-  /**
-   * Si es true (por defecto), el usuario puede escribir la fecha en el campo.
-   * Si es false, el texto es solo lectura y un clic en el campo abre el calendario (comportamiento anterior).
-   */
+  label         = input<string>('');
+  /** 'top' | 'left' — solo aplica cuando label tiene valor */
+  labelPosition = input<'top' | 'left'>('top');
+  placeholder   = input<string>('dd/mm/aaaa');
+  width         = input<string>('100%');
+  id            = input<string>(`ui-input-date-${Math.random().toString(36).slice(2, 9)}`);
+  disabled      = input(false);
   allowManualInput = input(true);
 
   readonly selectedDate = signal<Date | null>(null);
-  /** Texto del input; se sincroniza con la fecha al validar o al escribir desde el calendario */
-  readonly textDraft = signal<string>('');
-  readonly viewMonth = signal<Date>(startOfMonth(new Date()));
-  readonly pickerOpen = signal(false);
+  readonly textDraft    = signal<string>('');
+  readonly viewMonth    = signal<Date>(startOfMonth(new Date()));
+  readonly pickerOpen   = signal(false);
 
   readonly monthTitle = computed(() => {
     const v = this.viewMonth();
-    return v
-      .toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
-      .toUpperCase();
+    return v.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }).toUpperCase();
   });
 
   readonly calendarWeeks = computed(() => {
-    const view = startOfMonth(this.viewMonth());
-    const year = view.getFullYear();
+    const view  = startOfMonth(this.viewMonth());
+    const year  = view.getFullYear();
     const month = view.getMonth();
-    const sel = this.selectedDate();
+    const sel   = this.selectedDate();
 
-    const first = new Date(year, month, 1);
+    const first       = new Date(year, month, 1);
     const startOffset = first.getDay();
-    const gridStart = new Date(year, month, 1 - startOffset);
+    const gridStart   = new Date(year, month, 1 - startOffset);
 
     const weeks: UiInputDateCalendarCell[][] = [];
     let cursor = new Date(gridStart);
@@ -127,9 +119,9 @@ export class UiInputDateComponent implements ControlValueAccessor {
     for (let w = 0; w < 6; w++) {
       const row: UiInputDateCalendarCell[] = [];
       for (let d = 0; d < 7; d++) {
-        const cellDate = new Date(cursor);
+        const cellDate       = new Date(cursor);
         const inCurrentMonth = cellDate.getMonth() === month;
-        const isSelected = !!(sel && isSameDay(cellDate, sel));
+        const isSelected     = !!(sel && isSameDay(cellDate, sel));
         row.push({ date: cellDate, inCurrentMonth, isSelected });
         cursor.setDate(cursor.getDate() + 1);
       }
@@ -154,23 +146,16 @@ export class UiInputDateComponent implements ControlValueAccessor {
   }
 
   onInputClick(event: Event): void {
-    if (!this.allowManualInput()) {
-      this.togglePicker(event);
-    }
+    if (!this.allowManualInput()) this.togglePicker(event);
   }
 
   onTextInput(event: Event): void {
-    if (!this.allowManualInput() || this.isDisabled()) {
-      return;
-    }
-    const v = (event.target as HTMLInputElement).value;
-    this.textDraft.set(v);
+    if (!this.allowManualInput() || this.isDisabled()) return;
+    this.textDraft.set((event.target as HTMLInputElement).value);
   }
 
   commitTextInput(): void {
-    if (!this.allowManualInput() || this.isDisabled()) {
-      return;
-    }
+    if (!this.allowManualInput() || this.isDisabled()) return;
     const raw = this.textDraft().trim();
     if (raw === '') {
       this.selectedDate.set(null);
@@ -201,9 +186,7 @@ export class UiInputDateComponent implements ControlValueAccessor {
 
   togglePicker(event?: Event): void {
     event?.stopPropagation();
-    if (this.isDisabled()) {
-      return;
-    }
+    if (this.isDisabled()) return;
     const next = !this.pickerOpen();
     this.pickerOpen.set(next);
     if (next) {
@@ -212,9 +195,7 @@ export class UiInputDateComponent implements ControlValueAccessor {
     }
   }
 
-  closePicker(): void {
-    this.pickerOpen.set(false);
-  }
+  closePicker(): void { this.pickerOpen.set(false); }
 
   prevMonth(event: Event): void {
     event.stopPropagation();
@@ -230,9 +211,7 @@ export class UiInputDateComponent implements ControlValueAccessor {
 
   selectDay(cell: UiInputDateCalendarCell, event: Event): void {
     event.stopPropagation();
-    if (this.isDisabled()) {
-      return;
-    }
+    if (this.isDisabled()) return;
     const d = new Date(cell.date.getFullYear(), cell.date.getMonth(), cell.date.getDate());
     this.selectedDate.set(d);
     this.syncDraftFromSelected();
@@ -243,9 +222,7 @@ export class UiInputDateComponent implements ControlValueAccessor {
 
   clear(event: Event): void {
     event.stopPropagation();
-    if (this.isDisabled()) {
-      return;
-    }
+    if (this.isDisabled()) return;
     this.selectedDate.set(null);
     this.syncDraftFromSelected();
     this.onChange(null);
@@ -255,19 +232,13 @@ export class UiInputDateComponent implements ControlValueAccessor {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    if (!this.pickerOpen()) {
-      return;
-    }
-    if (!this.elRef.nativeElement.contains(event.target as Node)) {
-      this.closePicker();
-    }
+    if (!this.pickerOpen()) return;
+    if (!this.elRef.nativeElement.contains(event.target as Node)) this.closePicker();
   }
 
   @HostListener('document:keydown', ['$event'])
   onDocumentKeydown(event: KeyboardEvent): void {
-    if (event.key === 'Escape' && this.pickerOpen()) {
-      this.closePicker();
-    }
+    if (event.key === 'Escape' && this.pickerOpen()) this.closePicker();
   }
 
   writeValue(val: unknown): void {
@@ -275,17 +246,9 @@ export class UiInputDateComponent implements ControlValueAccessor {
     this.syncDraftFromSelected();
   }
 
-  registerOnChange(fn: (value: string | null) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.cvaDisabled = isDisabled;
-  }
+  registerOnChange(fn: (value: string | null) => void): void { this.onChange = fn; }
+  registerOnTouched(fn: () => void): void { this.onTouched = fn; }
+  setDisabledState(isDisabled: boolean): void { this.cvaDisabled = isDisabled; }
 
   weekDayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 }

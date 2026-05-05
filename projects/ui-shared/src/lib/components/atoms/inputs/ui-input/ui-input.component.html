@@ -1,6 +1,20 @@
-<div class="ui-input-row" [style.width]="width()">
- 
-  <!-- <label *ngIf="label" class="ui-inpuit-label">{{ label() }}</label> -->
+<div
+  class="ui-input-row"
+  [style.width]="width()"
+  [class.ui-input-row--top]="label() && labelPosition() === 'top'"
+  [class.ui-input-row--left]="label() && labelPosition() === 'left'"
+
+>
+
+  @if (label()) {
+    <label [for]="id()" class="ui-input-label">
+      {{ label() }}
+      @if (required()) {
+        <span class="required-mark">*</span>
+      }
+    </label>
+  }
+
   <div class="ui-input-field-group">
     <div class="ui-input-container" [class.ui-input--disabled]="disabled">
       @if (icon()) {
@@ -10,8 +24,8 @@
       <input
         [id]="id()"
         [type]="type()"
-        [placeholder]="placeholder()"
         [value]="value()"
+        [placeholder]="placeholder()"
         [disabled]="disabled"
         [readonly]="readonly()"
         [attr.aria-invalid]="isInvalid()"
@@ -20,7 +34,6 @@
         (blur)="onBlur()"
         class="ui-input-field"
         [class.has-icon]="icon()"
-        [width]="width()"
       />
 
       <div class="ui-input-suffix-slot">
@@ -29,7 +42,7 @@
     </div>
 
     @if (hint() && !isInvalid()) {
-      <span class="ui-input-hint">{{ hint() }}</span>
+      <span class="ui-input-hint" [id]="id() + '-hint'">{{ hint() }}</span>
     }
     @if (isInvalid()) {
       <span class="ui-input-error-msg" [id]="id() + '-error'" role="alert">

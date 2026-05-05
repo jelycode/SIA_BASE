@@ -17,45 +17,42 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
   styleUrl: './ui-input.component.scss'
 })
 export class UiInputComponent implements ControlValueAccessor {
-  // Inputs como Signals para tu HTML complejo
-  label = input<string>('');
-  id = input<string>(`ui-input-${Math.random().toString(36).substring(2, 9)}`);
-  type = input<string>('text');
-  placeholder = input<string>('');
-  required = input<boolean>(false);
-  readonly = input<boolean>(false);
-  hint = input<string>('');
-  icon = input<string>(); // Recibe clase de Font Awesome: 'fa fa-search'
-  width = input<string>('100%');
+  label         = input<string>('');
+  /** 'top' | 'left' — solo aplica cuando label tiene valor */
+  labelPosition = input<'top' | 'left' | 'right'>('top');
+  id            = input<string>(`ui-input-${Math.random().toString(36).substring(2, 9)}`);
+  type          = input<string>('text');
+  placeholder   = input<string>('');
+  required      = input<boolean>(false);
+  readonly      = input<boolean>(false);
+  hint          = input<string>('');
+  icon          = input<string>();
+  width         = input<string>('100%');
+
   // Estado
-  value =  signal<string>('');
-
+  value    = signal<string>('');
   disabled = false;
-  isInvalid = signal(false); // Simulación de estado de validación
+  isInvalid = signal(false);
 
-  onChange: any = () => {};
+  onChange: any  = () => {};
   onTouched: any = () => {};
 
   handleInput(event: any) {
-    this.value.set(event.target.value);   // ← .set()
+    this.value.set(event.target.value);
     this.onChange(this.value());
   }
+
   onBlur() {
     this.onTouched();
   }
 
   getErrorMessage(): string {
-    return 'Este campo es requerido'; // Lógica de error simplificada
+    return 'Este campo es requerido';
   }
 
-
-
-  // ControlValueAccessor
-  writeValue(val: any): void { 
-    this.value.set(val || '');  
-    console.log('writeValue llamado con:', val);  // ← agrega esto          // ← .set()
-  }
-  registerOnChange(fn: any): void { this.onChange = fn; }
-  registerOnTouched(fn: any): void { this.onTouched = fn; }
+  // ── ControlValueAccessor ─────────────────────────────────────────────────
+  writeValue(val: any): void         { this.value.set(val || ''); }
+  registerOnChange(fn: any): void    { this.onChange = fn; }
+  registerOnTouched(fn: any): void   { this.onTouched = fn; }
   setDisabledState(isDisabled: boolean): void { this.disabled = isDisabled; }
 }

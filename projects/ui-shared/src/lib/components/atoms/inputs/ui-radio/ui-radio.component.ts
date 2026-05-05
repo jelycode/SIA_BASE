@@ -30,7 +30,9 @@ export interface RadioOption {
 })
 export class UiRadioComponent implements ControlValueAccessor {
   /** Título del grupo (ej. «Forma de pago») */
-  label = input<string>('');
+  label         = input<string>('');
+  /** 'top' | 'left' — solo aplica cuando label tiene valor */
+  labelPosition = input<'top' | 'left' | 'right'>('top');
   options = input<RadioOption[]>([]);
   /** `horizontal` = en línea; `vertical` = lista */
   orientation = input<'horizontal' | 'vertical'>('vertical');

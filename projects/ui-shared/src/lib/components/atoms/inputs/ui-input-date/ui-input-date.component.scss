@@ -2,25 +2,51 @@
   display: block;
 }
 
+/* ── Root layout ─────────────────────────────────────────────────────────── */
 .uid-root {
   display: flex;
-  flex-direction: column;
   gap: 4px;
+
+  /* Label ARRIBA (default) */
+  &.uid-root--top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Label a la IZQUIERDA */
+  &.uid-root--left {
+    flex-direction: row;
+    align-items: center;
+
+    .uid-label {
+      white-space: nowrap;
+      min-width: var(--uid-label-left-min-width, 90px);
+    }
+
+    /* El field ocupa el espacio restante */
+    .uid-field {
+      flex: 1;
+    }
+  }
 }
 
+/* ── Label ───────────────────────────────────────────────────────────────── */
 .uid-label {
-  font-size: var(--ui-select-label-top-font-size, 11px);
-  font-weight: 600;
-  color: var(--ui-select-label-top-color, #334155);
+  font-size: var(--ui-label-font-size, 11px);
+  font-weight: var(--ui-label-font-weight, 500);
+  color: var(--ui-label-color, #374151);
 }
 
+/* ── Field ───────────────────────────────────────────────────────────────── */
 .uid-field {
   position: relative;
   display: flex;
   align-items: stretch;
+  width: 100%;
   height: 24px;
-  background: #fff;
+  --background:transparent;
   border: 1px solid var(--ui-input-container-border, #d1d5db);
+  background-color: var(--ui-input-container-bg, #d1d5db51);
   border-radius: 4px;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 
@@ -37,35 +63,34 @@
   }
 }
 
+/* ── Input nativo ────────────────────────────────────────────────────────── */
 .uid-input {
   flex: 1;
   border: none;
   outline: none;
-  background: transparent;
+  background-color: var(--ui-input-container-bg, #d1d5db51);
   padding: 6px 5px;
-  font-size: 14px;
+  font-size: var(--ui-input-field-font-size,11px);
   color: #1e293b;
   cursor: pointer;
   min-width: 0;
 
-  &.uid-input--manual {
-    cursor: text;
-  }
+  &.uid-input--manual { cursor: text; }
 
   &:disabled {
     cursor: not-allowed;
     color: #94a3b8;
   }
 
-  &::placeholder {
-    color: #94a3b8;
-  }
+  &::placeholder { color: #94a3b8; }
 }
 
+/* ── Suffix ──────────────────────────────────────────────────────────────── */
 .uid-suffix {
   display: flex;
   flex-shrink: 0;
   border-left: 1px solid #e2e8f0;
+  
 }
 
 .uid-suffix-btn {
@@ -74,15 +99,14 @@
   justify-content: center;
   width: 36px;
   border: none;
-  background: #fff;
+  --background: #fff;
   color: #475569;
   cursor: pointer;
   padding: 0;
   border-left: 1px solid #e2e8f0;
+  background-color: var(--ui-input-container-bg, #d1d5db51);
 
-  &:first-child {
-    border-left: none;
-  }
+  &:first-child { border-left: none; }
 
   &:hover:not(:disabled) {
     background: #f8fafc;
@@ -94,15 +118,12 @@
     opacity: 0.5;
   }
 
-  i {
-    font-size: 11px;
-  }
+  i { font-size: 11px; }
 }
 
-.uid-field--disabled .uid-suffix-btn {
-  background: transparent;
-}
+.uid-field--disabled .uid-suffix-btn { background: transparent; }
 
+/* ── Popover calendario ──────────────────────────────────────────────────── */
 .uid-popover {
   position: absolute;
   top: calc(100% + 4px);
@@ -178,9 +199,7 @@
   cursor: pointer;
   line-height: 1;
 
-  &:hover {
-    background: #f0f9ff;
-  }
+  &:hover { background: #f0f9ff; }
 
   &.uid-cell--muted {
     color: #94a3b8;

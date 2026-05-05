@@ -1,18 +1,46 @@
+/* ── Root layout ─────────────────────────────────────────────────────────── */
 .ui-select-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  width:var(width);
-  
+  width: 100%;
+
+  /* Label ARRIBA (default) */
+  &.ui-select-wrapper--top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  /* Label a la IZQUIERDA */
+  &.ui-select-wrapper--left {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    .ui-select-label-top {
+      white-space: nowrap;
+      min-width: var(--ui-multi-select-label-left-min-width, 90px);
+    }
+
+    .ui-select-main {
+      flex: 1;
+    }
+  }
+
+  &.ui-select-wrapper--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
 }
 
+/* ── Label ───────────────────────────────────────────────────────────────── */
 .ui-select-label-top {
-  font-size: var(--ui-select-label-top-font-size);
+  font-size: var(--ui-select-label-top-font-size, 11px);
   font-weight: 600;
-  color: var(--ui-select-label-top-color);
+  color: var(--ui-select-label-top-color, #334155);
   display: block;
 }
 
+/* ── Main container ──────────────────────────────────────────────────────── */
 .ui-select-main {
   position: relative;
   width: 100%;
@@ -24,7 +52,7 @@
   min-height: 15px;
   padding: 4px 10px;
   background: var(--ui-select-container-background-color);
-  border: 1px solid #3b82f6; // Azul del borde de la imagen
+  border: 1px solid #3b82f6;
   border-radius: 4px;
   cursor: pointer;
 
@@ -35,6 +63,7 @@
   }
 }
 
+/* ── Tags ────────────────────────────────────────────────────────────────── */
 .ui-tag-area {
   display: flex;
   flex-wrap: wrap;
@@ -45,7 +74,7 @@
 .ui-tag {
   display: flex;
   align-items: center;
-  background-color: var(--ui-tag-background-color); // Gris de los tags
+  background-color: var(--ui-tag-background-color);
   border-radius: 4px;
   padding: 2px 8px;
   gap: 6px;
@@ -62,6 +91,7 @@
   }
 }
 
+/* ── Placeholder & Arrow ─────────────────────────────────────────────────── */
 .ui-placeholder-text {
   color: var(--ui-placeholder-text-color);
   font-size: var(--ui-placeholder-text-font-size);
@@ -71,9 +101,10 @@
   color: var(--ui-arrow-color);
   font-size: var(--ui-arrow-font-size);
   margin-left: 8px;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease;
 }
 
+/* ── Dropdown ────────────────────────────────────────────────────────────── */
 .ui-dropdown {
   position: absolute;
   top: calc(100% + 2px);
@@ -83,6 +114,7 @@
   border: 1px solid #3b82f6;
   max-height: 200px;
   overflow-y: auto;
+  z-index: 10;
 }
 
 .ui-option {
@@ -99,34 +131,8 @@
     color: var(--ui-option-selected-color);
   }
 }
-// Estilo de los Chips (Tags)
 
-
-// Estilo del Dropdown
-.ui-select-dropdown {
-  background: var(--ui-select-dropdown-background-color);
-  border: 1px solid #d1d5db;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.ui-select-option {
-  &:hover {
-    background-color: var(--ui-select-option-hover-background-color);
-  }
-  
-  &.ui-select-option--selected {
-    background-color: var(--ui-select-option-selected-background-color);
-    color: var(--ui-select-option-selected-color);
-  }
-}
-
-// Labels consistentes
-.ui-select-label {
-  font-size: var(--ui-select-label-font-size);
-  font-weight: 600;
-  color: var(--ui-select-label-color);
-}
-// ─── Cabecera de grupo ────────────────────────────────────────────────────────
+/* ── Group header ────────────────────────────────────────────────────────── */
 .ui-group-header {
   padding: 8px 12px 4px;
   font-size: var(--ms-group-header-font-size, 13px);
@@ -137,7 +143,23 @@
   user-select: none;
 }
 
-// ─── Transición flecha ────────────────────────────────────────────────────────
-.ui-arrow {
-  transition: transform 0.2s ease;
+/* ── Legacy selectors (mantiene compatibilidad) ──────────────────────────── */
+.ui-select-dropdown {
+  background: var(--ui-select-dropdown-background-color);
+  border: 1px solid #d1d5db;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.ui-select-option {
+  &:hover { background-color: var(--ui-select-option-hover-background-color); }
+  &.ui-select-option--selected {
+    background-color: var(--ui-select-option-selected-background-color);
+    color: var(--ui-select-option-selected-color);
+  }
+}
+
+.ui-select-label {
+  font-size: var(--ui-label-font-size, 11px);
+  font-weight: var(--ui-label-font-weight, 500);
+  color: var(--ui-label-color, #374151);
 }

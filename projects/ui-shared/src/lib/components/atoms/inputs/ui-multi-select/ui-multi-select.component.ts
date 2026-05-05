@@ -7,7 +7,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-// Formato interno del componente
 export interface MultiSelectOption {
   value: string | number;
   label: string;
@@ -19,7 +18,6 @@ export interface MultiSelectGroup {
   options: MultiSelectOption[];
 }
 
-// Formato externo flexible: soporta {value, label} o {id, nombre}
 export type RawOption =
   | MultiSelectOption
   | { id: string | number; nombre: string; group?: string };
@@ -40,12 +38,14 @@ export type RawOption =
 })
 export class UiMultiSelectComponent implements ControlValueAccessor, OnInit, OnChanges {
 
-  /** Acepta tanto { value, label } como { id, nombre } */
   @Input() options: RawOption[] = [];
   @Input() placeholder = 'Seleccione...';
   @Input() disabled = false;
-  label = input<string>('');
-  width = input<string>('100%');
+
+  label         = input<string>('');
+  /** 'top' | 'left' — solo aplica cuando label tiene valor */
+  labelPosition = input<'top' | 'left'>('top');
+  width         = input<string>('100%');
 
   @Output() selectionChange = new EventEmitter<MultiSelectOption[]>();
 
@@ -59,14 +59,10 @@ export class UiMultiSelectComponent implements ControlValueAccessor, OnInit, OnC
 
   constructor(private elRef: ElementRef) {}
 
-  ngOnInit(): void {
-    this.normalizeAndBuildGroups();
-  }
+  ngOnInit(): void { this.normalizeAndBuildGroups(); }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['options']) {
-      this.normalizeAndBuildGroups();
-    }
+    if (changes['options']) this.normalizeAndBuildGroups();
   }
 
   private normalizeOption(raw: RawOption): MultiSelectOption {
@@ -95,12 +91,8 @@ export class UiMultiSelectComponent implements ControlValueAccessor, OnInit, OnC
     }
 
     this.groups = [];
-    if (ungrouped.length) {
-      this.groups.push({ label: '', options: ungrouped });
-    }
-    groupMap.forEach((opts, lbl) => {
-      this.groups.push({ label: lbl, options: opts });
-    });
+    if (ungrouped.length) this.groups.push({ label: '', options: ungrouped });
+    groupMap.forEach((opts, lbl) => this.groups.push({ label: lbl, options: opts }));
   }
 
   toggleDropdown(): void {
@@ -116,11 +108,9 @@ export class UiMultiSelectComponent implements ControlValueAccessor, OnInit, OnC
   toggleOption(option: MultiSelectOption, event: MouseEvent): void {
     event.stopPropagation();
     const exists = this.selectedItems.some(s => s.value === option.value);
-    if (exists) {
-      this.selectedItems = this.selectedItems.filter(s => s.value !== option.value);
-    } else {
-      this.selectedItems = [...this.selectedItems, option];
-    }
+    this.selectedItems = exists
+      ? this.selectedItems.filter(s => s.value !== option.value)
+      : [...this.selectedItems, option];
     this.onChange(this.selectedItems.map(s => s.value));
     this.selectionChange.emit(this.selectedItems);
   }
@@ -134,16 +124,14 @@ export class UiMultiSelectComponent implements ControlValueAccessor, OnInit, OnC
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    if (!this.elRef.nativeElement.contains(event.target)) {
-      this.isOpen = false;
-    }
+    if (!this.elRef.nativeElement.contains(event.target)) this.isOpen = false;
   }
 
   writeValue(values: any[]): void {
     if (!values?.length) { this.selectedItems = []; return; }
     this.selectedItems = this.normalizedOptions.filter(o => values.includes(o.value));
   }
-  registerOnChange(fn: any): void { this.onChange = fn; }
+  registerOnChange(fn: any): void  { this.onChange = fn; }
   registerOnTouched(fn: any): void { this.onTouched = fn; }
   setDisabledState(isDisabled: boolean): void { this.disabled = isDisabled; }
 }

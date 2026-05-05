@@ -3,20 +3,43 @@
   display: block;
 }
 
+/* ── Root layout ─────────────────────────────────────────────────────────── */
 .ui-input-file-row {
   display: flex;
-  flex-direction: column;
-  gap: var(--ui-input-row-gap, 15px);
   width: 100%;
+
+  /* Label ARRIBA (default) */
+  &.ui-input-file-row--top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ui-input-row-gap, 6px);
+  }
+
+  /* Label a la IZQUIERDA */
+  &.ui-input-file-row--left {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--ui-input-row-gap, 8px);
+
+    .ui-input-file-label {
+      white-space: nowrap;
+      min-width: var(--ui-input-file-label-left-min-width, 90px);
+    }
+
+    .ui-input-file-field-group {
+      flex: 1;
+    }
+  }
 }
 
+/* ── Field group ─────────────────────────────────────────────────────────── */
 .ui-input-file-field-group {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-/* Contenedor principal — imita .ui-input-container */
+/* ── Contenedor principal ────────────────────────────────────────────────── */
 .ui-input-file-container {
   display: flex;
   align-items: center;
@@ -48,7 +71,7 @@
   }
 }
 
-/* Texto / placeholder dentro del campo */
+/* ── Texto / placeholder ─────────────────────────────────────────────────── */
 .ui-input-file-text {
   flex: 1;
   padding: var(--ui-input-field-padding, 6px 10px);
@@ -64,7 +87,7 @@
   }
 }
 
-/* Botón "Browse" */
+/* ── Botón Browse ────────────────────────────────────────────────────────── */
 .ui-input-file-browse-btn {
   flex-shrink: 0;
   padding: var(--ui-input-file-btn-padding, 6px 14px);
@@ -87,12 +110,10 @@
     box-shadow: 0 0 0 2px var(--ui-input-file-focus-ring, #2563eb);
   }
 
-  &:disabled {
-    cursor: not-allowed;
-  }
+  &:disabled { cursor: not-allowed; }
 }
 
-/* Input nativo oculto */
+/* ── Input nativo oculto ─────────────────────────────────────────────────── */
 .ui-input-file-native {
   position: absolute;
   width: 0;
@@ -101,11 +122,11 @@
   pointer-events: none;
 }
 
-/* Label */
+/* ── Label ───────────────────────────────────────────────────────────────── */
 .ui-input-file-label {
-  font-size: var(--ui-input-label-font-size, 11px);
-  font-weight: var(--ui-input-label-font-weight, 500);
-  color: var(--ui-input-label-color, #374151);
+  font-size: var(--ui-label-font-size, 11px);
+  font-weight: var(--ui-label-font-weight, 500);
+  color: var(--ui-label-color, #374151);
 }
 
 .required-mark {
@@ -113,7 +134,7 @@
   margin-left: 2px;
 }
 
-/* Hint & Error */
+/* ── Hint & Error ────────────────────────────────────────────────────────── */
 .ui-input-file-hint {
   margin-top: 4px;
   font-size: var(--ui-input-field-font-size, 11px);

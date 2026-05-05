@@ -1,9 +1,14 @@
-<div class="ui-select-wrapper" [class.ui-select-wrapper--disabled]="disabled">
+<div
+  class="ui-select-wrapper"
+  [class.ui-select-wrapper--disabled]="disabled"
+  [class.ui-select-wrapper--top]="label() && labelPosition() === 'top'"
+  [class.ui-select-wrapper--left]="label() && labelPosition() === 'left'"
+>
 
-  <!-- Label superior -->
-  <label *ngIf="label" class="ui-select-label-top">{{ label() }}</label>
+  <!-- Label -->
+  <label *ngIf="label()" class="ui-select-label-top">{{ label() }}</label>
 
-  <div class="ui-select-main"  [style.width]="width()">
+  <div class="ui-select-main" [style.width]="width()">
 
     <!-- Control principal -->
     <div
@@ -29,10 +34,9 @@
         </span>
 
         <!-- Placeholder -->
-        <span
-          class="ui-placeholder-text"
-          *ngIf="selectedItems.length === 0"
-        >{{ placeholder }}</span>
+        <span class="ui-placeholder-text" *ngIf="selectedItems.length === 0">
+          {{ placeholder }}
+        </span>
       </div>
 
       <!-- Flecha -->
@@ -44,23 +48,15 @@
     <!-- Dropdown -->
     <div class="ui-dropdown" *ngIf="isOpen">
       <ng-container *ngFor="let group of groups">
-
-        <!-- Cabecera de grupo -->
-        <div class="ui-group-header" *ngIf="group.label">
-          {{ group.label }}
-        </div>
-
-        <!-- Opciones -->
+        <div class="ui-group-header" *ngIf="group.label">{{ group.label }}</div>
         <div
           *ngFor="let opt of group.options"
           class="ui-option"
           [class.ui-option--selected]="isSelected(opt)"
           (click)="toggleOption(opt, $event)"
-          
         >
           {{ opt.label }}
         </div>
-
       </ng-container>
     </div>
 

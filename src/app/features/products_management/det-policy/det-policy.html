@@ -7,13 +7,13 @@
   <fieldset class="section-group">
     <legend>Detalle de Póliza</legend>
 
-    <table>
+    <table border="1">
       <tr>
         <td>
           <lib-ui-label text="Póliza" variant="bold"></lib-ui-label>
         </td>
         <td>
-          <lib-ui-input label="Póliza" formControlName="txtPoliza" width="60px"></lib-ui-input>
+          <lib-ui-input  formControlName="txtPoliza" width="60px"></lib-ui-input>
         </td>
         <td>
           <lib-ui-label text="Nombre" variant="bold"></lib-ui-label>
@@ -106,6 +106,7 @@
           <lib-ui-radio
             formControlName="metodoPago"
             label="Forma de pago"
+            labelPosition="left"
             [options]="opcionesMetodoPago"
             orientation="vertical"
             [width]="'100%'"
@@ -145,13 +146,18 @@
         <td colspan="7">
           <lib-ui-input-file
             formControlName="archivoPoliza"
-            label="File input"
             placeholder="Choose file"
             browseLabel="Browse"
             accept=".pdf,.doc,.docx,.xlsx"
             hint="Formatos permitidos: PDF, Word, Excel"
             [width]="'350px'"
           />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="8">
+          
+
         </td>
       </tr>
       <!-- ─────────────────────────────────────────────────────── -->

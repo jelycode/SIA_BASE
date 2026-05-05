@@ -48,7 +48,7 @@
 
   /*  --- Input Container (Label)   */
   --ui-label-font-size:11px;
-  --ui-label-font-weight:bold;
+  --ui-label-font-weight:normal ;
   --ui-label-color: #334155;
   --ui-label-section-font-size: 14px;
   --ui-label-section-color: #1e293b;
@@ -127,6 +127,8 @@
   --ui-input-required-mark-color: #dc2626;
   --ui-input-container-focus-withi-border-color:#79f63b;
   --ui-input-field-font-size:11px;
+  --ui-input-label-left-min-width:60px;
+  --ui-input-label-right-min-width:60px;
 
 
   --btn-width-standard: 100px;

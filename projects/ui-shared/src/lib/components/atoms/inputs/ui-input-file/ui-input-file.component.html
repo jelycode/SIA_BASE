@@ -1,4 +1,9 @@
-<div class="ui-input-file-row" [style.width]="width()">
+<div
+  class="ui-input-file-row"
+  [style.width]="width()"
+  [class.ui-input-file-row--top]="label() && labelPosition() === 'top'"
+  [class.ui-input-file-row--left]="label() && labelPosition() === 'left'"
+>
 
   @if (label()) {
     <label [for]="id()" class="ui-input-file-label">
@@ -19,12 +24,10 @@
       (dragleave)="onDragLeave()"
       (drop)="onDrop($event)"
     >
-      <!-- Texto del archivo seleccionado o placeholder -->
       <span class="ui-input-file-text" [class.has-file]="hasFile()">
         {{ displayText() }}
       </span>
 
-      <!-- Botón Browse -->
       <button
         type="button"
         class="ui-input-file-browse-btn"
@@ -34,7 +37,6 @@
         {{ browseLabel() }}
       </button>
 
-      <!-- Input file oculto -->
       <input
         #fileInput
         [id]="id()"

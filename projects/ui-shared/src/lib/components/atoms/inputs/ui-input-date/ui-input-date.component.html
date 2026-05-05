@@ -1,4 +1,10 @@
-<div class="uid-root" [style.width]="width()">
+<div
+  class="uid-root"
+  [style.width]="width()"
+  [class.uid-root--top]="label() && labelPosition() === 'top'"
+  [class.uid-root--left]="label() && labelPosition() === 'left'"
+>
+
   @if (label()) {
     <label class="uid-label" [attr.for]="id()">{{ label() }}</label>
   }
