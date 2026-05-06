@@ -2,12 +2,35 @@
   display: block;
 }
 
+/* ── Root layout ─────────────────────────────────────────────────────────── */
 .uic-root {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+
+  /* Label ARRIBA (default) */
+  &.uic-root--top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Label a la IZQUIERDA */
+  &.uic-root--left {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+
+    .uic-group-label {
+      white-space: nowrap;
+      min-width: var(--uic-label-left-min-width, 90px);
+    }
+
+    .uic-options {
+      flex: 1;
+    }
+  }
 }
 
+/* ── Group label ─────────────────────────────────────────────────────────── */
 .uic-group-label {
   font-size: 11px;
   font-weight: 600;
@@ -15,6 +38,7 @@
   line-height: 1.3;
 }
 
+/* ── Options layout ──────────────────────────────────────────────────────── */
 .uic-options {
   display: flex;
   gap: 12px;
@@ -33,6 +57,7 @@
   }
 }
 
+/* ── Option item ─────────────────────────────────────────────────────────── */
 .uic-option {
   display: inline-flex;
   align-items: center;
@@ -46,6 +71,7 @@
   }
 }
 
+/* ── Native input (hidden) ───────────────────────────────────────────────── */
 .uic-native {
   position: absolute;
   opacity: 0;
@@ -54,8 +80,8 @@
   margin: 0;
 }
 
-/* Check ~11px centrado dentro de caja azul (referencia diseño) */
-$uic-box-size: 14px;
+/* ── Visual checkbox ─────────────────────────────────────────────────────── */
+$uic-box-size:   14px;
 $uic-check-icon: 11px;
 
 .uic-visual {
@@ -76,10 +102,10 @@ $uic-check-icon: 11px;
   line-height: 1.3;
 }
 
+/* ── States ──────────────────────────────────────────────────────────────── */
 .uic-visual--checked {
   border-color: #3b82f6;
   background-color: #3b82f6;
-  /* SVG 11×11 viewBox, dibujado centrado en la caja */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11' fill='none'%3E%3Cpath d='M2 5.5L4.5 8L9 2.5' stroke='%23ffffff' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-size: $uic-check-icon $uic-check-icon;
   background-position: center;

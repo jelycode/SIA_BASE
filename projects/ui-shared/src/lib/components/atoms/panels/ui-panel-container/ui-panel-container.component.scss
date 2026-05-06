@@ -1,0 +1,35 @@
+:host {
+    display: block; // Ocupa todo el ancho
+    margin-bottom: 20px;
+  }
+  
+  .ui-panel-container {
+    border: 1px solid var(--ui-border-accent, #a9cfc8); // Borde principal sutil
+    border-radius: 4px; // Esquinas sutilmente redondeadas
+    overflow: hidden; // Para que el degradado del título respete las esquinas redondeadas
+    background-color: #fff; // Fondo blanco para el contenido
+    transition: border-color 0.2s ease; // Transición suave si cambia el color del borde
+  }
+  
+  .ui-panel-title-area {
+    padding: 10px 15px; // Espaciado interior del área del título
+    border-bottom: 1px solid var(--ui-border-accent, #a9cfc8); // Separador inferior
+    display: flex;
+    align-items: center;
+    // El degradado se define dinámicamente en el HTML
+  }
+  
+  .ui-panel-title {
+    margin: 0;
+    font-size: 13px; // Tamaño similar a los labels profesionales
+    font-weight: 500;
+    font-family: sans-serif;
+    text-transform: uppercase; // En mayúsculas para que actúe como un header claro
+    letter-spacing: 0.025em; // Un toque de aire entre letras
+    // El color del texto se define dinámicamente en el HTML
+  }
+  
+  .ui-panel-content-area {
+    padding: 15px; // Espaciado interior para el contenido proyectado
+    // Aquí es donde caerá el <ng-content>
+  }

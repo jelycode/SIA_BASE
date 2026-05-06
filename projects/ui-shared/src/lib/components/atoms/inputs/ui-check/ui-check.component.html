@@ -3,6 +3,8 @@
   [style.width]="width()"
   role="group"
   [attr.aria-labelledby]="label() ? groupTitleId : null"
+  [class.uic-root--top]="label() && labelPosition() === 'top'"
+  [class.uic-root--left]="label() && labelPosition() === 'left'"
 >
   @if (label()) {
     <div class="uic-group-label" [id]="groupTitleId">{{ label() }}</div>

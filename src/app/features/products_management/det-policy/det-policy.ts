@@ -15,6 +15,7 @@ import {
   UiCheckComponent,
   CheckboxOption,
   UiInputFileComponent,
+  UiPanelContainerComponent  
 } from 'ui-shared';
 
 
@@ -34,6 +35,7 @@ import {
     UiRadioComponent,
     UiCheckComponent,
     UiInputFileComponent,
+    UiPanelContainerComponent
   ],
   templateUrl: './det-policy.html',
   styleUrl: './det-policy.scss'

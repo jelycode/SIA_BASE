@@ -1,14 +1,14 @@
-<div class="uir-root" 
-[style.width]="width()" 
-[class.ui-input-row--top]="label() && labelPosition() === 'top'"
-[class.ui-input-row--left]="label() && labelPosition() === 'left'"
-role="radiogroup" 
-[attr.aria-labelledby]="label() ? groupTitleId : null">
-@if (label()) {
-  <label  class="ui-input-label">
-    {{ label() }}
-  </label>
-}
+<div
+  class="uir-root"
+  [style.width]="width()"
+  role="radiogroup"
+  [attr.aria-labelledby]="label() ? groupTitleId : null"
+  [class.uir-root--top]="label() && labelPosition() === 'top'"
+  [class.uir-root--left]="label() && labelPosition() === 'left'"
+>
+  @if (label()) {
+    <div class="uir-group-label" [id]="groupTitleId">{{ label() }}</div>
+  }
 
   <div
     class="uir-options"

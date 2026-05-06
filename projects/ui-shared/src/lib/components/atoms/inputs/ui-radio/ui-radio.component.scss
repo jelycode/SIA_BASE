@@ -2,19 +2,35 @@
   display: block;
 }
 
+/* ── Root layout ─────────────────────────────────────────────────────────── */
 .uir-root {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+
+  /* Label ARRIBA (default) */
+  &.uir-root--top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Label a la IZQUIERDA */
+  &.uir-root--left {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+
+    .uir-group-label {
+      white-space: nowrap;
+      min-width: var(--uir-label-left-min-width, 90px);
+    }
+
+    .uir-options {
+      flex: 1;
+    }
+  }
 }
 
-.ui-input-label {
-  font-size: var(--ui-input-label-font-size, 11px);
-  font-weight: var(--ui-input-label-font-weight, 500);
-  color: var(--ui-input-label-color, #374151);
-  padding-top: var(--ui-input-label-padding-top, 0px);
-}
-
+/* ── Group label ─────────────────────────────────────────────────────────── */
 .uir-group-label {
   font-size: 11px;
   font-weight: 600;
@@ -22,6 +38,7 @@
   line-height: 1.3;
 }
 
+/* ── Options layout ──────────────────────────────────────────────────────── */
 .uir-options {
   display: flex;
   gap: 12px;
@@ -40,6 +57,7 @@
   }
 }
 
+/* ── Option item ─────────────────────────────────────────────────────────── */
 .uir-option {
   display: inline-flex;
   align-items: center;
@@ -53,6 +71,7 @@
   }
 }
 
+/* ── Native input (hidden) ───────────────────────────────────────────────── */
 .uir-native {
   position: absolute;
   opacity: 0;
@@ -61,7 +80,7 @@
   margin: 0;
 }
 
-/* Misma escala que ui-check: anillo 18px, interior ~11px centrado */
+/* ── Visual radio ────────────────────────────────────────────────────────── */
 $uir-outer-size: 14px;
 $uir-inner-icon: 11px;
 
@@ -86,7 +105,6 @@ $uir-inner-icon: 11px;
   border-color: #3b82f6;
   border-width: 2px;
   background-color: #fff;
-  /* Círculo interior ~11px (viewBox 11), centrado como el check */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Ccircle cx='5.5' cy='5.5' r='4.5' fill='%233b82f6'/%3E%3C/svg%3E");
   background-size: $uir-inner-icon $uir-inner-icon;
   background-position: center;

@@ -1,0 +1,15 @@
+<div class="ui-panel-container" [style.border-color]="borderColor()">
+    @if (title()) {
+      <header 
+        class="ui-panel-title-area" 
+        [style.border-bottom-color]="borderColor()"
+        [style.background-image]="'linear-gradient(to right, ' + titleBgStartColor() + ', ' + titleBgEndColor() + ')'"
+      >
+        <h3 class="ui-panel-title" [style.color]="titleTextColor()">{{ title() }}</h3>
+      </header>
+    }
+    
+    <main class="ui-panel-content-area">
+      <ng-content></ng-content>
+    </main>
+  </div>

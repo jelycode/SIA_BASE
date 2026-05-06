@@ -1,22 +1,44 @@
-/* Misma base visual que ui-multi-select (variables compartidas en tema global si existen) */
-
+/* ── Root layout ─────────────────────────────────────────────────────────── */
 .ui-select-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+
+  /* Label ARRIBA (default) */
+  &.ui-select-wrapper--top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  /* Label a la IZQUIERDA */
+  &.ui-select-wrapper--left {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    .ui-select-label-top {
+      white-space: nowrap;
+      min-width: var(--ui-select-label-left-min-width, 90px);
+    }
+
+    .ui-select-main {
+      flex: 1;
+    }
+  }
+
+  &.ui-select-wrapper--disabled {
+    opacity: 0.85;
+  }
 }
 
-.ui-select-wrapper--disabled {
-  opacity: 0.85;
-}
-
+/* ── Label ───────────────────────────────────────────────────────────────── */
 .ui-select-label-top {
-  font-size: var(--ui-select-label-top-font-size, 13px);
+  font-size: var(--ui-select-label-top-font-size, 11px);
   font-weight: 600;
   color: var(--ui-select-label-top-color, #334155);
   display: block;
 }
 
+/* ── Main container ──────────────────────────────────────────────────────── */
 .ui-select-main {
   position: relative;
   width: 100%;
@@ -44,9 +66,10 @@
   }
 }
 
+/* ── Value / placeholder ─────────────────────────────────────────────────── */
 .ui-select-value {
   flex: 1;
-  font-size: var(--ui-placeholder-text-font-size, 14px);
+  font-size: var(--ui-placeholder-text-font-size, 11px);
   color: var(--ui-tag-text-color, #1e293b);
   text-align: left;
   overflow: hidden;
@@ -58,6 +81,7 @@
   }
 }
 
+/* ── Clear button ────────────────────────────────────────────────────────── */
 .ui-select-clear {
   flex-shrink: 0;
   border: none;
@@ -68,11 +92,10 @@
   padding: 2px 4px;
   line-height: 1;
 
-  &:hover {
-    color: var(--ui-tag-remove-hover-color, #0f172a);
-  }
+  &:hover { color: var(--ui-tag-remove-hover-color, #0f172a); }
 }
 
+/* ── Arrow ───────────────────────────────────────────────────────────────── */
 .ui-arrow {
   flex-shrink: 0;
   color: var(--ui-arrow-color, #475569);
@@ -81,6 +104,7 @@
   transition: transform 0.2s ease;
 }
 
+/* ── Dropdown ────────────────────────────────────────────────────────────── */
 .ui-dropdown {
   position: absolute;
   top: calc(100% + 2px);
@@ -94,6 +118,7 @@
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
 }
 
+/* ── Group header ────────────────────────────────────────────────────────── */
 .ui-group-header {
   padding: 8px 12px 4px;
   font-size: var(--ms-group-header-font-size, 13px);
@@ -104,14 +129,13 @@
   user-select: none;
 }
 
+/* ── Option ──────────────────────────────────────────────────────────────── */
 .ui-option {
   padding: 10px 12px;
-  font-size: var(--ui-option-font-size, 14px);
+  font-size: var(--ui-option-font-size, 11px);
   cursor: pointer;
 
-  &:hover {
-    background: var(--ui-option-hover-background-color, #f0f9ff);
-  }
+  &:hover { background: var(--ui-option-hover-background-color, #f0f9ff); }
 
   &.ui-option--selected {
     background: var(--ui-option-selected-background-color, #dbeafe);

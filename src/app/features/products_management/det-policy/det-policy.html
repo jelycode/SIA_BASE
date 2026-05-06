@@ -106,7 +106,7 @@
           <lib-ui-radio
             formControlName="metodoPago"
             label="Forma de pago"
-            labelPosition="left"
+            labelPosition="top"
             [options]="opcionesMetodoPago"
             orientation="vertical"
             [width]="'100%'"
@@ -157,7 +157,20 @@
       <tr>
         <td colspan="8">
           
-
+          <lib-ui-panel-container title="Datos de la Póliza">
+            <!-- Aquí pones cualquier contenido: grid, formulario, tabla, etc. -->
+            <div class="custom-data-grid">
+              <div class="col-4">
+                <lib-ui-label text="Compañía" variant="bold"></lib-ui-label>
+                <span class="static-value">Seguros Vida Security Previsión S.A.</span>
+              </div>
+              <div class="col-4">
+                <lib-ui-label text="Póliza" [required]="true"></lib-ui-label>
+                <span class="static-value">Nº?: 3202000060-0</span>
+              </div>
+              <!-- ... más contenido personalizado ... -->
+            </div>
+          </lib-ui-panel-container>
         </td>
       </tr>
       <!-- ─────────────────────────────────────────────────────── -->

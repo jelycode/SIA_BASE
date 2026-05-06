@@ -1,4 +1,9 @@
-<div class="ui-select-wrapper" [class.ui-select-wrapper--disabled]="disabled">
+<div
+  class="ui-select-wrapper"
+  [class.ui-select-wrapper--disabled]="disabled"
+  [class.ui-select-wrapper--top]="label() && labelPosition() === 'top'"
+  [class.ui-select-wrapper--left]="label() && labelPosition() === 'left'"
+>
   @if (label()) {
     <label class="ui-select-label-top">{{ label() }}</label>
   }

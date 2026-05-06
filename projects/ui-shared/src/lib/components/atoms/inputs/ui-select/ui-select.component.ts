@@ -25,7 +25,6 @@ export interface SelectGroup {
   options: SelectOption[];
 }
 
-/** Acepta `{ value, label }` o `{ id, nombre }` como en ui-multi-select */
 export type RawSelectOption =
   | SelectOption
   | { id: string | number; nombre: string; group?: string };
@@ -48,8 +47,11 @@ export class UiSelectComponent implements ControlValueAccessor, OnInit, OnChange
   @Input() options: RawSelectOption[] = [];
   @Input() placeholder = 'Seleccione...';
   @Input() disabled = false;
-  label = input<string>('');
-  width = input<string>('100%');
+
+  label         = input<string>('');
+  /** 'top' | 'left' — solo aplica cuando label tiene valor */
+  labelPosition = input<'top' | 'left'>('top');
+  width         = input<string>('100%');
 
   @Output() selectionChange = new EventEmitter<SelectOption | null>();
 
@@ -60,6 +62,7 @@ export class UiSelectComponent implements ControlValueAccessor, OnInit, OnChange
 
   private onChange: (value: string | number | null) => void = () => {};
   private onTouched: () => void = () => {};
+  private currentValue: string | number | null = null;
 
   constructor(private elRef: ElementRef) {}
 
@@ -83,7 +86,7 @@ export class UiSelectComponent implements ControlValueAccessor, OnInit, OnChange
   }
 
   private normalizeAndBuildGroups(): void {
-    this.normalizedOptions = this.options.map((o) => this.normalizeOption(o));
+    this.normalizedOptions = this.options.map(o => this.normalizeOption(o));
     this.buildGroups();
   }
 
@@ -93,9 +96,7 @@ export class UiSelectComponent implements ControlValueAccessor, OnInit, OnChange
 
     for (const opt of this.normalizedOptions) {
       if (opt.group) {
-        if (!groupMap.has(opt.group)) {
-          groupMap.set(opt.group, []);
-        }
+        if (!groupMap.has(opt.group)) groupMap.set(opt.group, []);
         groupMap.get(opt.group)!.push(opt);
       } else {
         ungrouped.push(opt);
@@ -103,41 +104,26 @@ export class UiSelectComponent implements ControlValueAccessor, OnInit, OnChange
     }
 
     this.groups = [];
-    if (ungrouped.length) {
-      this.groups.push({ label: '', options: ungrouped });
-    }
-    groupMap.forEach((opts, lbl) => {
-      this.groups.push({ label: lbl, options: opts });
-    });
+    if (ungrouped.length) this.groups.push({ label: '', options: ungrouped });
+    groupMap.forEach((opts, lbl) => this.groups.push({ label: lbl, options: opts }));
   }
-
-  /** Valor actual del CVA (sincronizado con `selected`) */
-  private currentValue: string | number | null = null;
 
   private syncSelectedFromValue(): void {
     if (this.currentValue === null || this.currentValue === undefined || this.currentValue === '') {
       this.selected = null;
       return;
     }
-    this.selected =
-      this.normalizedOptions.find((o) => o.value === this.currentValue) ?? null;
+    this.selected = this.normalizedOptions.find(o => o.value === this.currentValue) ?? null;
   }
 
   toggleDropdown(): void {
-    if (this.disabled) {
-      return;
-    }
+    if (this.disabled) return;
     this.isOpen = !this.isOpen;
-    if (this.isOpen) {
-      this.onTouched();
-    }
+    if (this.isOpen) this.onTouched();
   }
 
   displayText(): string {
-    if (this.selected) {
-      return this.selected.label;
-    }
-    return this.placeholder;
+    return this.selected ? this.selected.label : this.placeholder;
   }
 
   isSelected(option: SelectOption): boolean {
@@ -155,9 +141,7 @@ export class UiSelectComponent implements ControlValueAccessor, OnInit, OnChange
 
   clearSelection(event: MouseEvent): void {
     event.stopPropagation();
-    if (this.disabled) {
-      return;
-    }
+    if (this.disabled) return;
     this.selected = null;
     this.currentValue = null;
     this.onChange(null);
@@ -167,9 +151,7 @@ export class UiSelectComponent implements ControlValueAccessor, OnInit, OnChange
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    if (!this.elRef.nativeElement.contains(event.target)) {
-      this.isOpen = false;
-    }
+    if (!this.elRef.nativeElement.contains(event.target)) this.isOpen = false;
   }
 
   writeValue(val: string | number | null): void {
@@ -177,15 +159,7 @@ export class UiSelectComponent implements ControlValueAccessor, OnInit, OnChange
     this.syncSelectedFromValue();
   }
 
-  registerOnChange(fn: (value: string | number | null) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
+  registerOnChange(fn: (value: string | number | null) => void): void { this.onChange = fn; }
+  registerOnTouched(fn: () => void): void { this.onTouched = fn; }
+  setDisabledState(isDisabled: boolean): void { this.disabled = isDisabled; }
 }
