@@ -13,10 +13,10 @@ export class UiPanelContainerComponent {
   title = input.required<string>();
 
   // Inputs opcionales para personalización con valores por defecto basados en la imagen.
-  borderColor = input<string>('var(--ui-border-accent, #a9cfc8)'); // Verde agua suave para borde
-  titleTextColor = input<string>('var(--ui-text-accent, #2e6057)'); // Verde agua oscuro para texto
+  borderColor = input<string>('var(--ui-border-accent,rgb(169, 185, 207))'); // Verde agua suave para borde
+  titleTextColor = input<string>('var(--ui-text-accent,rgb(46, 70, 96))'); // Verde agua oscuro para texto
   
   // Colores para el degradado del título
-  titleBgStartColor = input<string>('var(--ui-primary-accent-light, #e8f5f3)'); // Verde agua muy claro
+  titleBgStartColor = input<string>('var(--ui-primary-accent-light,rgb(232, 240, 245))'); // Verde agua muy claro
   titleBgEndColor = input<string>('#ffffff'); // Blanco puro
 }

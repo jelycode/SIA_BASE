@@ -4,7 +4,7 @@
   }
   
   .ui-panel-container {
-    border: 1px solid var(--ui-border-accent, #a9cfc8); // Borde principal sutil
+    border: 1px solid var(--ui-border-accent, #a9b6cf); // Borde principal sutil
     border-radius: 4px; // Esquinas sutilmente redondeadas
     overflow: hidden; // Para que el degradado del título respete las esquinas redondeadas
     background-color: #fff; // Fondo blanco para el contenido
@@ -12,8 +12,8 @@
   }
   
   .ui-panel-title-area {
-    padding: 10px 15px; // Espaciado interior del área del título
-    border-bottom: 1px solid var(--ui-border-accent, #a9cfc8); // Separador inferior
+    padding: 10px 14px; // Espaciado interior del área del título
+    border-bottom: 1px solid var(--ui-border-accent, #a9b6cf); // Separador inferior
     display: flex;
     align-items: center;
     // El degradado se define dinámicamente en el HTML
@@ -21,7 +21,7 @@
   
   .ui-panel-title {
     margin: 0;
-    font-size: 13px; // Tamaño similar a los labels profesionales
+    font-size: 12px; // Tamaño similar a los labels profesionales
     font-weight: 500;
     font-family: sans-serif;
     text-transform: uppercase; // En mayúsculas para que actúe como un header claro
