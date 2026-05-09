@@ -17,13 +17,20 @@
 
   </header>
 
-  <div class="layout-body" [class.sidebar-closed]="!isSidebarOpen">
-    <aside class="sidebar">
+  <div class="layout-body" 
+       [class.sidebar-closed]="!isSidebarOpen"
+       [class.is-resizing]="isResizing()">
+    <aside class="sidebar" [style.width.px]="isSidebarOpen ? sidebarWidth() : 0">
         <lib-ui-tree 
           [nodes]="menuItems" 
           [activeId]="activeMenuId"
           (nodeClick)="cambiarVista($event)">
         </lib-ui-tree>
+
+        <!-- Tirador para redimensionar -->
+        <div class="sidebar-resizer" 
+             (mousedown)="onResizeStart($event)">
+        </div>
     </aside>
 
     <main class="content-area">

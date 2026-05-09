@@ -5,7 +5,7 @@
 /* ── Root layout ─────────────────────────────────────────────────────────── */
 .uid-root {
   display: flex;
-  gap: 4px;
+  gap: 2px;
 
   /* Label ARRIBA (default) */
   &.uid-root--top {
@@ -42,10 +42,12 @@
   position: relative;
   display: flex;
   align-items: stretch;
-  width: 100%;
+  width: 100px;
   height: 24px;
   --background:transparent;
-  border: 1px solid var(--ui-input-container-border, #d1d5db);
+  border:  1px solid;
+  border-color: var(--ui-input-container-border);
+  border-radius: 4px;
   background-color: var(--ui-input-container-bg, #d1d5db51);
   border-radius: 4px;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -54,6 +56,7 @@
   &.uid-field--open {
     border-color: #3b82f6;
     box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.25);
+    background: var(--ui-input-background-color-focus, #f1f5f9);
   }
 
   &.uid-field--disabled {
@@ -97,7 +100,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
+  width: 15px;
   border: none;
   --background: #fff;
   color: #475569;
@@ -129,7 +132,7 @@
   top: calc(100% + 4px);
   left: 0;
   z-index: 50;
-  width: min(100%, 280px);
+  width: 160px ;
   background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 8px;

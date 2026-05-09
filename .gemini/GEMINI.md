@@ -55,7 +55,7 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Use the `inject()` function instead of constructor injection
 
 ## Mi estructura
-<!-- Actúa como un Arquitecto Senior de Angular. Quiero desarrollar un sistema de diseño basado en la Regla de las 4 Capas:
+Actúa como un Arquitecto Senior de Angular. Quiero desarrollar un sistema de diseño basado en la Regla de las 4 Capas:
 
 Lógica: Uso estricto de ControlValueAccessor y formularios reactivos.
 
@@ -68,15 +68,32 @@ Todos los componentes deben ser standalone.
 
 El estilo visual debe ser 'Business Desktop' (estilo VB/SAP). Reglas clave:
 
-Layout Inline: Las etiquetas (labels) van a la izquierda del input con un ancho fijo (por defecto 120px) usando un sistema de flex o grid.
+Layout Inline: Las etiquetas (labels) usa el componente UiLabelComponent
 
-Inputs: Altura compacta (34px a 36px), fondo gris muy claro (#f9fafb) y bordes que cambian a azul al hacer focus.
+Inputs: utiliza le componente UiInputComponent
 
-Multi-select: Los elementos seleccionados aparecen como 'chips' grises con una 'x' para eliminar.
+select: usa el componente UiSelectComponent
+
+Multi-select: usa el componente UiMultiSelectComponent
+
+Checkbox: usa el componente UiCheckboxComponent
+
+Radiobutton: usa el componente UiRadiobuttonComponent
+
+file: usa el componente UiFileComponent
+
+input date: usa el componenteUiInputDateComponent
+
+botones:  UiButtonComponent
+
+para secciones usa el componente UiPanelContainerComponent
+
 
 Globalización: Los estilos visuales se definen en apps.scss, el componente solo maneja el posicionamiento.
 
 usa siempre la regla de las 4 capas: Lógica de Formulario (CVA), Accesibilidad (A11y), Estado Visual (Validación) y Flexibilidad (Slots/Iconos).
 
-cada vez que quiero crear un componente nuevo este debe ser parametrizable, con la mayor parte de la gráfica definida desde apps.scss
- -->
+cada vez que quiero crear un componente nuevo este debe crearse dentro de la carpeta projects\ui-shared\src\lib\components, aqui preguntarme en que sub carpeta se debe crea y crear siempre dentro una carpeta con el prefijo "ui-"+ nombre del componente,  debe ser parametrizable, con la mayor parte de la gráfica definida desde apps.scss
+
+
+

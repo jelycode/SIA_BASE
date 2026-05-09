@@ -1,0 +1,19 @@
+.ui-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--border-primary,#4c4c4c);
+}
+
+header-icon {
+    font-size: var(--ui-button-icon-font-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-divider {
+    flex: 1;
+    height: 2px;
+    //background: var(--color-primary-500);    
+}

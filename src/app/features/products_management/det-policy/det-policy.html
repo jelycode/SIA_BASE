@@ -1,185 +1,112 @@
-<form [formGroup]="policyForm" class="policy-container">
-  <header class="header-section">
-    <div class="breadcrumb">BUPA Seguros / BUPA / Colectivo / <b>20454</b></div>
-    <h2 class="title">Pólizas Colectivo</h2>
-  </header>
+<div class="table-format" [formGroup]="form">
 
-  <fieldset class="section-group">
-    <legend>Detalle de Póliza</legend>
+  <!-- Formato de 6 columnas -->
+  <!-- FILA 1 -->
+  <div class="cell col-6">
+    <lib-ui-header icon="fa fa-file-text-o" text="Información de la póliza"></lib-ui-header>
+  </div>
+  <!-- FILA 2 -->
+  <div class="cell col-1">
+    <lib-ui-input label="Nro. Póliza" labelPosition="top" width="120px" formControlName="nroPoliza"></lib-ui-input>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-input label="Nombre Póliza/Producto" labelPosition="top" formControlName="nombrePoliza"
+      width="350px"></lib-ui-input>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-select label="Estado" labelPosition="top" [options]="estadoProducto()"
+      formControlName="estadoProducto"></lib-ui-select>
+  </div>
+  <div class="cell col-3">
+    <lib-ui-button text="Condicionado" icon="fa fa-file-pdf-o" variant="--color-bg-primary"
+      customClass="shadow-lg mt-3 my-custom-border" width="150px">
+    </lib-ui-button>
+  </div>
+  <!-- FILA 3 -->
+  <div class="cell col-1">
+    <lib-ui-input label="Cód. Producto" labelPosition="top" width="45px"
+      formControlName="codigoProducto"></lib-ui-input>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-select label="Tipo Producto" labelPosition="top" [options]="tiposProducto()"
+      formControlName="tipoFicha"></lib-ui-select>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-multi-select label="Tipos de Póliza" labelPosition="top" [options]="tiposPoliza()" width="250px"
+      formControlName="tipo"></lib-ui-multi-select>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-select label="Tipo Prestacion" labelPosition="top" [options]="tiposPrestacion()"></lib-ui-select>
+  </div>
+  <div class="cell col-2">
+    <lib-ui-select label="Canal Venta" labelPosition="top" width="120px" [options]="canalOptions()"></lib-ui-select>
+  </div>
 
-    <table border="1">
-      <tr>
-        <td>
-          <lib-ui-label text="Póliza" variant="bold"></lib-ui-label>
-        </td>
-        <td>
-          <lib-ui-input  formControlName="txtPoliza" width="60px"></lib-ui-input>
-        </td>
-        <td>
-          <lib-ui-label text="Nombre" variant="bold"></lib-ui-label>
-        </td>
-        <td>
-          <lib-ui-input formControlName="txtNombre" width="320px"></lib-ui-input>
-        </td>
-        <td>
-          <lib-ui-label text="Fecha Inicio" variant="bold"></lib-ui-label>
-        </td>
-        <td>
-          <lib-ui-input-date
-            formControlName="txtFechaInicio"
-            [width]="'170px'"
-            placeholder="dd/mm/aaaa"
-          />
-        </td>
-        <td>
-          <lib-ui-label text="Fecha Fin" variant="bold"></lib-ui-label>
-        </td>
-        <td>
-          <lib-ui-input-date
-            formControlName="txtFechaFin"
-            [width]="'170px'"
-            placeholder="dd/mm/aaaa"
-          />
-        </td>
-      </tr>
+  <!-- FILA 4 -->
+  <div class="cell col-6">
+    <br>
+    <lib-ui-header icon="fa fa-file-text-o" text="Vigencias de la póliza"></lib-ui-header>
+  </div>
+  <!-- FILA 5 -->
+  <div class="cell col-1">
+    <lib-ui-input-date label="Vigencia Desde" labelPosition="top" formControlName="vigenciaDesde"></lib-ui-input-date>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-input-date label="Vigencia Hasta" labelPosition="top" formControlName="vigenciaHasta"></lib-ui-input-date>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-input label="Plazo de Termino" labelPosition="top" width="40px"
+      formControlName="plazoTermino"></lib-ui-input>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-input label="Días de Retracto" labelPosition="top" width="40px"
+      formControlName="diasRetracto"></lib-ui-input>
+  </div>
+  <div class="cell col-2">
+    <lib-ui-input label="Días máx. cobro" labelPosition="top" width="45px"
+      formControlName="diasMaxCobro"></lib-ui-input>
+  </div>
 
-      <tr>
-        <td></td>
-        <td></td>
-        <td>
-          <lib-ui-label text="Tipo Producto" variant="bold"></lib-ui-label>
-        </td>
-        <td>
-          <lib-ui-input
-            formControlName="txtTipoProducto"
-            value="Colectivo"
-            [disabled]="true"
-            [readonly]="true"
-            width="150px"
-          ></lib-ui-input>
-        </td>
-        <td>
-          <lib-ui-label text="Tipos de Coberturas" variant="bold"></lib-ui-label>
-        </td>
-        <td colspan="3">
-          <lib-ui-multi-select
-            [options]="tipoCoberturas"
-            width="300px"
-            formControlName="tipoCoberturas"
-            placeholder="Seleccione coberturas..."
-            (selectionChange)="onCoberturaChange($event)"
-          ></lib-ui-multi-select>
-        </td>
-      </tr>
+  <!-- FILA 5 -->
+  <div class="cell col-6">
+    <br>
+    <lib-ui-header icon="fa fa-file-text-o" text="Configuració de la póliza"></lib-ui-header>
+  </div>
+  <!-- FILA 6 -->
+  <div class="cell col-1">
+    <lib-ui-input label="Cant. Decimales" labelPosition="top" width="45px"
+      formControlName="cantDecimales"></lib-ui-input>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-check label="Certificado Automático" labelPosition="top" [options]="optCertificadoAutomatico"
+      checked="true"></lib-ui-check>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-check label="Prima Parcializada" labelPosition="top" [options]="optPrimaParcial" labelPosition="top"
+      checked="false"></lib-ui-check>
+  </div>
+  <div class="cell col-1">
+    <lib-ui-check label="Cálculo Prima por Edad" labelPosition="top" [options]="optCalculoPrimaPorEdad"
+      checked="true"></lib-ui-check>
+  </div>
+  <div class="cell col-2">
+    <lib-ui-select label="Dias Rehabilitación" labelPosition="top" width="120px" [options]="tiposPoliza()"></lib-ui-select>
+  </div>
 
-      <tr>
-        <td>
-          <lib-ui-label text="Cobertura (select simple)" variant="bold"></lib-ui-label>
-        </td>
-        <td colspan="7">
-          <lib-ui-select
-            [options]="tipoCoberturas"
-            [width]="'300px'"
-            formControlName="tipoCoberturaUnica"
-            placeholder="Seleccione una cobertura..."
-            (selectionChange)="onTipoCoberturaChange($event)"
-          />
-        </td>
-      </tr>
 
-      <tr>
-        <td>
-          <lib-ui-label text="Renovación automática" variant="bold"></lib-ui-label>
-        </td>
-        <td colspan="7">
-          <lib-ui-radio
-            formControlName="renovacionAutomatica"
-            [options]="opcionesRenovacion"
-            orientation="horizontal"
-            [width]="'100%'"
-          />
-        </td>
-      </tr>
+  <div class="cell col-6">
+    <br>
+    <lib-ui-header icon="fa fa-file-text-o" text="Datos Contrante"></lib-ui-header>
+  </div>
+  <!-- FILA 4: Contratante -->
+  <div class="cell col-1">
+    <lib-ui-input label="Rut Contratante" labelPosition="top" width="120px"  formControlName="rutContratante" [tooltipText]="'tooltip'"
+      [tooltipPosition]="'top'"></lib-ui-input>
+  </div>
+  <div class="cell col-5">
+    <lib-ui-input label="Nombre Contratante" labelPosition="top" formControlName="nombreContratante" width="350px"
+      [tooltipText]="'Este es un campo importante para la configuración.'" [tooltipPosition]="'left'"></lib-ui-input>
 
-      <tr>
-        <td colspan="8">
-          <lib-ui-radio
-            formControlName="metodoPago"
-            label="Forma de pago"
-            labelPosition="top"
-            [options]="opcionesMetodoPago"
-            orientation="vertical"
-            [width]="'100%'"
-          />
-        </td>
-      </tr>
+  </div>
 
-      <tr>
-        <td colspan="8">
-          <lib-ui-check
-            formControlName="canalesNotificacion"
-            label="Notificaciones (inline)"
-            [options]="opcionesNotificacion"
-            orientation="horizontal"
-            [width]="'100%'"
-          />
-        </td>
-      </tr>
-
-      <tr>
-        <td colspan="8">
-          <lib-ui-check
-            formControlName="documentosIncluidos"
-            label="Documentación a incluir"
-            [options]="opcionesDocumentos"
-            orientation="vertical"
-            [width]="'100%'"
-          />
-        </td>
-      </tr>
-
-      <!-- ── Archivo adjunto ─────────────────────────────────── -->
-      <tr>
-        <td>
-          <lib-ui-label text="Archivo póliza" variant="bold"></lib-ui-label>
-        </td>
-        <td colspan="7">
-          <lib-ui-input-file
-            formControlName="archivoPoliza"
-            placeholder="Choose file"
-            browseLabel="Browse"
-            accept=".pdf,.doc,.docx,.xlsx"
-            hint="Formatos permitidos: PDF, Word, Excel"
-            [width]="'350px'"
-          />
-        </td>
-      </tr>
-      <tr>
-        <td colspan="8">
-          
-          <lib-ui-panel-container title="Datos de la Póliza">
-            <!-- Aquí pones cualquier contenido: grid, formulario, tabla, etc. -->
-            <div class="custom-data-grid">
-              <div class="col-4">
-                <lib-ui-label text="Compañía" variant="bold"></lib-ui-label>
-                <span class="static-value">Seguros Vida Security Previsión S.A.</span>
-              </div>
-              <div class="col-4">
-                <lib-ui-label text="Póliza" [required]="true"></lib-ui-label>
-                <span class="static-value">Nº?: 3202000060-0</span>
-              </div>
-              <!-- ... más contenido personalizado ... -->
-            </div>
-          </lib-ui-panel-container>
-        </td>
-      </tr>
-      <!-- ─────────────────────────────────────────────────────── -->
-
-    </table>
-
-    <div class="actions-footer">
-      <lib-ui-button text="Grabar"  [icon]="SaveIcon"   variant="--color-bg-primary"   width="140px"></lib-ui-button>
-      <lib-ui-button text="Buscar"  [icon]="SearchIcon" variant="--color-bg-secondary"  width="140px"></lib-ui-button>
-    </div>
-  </fieldset>
-</form>
+</div>

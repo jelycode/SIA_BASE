@@ -1,50 +1,65 @@
-.policy-container {
-  padding: 20px;
-  background-color: #f8fafc;
-}
-
-.section-group {
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  background: white;
-  padding: 24px;
-  
-  legend {
-    font-weight: bold;
-    color: #1e293b;
-    padding: 0 10px;
-  }
-}
-
-.grid-layout {
+.table-format {
+  padding: 8px;
   display: grid;
-  /* Definimos 4 columnas iguales para tener máxima flexibilidad */
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 20px;
-  align-items: start;
-}
+  /* Grid global de 12 columnas — todas las filas comparten este mismo grid */
+  grid-template-columns: repeat(6, auto);
+  column-gap: 8px;
+  row-gap: 4px;
+  align-items: end;
 
-/* Clases de utilidad para controlar los anchos desde el HTML */
-.col-1 { grid-column: span 1; } // Ocupa 25%
-.col-2 { grid-column: span 2; } // Ocupa 50%
-.col-3 { grid-column: span 3; } // Ocupa 75%
-.col-4 { grid-column: span 4; } // Ocupa 100%
 
-.actions-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid #f1f5f9;
-}
+  /* El header ocupa todo el ancho */
+    // lib-ui-header {
+    //   grid-column: 1 / -1;
+    //   margin-top: 10px;
 
-// Media query para móviles: pasar a 1 columna
-@media (max-width: 768px) {
-  .grid-layout {
-    grid-template-columns: 1fr;
+    //   &:first-child { margin-top: 0; }
+    // }
+
+  /* Clases de span para celdas */
+  .col-1  { grid-column: span 1;  }
+  .col-2  { grid-column: span 2;  }
+  .col-3  { grid-column: span 3;  }
+  .col-4  { grid-column: span 4;  }
+  .col-5  { grid-column: span 5;  }
+  .col-6  { grid-column: span 6;  }
+  .col-7  { grid-column: span 7;  }
+  .col-8  { grid-column: span 8;  }
+  .col-9  { grid-column: span 9;  }
+  .col-10 { grid-column: span 10; }
+  .col-11 { grid-column: span 11; }
+  .col-12 { grid-column: span 12; }
+
+  /* Separador de sección (br reemplazable) */
+  .section-break {
+    grid-column: 1 / -1;
+    height: 4px;
   }
-  .grid-col-span-2 {
-    grid-column: span 1;
+
+  /* Celda genérica */
+  .cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-width: 0; /* Evita desbordamiento en grid */
+    //width:100%;
+    // lib-ui-input,
+    // lib-ui-select,
+    // lib-ui-input-date,
+    // lib-ui-multi-select,
+    // lib-ui-check,
+    // lib-ui-radio,
+    // lib-ui-input-file,
+    // lib-ui-button {
+    //   width: 100% !important; /* Los componentes toman el ancho de la columna */
+    // }
+  }
+
+  .flex-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 8px;
   }
 }

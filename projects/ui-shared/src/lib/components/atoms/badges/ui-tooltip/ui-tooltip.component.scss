@@ -1,0 +1,61 @@
+:host {
+  display: block;
+  position: absolute;
+  z-index: 10000; /* Asegura que esté por encima de otros elementos */
+  pointer-events: none; /* Permite interactuar con el elemento debajo del tooltip */
+}
+
+.ui-tooltip-content {
+  position: relative;
+  background-color: var(--ui-tooltip-background-color);
+  color: var(--ui-tooltip-text-color);
+  font-size: var(--ui-tooltip-font-size);
+  padding: var(--ui-tooltip-padding);
+  border-radius: var(--ui-tooltip-border-radius);
+  white-space: nowrap; /* Evita que el texto se rompa */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  /* Flecha del tooltip (opcional, pero mejora la UX) */
+  &::after {
+    content: '';
+    position: absolute;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent;
+  }
+
+  &--top::after {
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-top-color: var(--ui-tooltip-background-color);
+  }
+  /* Puedes añadir estilos para bottom, left, right si los necesitas */
+
+  &--bottom::after {
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-bottom-color: var(--ui-tooltip-background-color);
+  }
+
+  &--left::after {
+    left: 100%;
+    top: 50%;
+    margin-top: -5px;
+    border-left-color: var(--ui-tooltip-background-color);
+  }
+
+  &--right::after {
+    right: 100%;
+    top: 50%;
+    margin-top: -5px;
+    border-right-color: var(--ui-tooltip-background-color);
+  }
+}

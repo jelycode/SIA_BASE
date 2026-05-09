@@ -12,7 +12,7 @@
   }
   
   .ui-panel-title-area {
-    padding: 10px 14px; // Espaciado interior del área del título
+    padding: 8px 15px; // Espaciado interior del área del título
     border-bottom: 1px solid var(--ui-border-accent, #a9b6cf); // Separador inferior
     display: flex;
     align-items: center;
@@ -21,10 +21,10 @@
   
   .ui-panel-title {
     margin: 0;
-    font-size: 12px; // Tamaño similar a los labels profesionales
+    font-size: 11px; // Tamaño similar a los labels profesionales
     font-weight: 500;
     font-family: sans-serif;
-    text-transform: uppercase; // En mayúsculas para que actúe como un header claro
+    //text-transform: uppercase; // En mayúsculas para que actúe como un header claro
     letter-spacing: 0.025em; // Un toque de aire entre letras
     // El color del texto se define dinámicamente en el HTML
   }

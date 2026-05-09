@@ -9,6 +9,7 @@
   [style.--ui-btn-bg]="'var(' + variant() + ')'"
   [disabled]="disabled() || loading()"
   (click)="handleClick($event)"
+  [style.height]="heigth()"
   >
   
   @if (loading()) {

@@ -118,14 +118,38 @@
   gap: 12px;
 
   .sidebar {
-    width: 260px;
-    background: white;
+    width: 260px; // Valor por defecto
+    min-width: 50px;
+    max-width: 600px;
+    position: relative;
+    background: var(--bg-sidebar);
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    overflow: hidden;
-    transition: all 0.3s ease;
+    overflow: visible; // Cambiado para permitir que el resizer sobresalga si es necesario
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
     border: 1px solid var(--border-color, #eee);
     padding:5px;
+    z-index: 10; // Asegura que el sidebar esté sobre el contenido si colapsa
+
+    .sidebar-resizer {
+      position: absolute;
+      top: 0;
+      right: -8px; // Ligeramente más afuera para mayor facilidad de agarre
+      width: 16px;
+      height: 100%;
+      cursor: col-resize;
+      z-index: 200; // Por encima de cualquier contenido del tree o iconos
+      background: transparent;
+      transition: background 0.2s;
+
+      &:hover {
+        background: rgba(59, 130, 246, 0.4); 
+      }
+    }
+
+    & > * {
+      overflow: hidden; // Asegura que el contenido interno no se rompa
+    }
+
     .sidebar-nav {
       padding: 20px 10px;
       display: flex;
@@ -149,9 +173,18 @@
     }
   }
 
+  // Desactivar transiciones durante el redimensionamiento manual
+  &.is-resizing {
+    transition: none !important;
+    user-select: none; // Evita seleccionar texto mientras arrastras
+    .sidebar {
+      transition: none !important;
+    }
+  }
+
   .content-area {
     flex: 1;
-    background: white;
+    background: var(--bg-main-area);
     border-radius: 12px;
     padding: 24px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -162,10 +195,12 @@
   // Estado cuando el sidebar está cerrado
   &.sidebar-closed {
     .sidebar {
-      width: 0;
-      margin-left: -12px; // Compensa el gap
+      width: 0 !important;
+      margin-left: -63px; // Compensa el gap
       opacity: 0;
       pointer-events: none;
+      border: none;
+      padding: 0;
     }
   }
 }

@@ -10,7 +10,7 @@
   &.uir-root--top {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 2px;
   }
 
   /* Label a la IZQUIERDA */
@@ -33,7 +33,7 @@
 /* ── Group label ─────────────────────────────────────────────────────────── */
 .uir-group-label {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: normal;
   color: #0f172a;
   line-height: 1.3;
 }

@@ -18,6 +18,7 @@ export class UiButtonComponent {
   customClass = input<string>('');
   disabled = input<boolean>(false);
   loading = input<boolean>(false);
+  heigth = input<string>('auto');
 
   onClick = output<MouseEvent>();
 

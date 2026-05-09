@@ -9,3 +9,5 @@ export * from './inputs/ui-check/ui-check.component';
 export * from './labels/ui-label/ui-label.component';
 export * from './navigation/ui-tree/ui-tree.component';
 export * from './panels/ui-panel-container/ui-panel-container.component';
+export * from './badges/ui-header/ui-header.component';
+export * from './badges/ui-tooltip/ui-tooltip.component';

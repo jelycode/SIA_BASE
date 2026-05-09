@@ -6,7 +6,7 @@
 /* ── Layout base ─────────────────────────────────────────────────────────── */
 .ui-input-row {
   display: flex;
-  gap: var(--ui-input-row-gap, 6px);
+  gap: var(--ui-input-row-gap, 2px);
   width: 100%;
 
   /* Label ARRIBA (default) */
@@ -26,8 +26,9 @@
 
     .ui-input-label {
       white-space: nowrap;
+      text-wrap: nowrap;
       padding-top: 0;
-      min-width: var(--ui-input-label-left-min-width, 90px);
+      min-width: var(--ui-input-label-left-min-width, 110px);
     }
   }
 
@@ -46,8 +47,9 @@
   align-items: center;
   position: relative;
   width: 100%;
-  border: 1px solid var(--ui-input-container-border, #d1d5db);
-  background-color: var(--ui-input-container-bg, #d1d5db51);
+  border: 3px solid var(--ui-input-container-border, #d1d5db);
+
+  //
   border-radius: 4px;
 
   &.ui-input--disabled {
@@ -58,17 +60,32 @@
 
 /* ── Input nativo ────────────────────────────────────────────────────────── */
 .ui-input-field {
-  height: 10px;
-  border: none;
+  height: 12px;
+  border:  1px solid;
+  border-color: var(--ui-input-container-border);
+  border-radius: 4px;
   background: transparent;
   outline: none;
   padding: var(--ui-input-field-padding, 6px 5px);
   width: 100%;
   font-size: var(--ui-input-field-font-size, 11px);
-
+  background-color: var(--ui-input-container-bg, #d1d5db51);
   &.has-icon {
     padding-left: var(--ui-input-icon-padding-left, 32px);
   }
+
+  &:focus-within,
+  &.uid-field--open {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.25);
+    background: var(--ui-input-background-color-focus, #f1f5f9);
+  }
+
+  &.uid-field--disabled {
+    background: var(--ui-select-disabled-background-color, #f1f5f9);
+    border-color: var(--ui-select-disabled-border-color, #cbd5e1);
+    cursor: not-allowed;
+  }  
 }
 
 /* ── Icono prefijo ───────────────────────────────────────────────────────── */

@@ -7,14 +7,14 @@
   &.ui-select-wrapper--top {
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
+    gap: 2px;
   }
 
   /* Label a la IZQUIERDA */
   &.ui-select-wrapper--left {
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 
     .ui-select-label-top {
       white-space: nowrap;
@@ -35,7 +35,7 @@
 /* ── Label ───────────────────────────────────────────────────────────────── */
 .ui-select-label-top {
   font-size: var(--ui-select-label-top-font-size, 11px);
-  font-weight: 600;
+  font-weight: normal;
   color: var(--ui-select-label-top-color, #334155);
   display: block;
 }
@@ -44,13 +44,19 @@
 .ui-select-main {
   position: relative;
   width: 100%;
+  &:focus-within,
+  &.ui-select--open {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.25);
+    background: var(--ui-input-background-color-focus, #f1f5f9);
+  }  
 }
 
 .ui-select-container {
   display: flex;
   align-items: center;
   min-height: 15px;
-  padding: 4px 10px;
+  padding: 0px 10px;
   background: var(--ui-select-container-background-color);
   border: 1px solid #3b82f6;
   border-radius: 4px;
@@ -61,6 +67,14 @@
     border-color: var(--ui-select-disabled-border-color);
     cursor: not-allowed;
   }
+
+
+
+  &.ui-select--disabled {
+    background: var(--ui-select-disabled-background-color, #f1f5f9);
+    border-color: var(--ui-select-disabled-border-color, #cbd5e1);
+    cursor: not-allowed;
+  }  
 }
 
 /* ── Tags ────────────────────────────────────────────────────────────────── */
@@ -80,7 +94,7 @@
   gap: 6px;
 
   .ui-tag-text {
-    font-size: var(--ui-tag-text-font-size);
+    font-size: 6px;
     color: var(--ui-tag-text-color);
   }
 

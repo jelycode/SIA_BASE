@@ -1,18 +1,20 @@
 <div
   class="ui-input-row"
-  [style.width]="width()"
+  [style.width]="'100%'"
   [class.ui-input-row--top]="label() && labelPosition() === 'top'"
   [class.ui-input-row--left]="label() && labelPosition() === 'left'"
 
 >
 
   @if (label()) {
+    <div width="100%" style="width:95%" >
     <label [for]="id()" class="ui-input-label">
       {{ label() }}
       @if (required()) {
         <span class="required-mark">*</span>
       }
     </label>
+    </div>
   }
 
   <div class="ui-input-field-group">
@@ -23,6 +25,7 @@
 
       <input
         [id]="id()"
+        class="uid-input"
         [type]="type()"
         [value]="value()"
         [placeholder]="placeholder()"
@@ -34,6 +37,9 @@
         (blur)="onBlur()"
         class="ui-input-field"
         [class.has-icon]="icon()"
+        [style.width]="width()"
+        [uiTooltip]="tooltipText()"
+        [tooltipPosition]="tooltipPosition()"
       />
 
       <div class="ui-input-suffix-slot">

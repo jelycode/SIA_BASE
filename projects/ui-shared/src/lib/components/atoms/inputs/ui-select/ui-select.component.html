@@ -4,11 +4,12 @@
   [class.ui-select-wrapper--top]="label() && labelPosition() === 'top'"
   [class.ui-select-wrapper--left]="label() && labelPosition() === 'left'"
 >
+<div class="ui-select-wrapper" [class.ui-select-wrapper--disabled]="disabled"></div>
   @if (label()) {
     <label class="ui-select-label-top">{{ label() }}</label>
   }
 
-  <div class="ui-select-main" [style.width]="width()">
+  <div class="ui-select-main" [style.width]="width()" tabindex="0">
     <div
       class="ui-select-container"
       [class.ui-select--disabled]="disabled"
@@ -59,3 +60,4 @@
     }
   </div>
 </div>
+

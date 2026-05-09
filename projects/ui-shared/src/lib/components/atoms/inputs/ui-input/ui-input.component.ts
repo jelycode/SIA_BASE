@@ -1,11 +1,13 @@
 import { Component, input, signal, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { UiTooltipComponent } from '../../badges/ui-tooltip/ui-tooltip.component';
+import { UiTooltipDirective } from '../../badges/ui-tooltip/ui-tooltip.directive';
 
 @Component({
   selector: 'lib-ui-input',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, UiTooltipDirective],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -28,7 +30,9 @@ export class UiInputComponent implements ControlValueAccessor {
   hint          = input<string>('');
   icon          = input<string>();
   width         = input<string>('100%');
-
+  tooltipText   = input<string>('');
+  tooltipPosition = input<'top' | 'bottom' | 'left' | 'right'>('top');
+  
   // Estado
   value    = signal<string>('');
   disabled = false;
