@@ -1,0 +1,767 @@
+// Roboto se carga en index.html para no penalizar budgets de estilos en build.
+
+:root {
+
+// ============================================================================
+// APEX - SISTEMA DE COLORES CORPORATIVO
+// Paleta profesional para sistemas corporativos
+// ============================================================================
+ 
+// ============================================================================
+// 1. COLORES PRIMARIOS (Identidad)
+// ============================================================================
+ 
+// Azul Teal - Color principal (Header principal)
+--color-primary-100: #1E5A7A;
+--color-primary-200: #1D6B8C;
+--color-primary-300: #2A7FA3;
+--color-primary-400: #3995B8;
+--color-primary-500: #4AABCE;
+--color-primary-600: #5CC1DD;
+--color-primary-700: #7DD1E6;
+--color-primary-800: #A5DFEF;
+--color-primary-900: #D2EDF7;
+ 
+// Verde Esmeralda - Color secundario (Sección derecha)
+--color-secondary-100: #0D6B4F;
+--color-secondary-200: #0F8C5F;
+--color-secondary-300: #0FA869;
+--color-secondary-400: #10C878;
+--color-secondary-500: #1DE184;
+--color-secondary-600: #2EF090;
+--color-secondary-700: #52F5A8;
+--color-secondary-800: #7BF8C0;
+--color-secondary-900: #A7FDD8;
+ 
+// ============================================================================
+// 2. COLORES NEUTRALES (Fondos y Textos)
+// ============================================================================
+ 
+// Blanco
+--color-white: #FFFFFF;
+--color-white-50: #FAFAFA;
+--color-white-100: #F5F5F5;
+--color-white-200: #EFEFEF;
+ 
+// Grises
+--color-gray-100: #F8F9FA;
+--color-gray-200: #E9ECEF;
+--color-gray-300: #DEE2E6;
+--color-gray-400: #CED4DA;
+--color-gray-500: #ADB5BD;
+--color-gray-600: #6C757D;
+--color-gray-700: #495057;
+--color-gray-800: #343A40;
+--color-gray-900: #212529;
+--color-gray-950: #0F1419;
+ 
+// ============================================================================
+// 3. COLORES SEMÁNTICOS (Estados y Significado)
+// ============================================================================
+ 
+// Éxito (Verde)
+--color-success-50: #E8F5E9;
+--color-success-100: #C8E6C9;
+--color-success-200: #A5D6A7;
+--color-success-300: #81C784;
+--color-success-400: #66BB6A;
+--color-success-500: #4CAF50;
+--color-success-600: #43A047;
+--color-success-700: #388E3C;
+--color-success-800: #2E7D32;
+--color-success-900: #1B5E20;
+ 
+// Advertencia (Ámbar)
+--color-warning-50: #FFF3E0;
+--color-warning-100: #FFE0B2;
+--color-warning-200: #FFCC80;
+--color-warning-300: #FFB74D;
+--color-warning-400: #FFA726;
+--color-warning-500: #FF9800;
+--color-warning-600: #FB8C00;
+--color-warning-700: #F57C00;
+--color-warning-800: #E65100;
+--color-warning-900: #BF360C;
+ 
+// Crítico/Error (Rojo)
+--color-danger-50: #FFEBEE;
+--color-danger-100: #FFCDD2;
+--color-danger-200: #EF9A9A;
+--color-danger-300: #E57373;
+--color-danger-400: #EF5350;
+--color-danger-500: #F44336;
+--color-danger-600: #E53935;
+--color-danger-700: #D32F2F;
+--color-danger-800: #C62828;
+--color-danger-900: #B71C1C;
+ 
+// Información (Azul Info)
+--color-info-50: #E3F2FD;
+--color-info-100: #BBDEFB;
+--color-info-200: #90CAF9;
+--color-info-300: #64B5F6;
+--color-info-400: #42A5F5;
+--color-info-500: #2196F3;
+--color-info-600: #1E88E5;
+--color-info-700: #1976D2;
+--color-info-800: #1565C0;
+--color-info-900: #0D47A1;
+ 
+// ============================================================================
+// 4. COLORES FUNCIONALES (Componentes)
+// ============================================================================
+ 
+// Fondos
+--bg-main: #FFFFFF;
+--bg-secondary: #F8F9FA;
+--bg-tertiary: #EEF1F5;
+--bg-dark: #2C3E50;
+--bg-overlay: rgba(0, 0, 0, 0.5);
+--bg-overlay-light: rgba(0, 0, 0, 0.15);
+ 
+// Headers y Barras
+--bg-header-primary: #4AABCE;
+--bg-header-secondary: #1DE184;
+--bg-navbar: #3995B8;
+--bg-sidebar: #FFFFFF;
+ 
+// Bordes
+--border-light: #ececec;
+--border-medium: #cfcfcc;
+--border-dark: #b7b7b4;
+--border-primary: #4AABCE;
+--border-secondary: #1DE184;
+ 
+// ============================================================================
+// 5. COLORES DE TEXTO
+// ============================================================================
+ 
+// Textos primarios
+--text-primary: #212529;
+--text-secondary: #6C757D;
+--text-tertiary: #ADB5BD;
+--text-disabled: #CED4DA;
+--text-inverse: #FFFFFF;
+ 
+// Textos semánticos
+--text-success: #2E7D32;
+--text-warning: #E65100;
+--text-danger: #C62828;
+--text-info: #1565C0;
+ 
+// ============================================================================
+// 6. ESTADOS DE COMPONENTES
+// ============================================================================
+ 
+// Estados del botón primario
+--btn-primary-bg: #4AABCE;
+--btn-primary-bg-hover: #3995B8;
+--btn-primary-bg-active: #2A7FA3;
+--btn-primary-bg-disabled: #DEE2E6;
+--btn-primary-text: #FFFFFF;
+--btn-primary-text-disabled: #ADB5BD;
+ 
+// Estados del botón secundario
+--btn-secondary-bg: #F8F9FA;
+--btn-secondary-bg-hover: #E9ECEF;
+--btn-secondary-bg-active: #DEE2E6;
+--btn-secondary-border: #CED4DA;
+--btn-secondary-text: #212529;
+ 
+// Estados del botón de acción
+--btn-action-bg: #1DE184;
+--btn-action-bg-hover: #10C878;
+--btn-action-bg-active: #0FA869;
+--btn-action-text: #FFFFFF;
+ 
+// ============================================================================
+// 7. INPUTS Y FORMULARIOS
+// ============================================================================
+ 
+// Estados del input
+--input-bg: #FFFFFF;
+--input-border: #DEE2E6;
+--input-border-hover: #CED4DA;
+--input-border-focus: #4AABCE;
+--input-border-error: #C62828;
+--input-focus-shadow: rgba(74, 171, 206, 0.1);
+--input-text: #212529;
+--input-text-placeholder: #ADB5BD;
+--input-disabled-bg: #F8F9FA;
+--input-disabled-border: #E9ECEF;
+--input-disabled-text: #CED4DA;
+ 
+// Select y Dropdown
+--select-bg: #FFFFFF;
+--select-border: #DEE2E6;
+--select-border-focus: #4AABCE;
+--select-text: #212529;
+--select-option-hover: #E3F2FD;
+--select-option-active: #4AABCE;
+ 
+// ============================================================================
+// 8. COMPONENTES ESPECÍFICOS
+// ============================================================================
+ 
+// Cards
+--card-bg: #FFFFFF;
+--card-border: #E9ECEF;
+--card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+--card-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+ 
+// Badges y Etiquetas
+--badge-primary-bg: #E3F2FD;
+--badge-primary-text: #1565C0;
+--badge-secondary-bg: #E8F5E9;
+--badge-secondary-text: #2E7D32;
+--badge-warning-bg: #FFF3E0;
+--badge-warning-text: #E65100;
+--badge-danger-bg: #FFEBEE;
+--badge-danger-text: #C62828;
+ 
+// Alerts y Notificaciones
+--alert-success-bg: #E8F5E9;
+--alert-success-border: #4CAF50;
+--alert-success-text: #2E7D32;
+--alert-warning-bg: #FFF3E0;
+--alert-warning-border: #FF9800;
+--alert-warning-text: #E65100;
+--alert-danger-bg: #FFEBEE;
+--alert-danger-border: #F44336;
+--alert-danger-text: #C62828;
+--alert-info-bg: #E3F2FD;
+--alert-info-border: #2196F3;
+--alert-info-text: #1565C0;
+ 
+// Tooltips
+--tooltip-bg: #212529;
+--tooltip-text: #FFFFFF;
+--tooltip-border: #343A40;
+ 
+// Separadores
+--divider-color: #E9ECEF;
+--divider-color-dark: #DEE2E6;
+ 
+// ============================================================================
+// 9. SOMBRAS
+// ============================================================================
+ 
+--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+--shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+--shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
+--shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.2);
+--shadow-focus: 0 0 0 3px rgba(74, 171, 206, 0.15);
+--shadow-focus-error: 0 0 0 3px rgba(198, 40, 40, 0.15);
+ 
+// ============================================================================
+// 10. TRANSICIONES
+// ============================================================================
+ 
+--transition-fast: 150ms ease-in-out;
+--transition-base: 250ms ease-in-out;
+--transition-slow: 350ms ease-in-out;
+ 
+// ============================================================================
+// 11. ESPACIADO (Design Tokens)
+// ============================================================================
+ 
+--spacing-2xs: 0.25rem;  // 4px
+--spacing-xs: 0.5rem;    // 8px
+--spacing-sm: 0.75rem;   // 12px
+--spacing-md: 1rem;      // 16px
+--spacing-lg: 1.5rem;    // 24px
+--spacing-xl: 2rem;      // 32px
+--spacing-2xl: 3rem;     // 48px
+--spacing-3xl: 4rem;     // 64px
+ 
+// ============================================================================
+// 12. BORDER RADIUS
+// ============================================================================
+ 
+--radius-xs: 2px;
+--radius-sm: 4px;
+--radius-md: 8px;
+--radius-lg: 12px;
+--radius-xl: 16px;
+--radius-full: 9999px;
+ 
+// ============================================================================
+// 13. TIPOGRAFÍA (Tamaños y Pesos)
+// ============================================================================
+ 
+--font-family-base: sans-serif, 'Inter', Roboto, Helvetica, Arial;
+--font-family-mono: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+ 
+--font-size-xs: 0.75rem;     // 12px
+--font-size-sm: 0.875rem;    // 14px
+--font-size-base: 1rem;      // 16px
+--font-size-lg: 1.125rem;    // 18px
+--font-size-xl: 1.25rem;     // 20px
+--font-size-2xl: 1.5rem;     // 24px
+--font-size-3xl: 2rem;       // 32px
+ 
+--font-weight-light: 300;
+--font-weight-normal: 400;
+--font-weight-medium: 500;
+--font-weight-semibold: 600;
+--font-weight-bold: 700;
+ 
+--line-height-tight: 1.2;
+--line-height-normal: 1.5;
+--line-height-relaxed: 1.75;
+--line-height-loose: 2;
+ 
+h1, h2, h3, h4 {
+  font-family: var(--font-family);
+  color: var(--color-primary-200);
+  margin-top: 0;
+  margin-bottom:2px;
+}
+
+// ============================================================================
+// USO RECOMENDADO
+// ============================================================================
+ 
+/*
+ * EJEMPLO DE USO EN SCSS:
+ * 
+ * .button-primary {
+ *   background-color: var(--btn-primary-bg);
+ *   color: var(--btn-primary-text);
+ *   border: 1px solid var(--btn-primary-bg);
+ *   padding: var(--spacing-sm) var(--spacing-md);
+ *   border-radius: var(--radius-md);
+ *   transition: all var(--transition-fast);
+ *
+ *   &:hover {
+ *     background-color: var(--btn-primary-bg-hover);
+ *   }
+ *
+ *   &:active {
+ *     background-color: var(--btn-primary-bg-active);
+ *   }
+ *
+ *   &:disabled {
+ *     background-color: var(--btn-primary-bg-disabled);
+ *     color: var(--btn-primary-text-disabled);
+ *     cursor: not-allowed;
+ *   }
+ * }
+ */
+ 
+// ============================================================================
+// MAPAS PARA FÁCIL ACCESO (SCSS Maps)
+// ============================================================================
+ 
+$colors: (
+  'primary': (
+    '100': #1E5A7A,
+    '200': #1D6B8C,
+    '300': #2A7FA3,
+    '400': #3995B8,
+    '500': #4AABCE,
+    '600': #5CC1DD,
+    '700': #7DD1E6,
+    '800': #A5DFEF,
+    '900': #D2EDF7,
+  ),
+  'secondary': (
+    '100': #0D6B4F,
+    '200': #0F8C5F,
+    '300': #0FA869,
+    '400': #10C878,
+    '500': #1DE184,
+    '600': #2EF090,
+    '700': #52F5A8,
+    '800': #7BF8C0,
+    '900': #A7FDD8,
+  ),
+  'neutral': (
+    'white': #FFFFFF,
+    'gray-100': #F8F9FA,
+    'gray-200': #E9ECEF,
+    'gray-300': #DEE2E6,
+    'gray-600': #6C757D,
+    'gray-900': #212529,
+  ),
+  'status': (
+    'success': #2E7D32,
+    'warning': #E65100,
+    'danger': #C62828,
+    'info': #1565C0,
+  )
+);
+ 
+// ============================================================================
+// FUNCIONES ÚTILES PARA GENERAR CLASES
+// ============================================================================
+ 
+// Generar colores de fondo dinámicamente
+@each $color-name, $color-variants in $colors {
+  @each $variant, $color-value in $color-variants {
+    .bg-#{$color-name}-#{$variant} {
+      background-color: $color-value;
+    }
+  }
+}
+ 
+// Generar colores de texto dinámicamente
+@each $color-name, $color-variants in $colors {
+  @each $variant, $color-value in $color-variants {
+    .text-#{$color-name}-#{$variant} {
+      color: $color-value;
+    }
+  }
+}
+ 
+// Generar bordes dinámicamente
+@each $color-name, $color-variants in $colors {
+  @each $variant, $color-value in $color-variants {
+    .border-#{$color-name}-#{$variant} {
+      border-color: $color-value;
+    }
+  }
+}
+
+
+  
+  /* --- Colores de Base (Relajantes) --- */
+  --bg-main: #f8f8f6;          /* Un gris muy claro con tinte azul (descanso visual) */
+  --bg-card: #2C3E50;          /* Blanco puro para contraste limpio */
+  --bg-top: #3498DB;
+  --bg-sidebar:#fff;
+  --bg-main-area:#fff;
+  /* --- Marca y Concentración --- */
+  --primary-deep: #254d75;     /* Azul oscuro petróleo (transmite seriedad y orden) */
+  --primary-accent: #3498DB;   /* Azul claro para elementos de acción */
+
+  /* --- brand --- */
+  --fore-brand:#ffffff;
+  --bg-brand: #3498DB;
+
+
+  /* --- Texto (Lectura clara) --- */
+  --text-main: #2E3A48;        /* No es negro puro, es un gris muy oscuro (menos fatiga) */
+  --text-muted: #7F8C8D;       /* Para info secundaria */
+
+  /* --- Semántica (Relajante) --- */
+  --success-soft: #27AE60;     /* Verde bosque (para "Aprobado" o "Correcto") */
+  --info-soft: #5DADE2;        /* Azul cielo (para mensajes informativos) */
+  --border-color: #D6DBDF;     /* Gris suave para separar secciones sin ensuciar */
+
+/* --- Éxito (Confirmaciones, Pólizas Activas) --- */
+  --state-success-bg: #E8F5E9;    /* Verde menta pálido */
+  --state-success-text: #2E7D32;  /* Verde bosque oscuro */
+  --state-success-border: #C8E6C9;
+
+  /* --- Alerta (Pendientes de pago, Revisión necesaria) --- */
+  --state-warning-bg: #FFF9C4;    /* Amarillo crema */
+  --state-warning-text: #F57F17;  /* Ámbar profundo */
+  --state-warning-border: #FFF176;
+
+  /* --- Error (Póliza cancelada, Error de validación) --- */
+  --state-error-bg: #FFEBEE;      /* Rosa muy tenue */
+  --state-error-text: #C62828;    /* Rojo ladrillo (menos chillón) */
+  --state-error-border: #FFCDD2;  
+
+
+  /* --- Tipografia del proyecto --- */
+  --font-family: sans-serif, 'Inter', Roboto, Helvetica, Arial;
+  --font-size:0.6875rem;
+
+  /*  --- Input Container (Label)   */
+  --ui-label-font-size:11px;
+  --ui-label-font-weight:normal ;
+  --ui-label-color: #334155;
+  --ui-label-section-font-size: 14px;
+  --ui-label-section-color: #1e293b;
+  --ui-label-required-mark-color: #ef4444;
+
+  /* --- ui-button --- */
+  --ui-button-base-font-size: 11px;
+  --ui-button-sm-font-size: 11px;
+  --ui-button-lg-font-size: 11px;
+  --ui-button-icon-font-size: 12px;
+  --ui-button-spinner-font-size: 14px;
+
+  /* --- ui-multi-select --- */
+  --ui-select-label-top-font-size: 11px;
+  --ui-select-label-top-color: #334155;
+  --ui-select-container-background-color: #d1d5db51;
+  --ui-select-disabled-background-color: #f8fafc;
+  --ui-select-disabled-border-color: #cbd5e1;
+  --ui-tag-background-color: #e2e8f0;
+  --ui-tag-text-font-size: 11px;
+  --ui-tag-text-color: #1e293b;
+  --ui-tag-remove-color: #94a3b8;
+  --ui-tag-remove-font-size: 11px;
+  --ui-tag-remove-hover-color: #ef4444;
+  --ui-placeholder-text-color: #94a3b8;
+  --ui-placeholder-text-font-size: 11px;
+  --ui-arrow-color: #64748b;
+  --ui-arrow-font-size: 11px;
+  --ui-dropdown-background-color: white;
+  --ui-option-font-size: 11px;
+  --ui-option-hover-background-color: #f1f5f9;
+  --ui-option-selected-background-color: #3b82f6;
+  --ui-option-selected-color: white;
+  --ui-select-dropdown-background-color: white;
+  --ui-select-option-hover-background-color: #f3f4f6;
+  --ui-select-option-selected-background-color: #3b82f6;
+  --ui-select-option-selected-color: white;
+  --ui-select-label-font-size: 11x;
+  --ui-select-label-color: #4b5563;
+
+  /* --- user-info --- */
+  --user-badge-color: #155724;
+  --user-badge-background-color: #d4edda;
+  --user-notification-dot-background-color: #ff4b4b;
+
+  /* --- main-layout --- */
+  --main-layout-nav-item-color: #555;
+  --main-layout-nav-item-hover-background-color: #f0f4f8;
+  --main-layout-nav-item-hover-color: #2c7a9d;
+  --main-layout-brand-font-size: 1.2rem;
+  --main-layout-avatar-circle-font-size: 0.8rem;
+  --main-layout-user-name-font-size: 0.9rem;
+  --main-layout-user-role-font-size: 0.7rem;
+  --main-layout-icon-btn-font-size: 1.1rem;
+
+  --user-name-font-size: 0.9rem;
+  --user-badge-font-size: 0.65rem;
+
+  /* --- top-search --- */
+  --top-search-icon-color: rgba(255, 255, 255, 0.6);
+  --top-search-icon-focus-color: white;
+  --top-search-input-color: white;
+  --top-search-placeholder-color: rgba(255, 255, 255, 0.5);
+  --top-search-focus-border-color: rgba(255, 255, 255, 0.5);
+  --top-search-badge-color: rgba(255, 255, 255, 0.7);
+ 
+
+  --primary-accent-shadow: rgba(59, 130, 246, 0.2); /* Sombra para focus de inputs */
+  --ui-input-label-input-container-color: #4a5568;
+  --ui-input-container-border: 1px solid #4c4c4c;
+  --ui-input-container-background-color: #d1d5dbc4;
+  --ui-input-container-focus-within-border-color: #0079c1; /* Azul BUPA */
+  --ui-input-container-box-shadow: 0 0 0 1px #0079c1;
+  --ui-input-container-ua-input-icon-prefix-color:  #9ca3af;
+  --ui-input-container-ua-input-icon-prefix-font-size: 14px;
+  --ui-input-required-mark-color: #dc2626;
+  --ui-input-container-focus-withi-border-color:#79f63b;
+  --ui-input-field-font-size:11px;
+  --ui-input-label-left-min-width:60px;
+  --ui-input-label-right-min-width:60px;
+  --ui-input-background-color-focus:#fcf775;
+  
+
+  --btn-width-standard: 100px;
+  --btn-width-large: 300px;
+  --btn-width-filter: 120px;
+  --btn-icon-size: 16px; /* Tamaño por defecto para iconos en botones */
+
+  /* --- Tokens para ui-tree --- */
+  --tree-node-margin-y: 2px;
+  --tree-node-hover-bg: #f3f4f6;
+  --tree-node-active-bg: #e0f2fe;
+  --tree-node-active-text: #0369a1;
+  --tree-node-active-indicator-height: 60%;
+  --tree-node-active-indicator-width: 4px;
+  --tree-node-active-indicator-color: #0284c7;
+  --tree-icon-margin-right: 8px;
+  --tree-icon-color: #9ca3af;
+  --tree-icon-margin-right-leaf: 12px;
+  --tree-icon-circle-margin-left: 24px;
+  --tree-child-indent: 20px;
+
+  /* --- Tokens de Superficie (Glassmorphism) --- */
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-bg-hover: rgba(255, 255, 255, 0.20);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(12px);
+  --glass-border-notification: #4ca9bd; /* Color específico para el borde de la notificación */
+  --radius-full: 9999px; /* Token para border-radius circular */
+  
+  /* Colores corporativos */
+  --color-bg-primary: #3b88a3;
+  --color-bg-primary-hover: #3197bc;   
+  
+  --color-bg-secondary: #3ba35f;
+  --color-bg-secondary-hover: #31bc3d;   
+  --color-on-brand: #ffffff;
+
+
+
+ /* --- ui-multiselect --- */
+  --ms-font-size: 11px;
+ 
+  /* Label */
+  --ms-label-font-size: 11px;
+  --ms-label-font-weight: 600;
+  --ms-label-color: #334155;
+ 
+  /* Control (caja principal) */
+  --ms-control-min-height: 34px;
+  --ms-control-padding: 4px 6px;
+  --ms-control-bg: #ffffff;
+  --ms-control-border-width: 1px;
+  --ms-control-border-color: #3b82f6;         /* Borde azul de la imagen */
+  --ms-control-border-color-focus: #3b82f6;
+  --ms-control-border-color-disabled: #cbd5e1;
+  --ms-control-bg-disabled: #f8fafc;
+  --ms-control-border-radius: 3px;
+ 
+  /* Chips (tags seleccionados) */
+  --ms-chip-bg: #f1f5f9;
+  --ms-chip-color: #1e293b;
+  --ms-chip-border-color: #cbd5e1;
+  --ms-chip-border-radius: 3px;
+  --ms-chip-padding: 3px 7px;
+  --ms-chip-font-size: 12px;
+  --ms-chip-remove-color: #64748b;
+  --ms-chip-remove-font-size: 10px;
+  --ms-chip-remove-color-hover: #ef4444;
+ 
+  /* Cursor parpadeante */
+  --ms-cursor-color: #334155;
+ 
+  /* Placeholder */
+  --ms-placeholder-color: #94a3b8;
+  --ms-placeholder-font-size: 13px;
+ 
+  /* Flecha */
+  --ms-arrow-color: #64748b;
+  --ms-arrow-font-size: 9px;
+ 
+  /* Dropdown */
+  --ms-dropdown-bg: #ffffff;
+  --ms-dropdown-max-height: 220px;
+ 
+  /* Scrollbar decorativa */
+  --ms-scrollbar-width: 16px;
+  --ms-scrollbar-track-bg: #f8fafc;
+  --ms-scrollbar-border-color: #e2e8f0;
+  --ms-scrollbar-thumb-width: 10px;
+  --ms-scrollbar-thumb-height: 30px;
+  --ms-scrollbar-thumb-bg: #94a3b8;
+ 
+  /* Cabecera de grupo */
+  --ms-group-header-padding: 8px 10px 4px;
+  --ms-group-header-font-size: 13px;
+  --ms-group-header-font-weight: 700;
+  --ms-group-header-color: #1e293b;
+ 
+  /* Opciones */
+  --ms-option-padding: 7px 10px;
+  --ms-option-font-size: 13px;
+  --ms-option-color: #1e293b;
+  --ms-option-bg: #ffffff;
+  --ms-option-hover-bg: #f1f5f9;           /* Gris claro al hover */
+  --ms-option-selected-bg: #3b82f6;        /* Azul seleccionado (imagen) */
+  --ms-option-selected-color: #ffffff;
+
+  /* --- ui-tooltip --- */
+  --ui-tooltip-background-color: #ebf899; /* Gris oscuro para el fondo */
+  --ui-tooltip-text-color: #767a37;       /* Texto blanco */
+  --ui-tooltip-font-size: 10px;            /* Tamaño de fuente pequeño */
+  --ui-tooltip-padding: 4px 8px;           /* Padding compacto */
+  --ui-tooltip-border-radius: 4px;         /* Bordes redondeados */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-family);
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  -webkit-font-smoothing: antialiased; /* Mejora la suavidad en macOS */
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-main); // Usamos el token que definimos antes
+}
+
+// Estilos base para títulos para evitar el cansancio visual
+
+lib-ui-button, lib-ui-check {
+  display: inline-block;
+}
+
+
+ui-tree-container{
+  font-size:10px;
+}
+
+
+/* Mutiselect */
+
+/* apps.scss */
+
+.ui-select-container {
+  min-height: 26px !important; /* Evita que el control se "aplane" como en image_e36ed9.png */
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+
+}
+
+
+
+.ui-chips-area, .ui-tag-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  flex: 1;
+  min-height: 20px;      /* Mantiene el espacio aunque esté vacío */
+  align-items: center;
+}
+
+.ui-placeholder {
+  color: #9ca3af;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+// Icono del selector (Chevron)
+.ui-select-arrow {
+  font-family: "FontAwesome" !important;
+  font-style: normal;
+  color: #9ca3af;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+// Icono de eliminar en los chips (X)
+.ui-chip-remove {
+  font-family: "FontAwesome" !important;
+  cursor: pointer;
+  margin-left: 8px;
+  font-size: 12px;
+  color: #6b7280;
+  
+  &:hover {
+    color: #ef4444;
+  }
+}
+
+// Icono de check en el dropdown
+.ui-check-icon {
+  font-family: "FontAwesome" !important;
+  color: #3b82f6;
+  float: right;
+}
+
+.ui-select-option {
+  display: flex;
+  justify-content: space;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+}
