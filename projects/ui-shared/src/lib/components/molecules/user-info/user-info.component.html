@@ -3,15 +3,39 @@
   <div class="divider"></div>
 
   <div class="system-actions">
-    <div class="notification-wrapper">
-      <lucide-icon [name]="BellIcon" class="icon-action"></lucide-icon>
-      <span class="notification-dot"></span>
+    <div class="notification-container">
+      <div class="notification-trigger" (click)="toggleNotif(); $event.stopPropagation()">
+        <i class="fa fa-bell icon-action"  [class.icon-action--active]="isNotifOpen()"></i>
+        <span class="notification-dot"></span>
+      </div>
+
+      @if (isNotifOpen()) {
+        <div class="dropdown-menu notif-dropdown" (click)="$event.stopPropagation()">
+          <div class="dropdown-header">
+            <span class="dropdown-name">MENSAJES RECIENTES</span>
+          </div>
+          
+          <ul class="dropdown-list">
+            @for (msg of messages(); track msg.id) {
+              <li class="notif-item">
+                <div class="notif-content">
+                  <div class="notif-title">{{ msg.title }}</div>
+                  <div class="notif-desc">{{ msg.desc }}</div>
+                  <div class="notif-time">{{ msg.time }}</div>
+                </div>
+              </li>
+            }
+          </ul>
+          
+          <div class="dropdown-divider"></div>
+          <div class="notif-footer">Ver todas las notificaciones</div>
+        </div>
+      }
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- Perfil + dropdown -->
   <div class="user-profile-wrapper">
     <div class="user-profile" (click)="toggleMenu(); $event.stopPropagation()">
       <div class="avatar-wrapper">
@@ -32,10 +56,8 @@
       ></lucide-icon>
     </div>
 
-    <!-- Dropdown -->
     @if (isOpen()) {
       <div class="dropdown-menu" (click)="$event.stopPropagation()">
-
         <div class="dropdown-header">
           <img [src]="user()?.avatar" alt="User" class="dropdown-avatar" />
           <div class="dropdown-user-info">
@@ -76,9 +98,7 @@
             </span>
           </li>
         </ul>
-
       </div>
     }
   </div>
-
 </div>

@@ -2,7 +2,6 @@
   display: block;
 }
 
-/* ── Contenedor principal ────────────────────────────────────────────────── */
 .user-container {
   display: flex;
   align-items: center;
@@ -11,171 +10,231 @@
   font-family: var(--font-family);
 }
 
-/* ── Divisor ─────────────────────────────────────────────────────────────── */
 .divider {
   width: 1px;
   height: 28px;
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* ── Acciones del sistema (campana, settings) ────────────────────────────── */
-.system-actions {
+/* ── Notificaciones ──────────────────────────────────────────────────────── */
+.notification-container {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
+}
 
-  .notification-wrapper {
-    position: relative;
-    display: flex;
+.notification-trigger {
+  position: relative;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.2s;
 
-    .notification-dot {
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      width: 8px;
-      height: 8px;
-      background: var(--user-notification-dot-background-color, #f97316);
-      border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.6);
-    }
-  }
-
-  .icon-action {
-    width: 20px !important;
-    height: 20px !important;
-    padding: 2px;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: opacity 0.15s;
-
-    &:hover { opacity: 1; }
-
-    ::ng-deep svg { width: 20px !important; height: 20px !important; }
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 }
 
-/* ── Wrapper del perfil (posición relativa para el dropdown) ─────────────── */
+.notification-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background: #f97316;
+  border-radius: 50%;
+  border: 1.5px solid #254d75;
+}
+
+.icon-action {
+  width: 20px !important;
+  height: 20px !important;
+  opacity: 0.8;
+  transition: all 0.2s;
+  color: white;
+  align-content: space-evenly;
+  text-align: center;
+  font-size:15px;
+
+  &--active {
+    opacity: 1;
+    color: #fbbf24;
+  }
+}
+
+/* Estilos específicos para items de notificación */
+.notif-dropdown {
+  right: -80px;
+  width: 280px;
+}
+
+.notif-item {
+  padding: 10px 16px;
+  border-bottom: 1px solid #44444495;
+  cursor: pointer;
+  transition: background 0.15s;
+  color: #1e293b;
+
+  &:hover {
+    background: #42ae93;
+    color: white;
+  }
+
+  &:last-child {
+   border-bottom: 1px solid #44444495;
+   border-bottom: 1px solid #44444495;
+  }
+}
+
+.notif-title {
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.notif-desc {
+  font-size: 11px;
+//  line-height: 1.4;
+}
+
+.notif-time {
+  font-size: 10px;
+  margin-top: 4px;
+  text-align: right;
+  
+}
+
+.notif-footer {
+  padding: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: #3498DB;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ── Perfil de Usuario ───────────────────────────────────────────────────── */
 .user-profile-wrapper {
   position: relative;
 }
 
-/* ── Perfil clickeable ───────────────────────────────────────────────────── */
 .user-profile {
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  padding: 4px 6px;
+  padding: 4px 8px;
   border-radius: 8px;
   transition: background 0.15s;
 
-  &:hover { background: rgba(255, 255, 255, 0.1); }
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.avatar-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
 
   .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+
+  .user-name {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .user-role {
+    font-size: 11px;
+    opacity: 0.7;
+  }
+}
+
+.icon-chevron {
+  width: 16px !important;
+  height: 16px !important;
+  transition: transform 0.2s;
+
+  &--open {
+    transform: rotate(180deg);
+  }
+}
+
+/* ── Menú Dropdown (General) ─────────────────────────────────────────────── */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 220px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  z-index: 100;
+  overflow: hidden;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+    border-bottom: 1px solid #44444495;    
+
+  .dropdown-avatar {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    object-fit: cover;
-    flex-shrink: 0;
   }
 
-  .user-details {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.25;
-
-    .user-name {
-      font-size: var(--user-name-font-size, 13px);
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .user-role {
-      font-size: 11px;
-      opacity: 0.8;
-      white-space: nowrap;
-    }
+  .dropdown-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+    display: block;
   }
 
-  .icon-chevron {
-    width: 16px;
-    height: 16px;
-    opacity: 0.7;
-    transition: transform 0.2s ease;
-    flex-shrink: 0;
-
-    &--open { transform: rotate(180deg); }
+  .dropdown-email {
+    font-size: 11px;
+    color: #64748b;
   }
 }
 
-/* ── Dropdown ────────────────────────────────────────────────────────────── */
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  z-index: 200;
-  width: 240px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-  animation: dropIn 0.15s ease;
-}
-
-@keyframes dropIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Cabecera del dropdown */
-.dropdown-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 16px;
-  background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
-  color: #fff;
-
-  .dropdown-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.6);
-    object-fit: cover;
-    flex-shrink: 0;
-  }
-
-  .dropdown-user-info {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-
-    .dropdown-name {
-      font-size: 13px;
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .dropdown-email {
-      font-size: 11px;
-      opacity: 0.85;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-}
-
-/* Divisor interno */
 .dropdown-divider {
   height: 1px;
   background: #f1f5f9;
 }
 
-/* Lista de opciones */
 .dropdown-list {
   list-style: none;
   margin: 0;
@@ -190,39 +249,34 @@
   font-size: 13px;
   color: #334155;
   cursor: pointer;
-  transition: background 0.12s;
 
-  &:hover { background: #f8fafc; }
+  &:hover {
+    background: #f8fafc;
+  }
 
   &--danger {
     color: #ef4444;
-    &:hover { background: #fef2f2; }
+
+    &:hover {
+      background: #fef2f2;
+    }
   }
 
   .item-icon {
     width: 16px !important;
     height: 16px !important;
-    flex-shrink: 0;
     opacity: 0.7;
-
-    ::ng-deep svg { width: 16px !important; height: 16px !important; }
   }
-
-  /* Empuja el toggle al extremo derecho */
-  span:nth-child(2) { flex: 1; }
 }
 
-/* Toggle Modo Oscuro */
 .toggle-pill {
+  margin-left: auto;
   width: 32px;
   height: 18px;
-  border-radius: 9px;
   background: #cbd5e1;
+  border-radius: 10px;
   position: relative;
   transition: background 0.2s;
-  flex-shrink: 0;
-
-  &--on { background: #0ea5e9; }
 
   .toggle-thumb {
     position: absolute;
@@ -230,13 +284,16 @@
     left: 2px;
     width: 14px;
     height: 14px;
+    background: white;
     border-radius: 50%;
-    background: #fff;
-    transition: left 0.2s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
   }
-}
 
-.toggle-pill--on .toggle-thumb {
-  left: 16px;
+  &--on {
+    background: #22c55e;
+
+    .toggle-thumb {
+      transform: translateX(14px);
+    }
+  }
 }

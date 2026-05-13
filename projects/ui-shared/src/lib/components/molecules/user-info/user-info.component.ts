@@ -16,7 +16,7 @@ export class UserInfoComponent {
   private readonly auth   = inject(AuthService);
   private readonly router = inject(Router);
 
-  /** Datos reactivos del usuario — se actualizan solos al hacer login/logout */
+  /** Datos reactivos del usuario */
   readonly user = this.auth.currentUser;
 
   readonly ChevronIcon  = ChevronDown;
@@ -28,32 +28,50 @@ export class UserInfoComponent {
   readonly HelpIcon     = HelpCircle;
   readonly MoonIcon     = Moon;
 
-  isOpen   = signal(false);
-  darkMode = signal(false);
+  isOpen      = signal(false);
+  isNotifOpen = signal(false);
+  darkMode    = signal(false);
 
-  toggleMenu(): void { this.isOpen.update(v => !v); }
-  closeMenu():  void { this.isOpen.set(false); }
+  /** Variable con los últimos 3 mensajes */
+  messages = signal([
+    { id: 1, title: 'Nueva Póliza', desc: 'Se ha asignado la póliza #20454', time: '5 min' },
+    { id: 2, title: 'Documento aprobado', desc: 'El contrato Bupa fue validado', time: '2 horas' },
+    { id: 3, title: 'Recordatorio', desc: 'Renovación de póliza pendiente para mañana', time: '1 día' }
+  ]);
+
+  toggleMenu(): void {
+    this.isOpen.update(v => !v);
+    if (this.isOpen()) this.isNotifOpen.set(false);
+  }
+
+  toggleNotif(): void {
+    this.isNotifOpen.update(v => !v);
+    if (this.isNotifOpen()) this.isOpen.set(false);
+  }
+
+  closeAll(): void {
+    this.isOpen.set(false);
+    this.isNotifOpen.set(false);
+  }
 
   toggleDarkMode(): void {
     this.darkMode.update(v => !v);
     document.documentElement.classList.toggle('dark', this.darkMode());
   }
 
-  onPerfil():    void { this.closeMenu(); }
-  onSeguridad(): void { this.closeMenu(); }
+  onPerfil():    void { this.closeAll(); }
+  onSeguridad(): void { this.closeAll(); }
 
   onSalir(): void {
     this.auth.logout();
-    this.closeMenu();
+    this.closeAll();
     void this.router.navigateByUrl('/login');
   }
 
-  onAyuda(): void { this.closeMenu(); }
+  onAyuda(): void { this.closeAll(); }
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    if (!(event.target as HTMLElement).closest('.user-profile-wrapper')) {
-      this.closeMenu();
-    }
+  @HostListener('document:click')
+  clickOut(): void {
+    this.closeAll();
   }
 }
