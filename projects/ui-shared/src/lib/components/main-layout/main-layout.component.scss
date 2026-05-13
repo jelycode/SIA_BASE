@@ -109,7 +109,7 @@
 }
 
 
-
+x
 .layout-body {
   display: flex;
   height: calc(100vh - 90px); // Restamos la altura del header + margen
@@ -220,4 +220,27 @@
     width: 20px !important;
     height: 20px !important;
   }  
+}
+
+.footer{
+position: fixed;
+  left: 0;
+  bottom: 0;  justify-content: space-between; // Esto separa los 3 grupos (izq, centro, der)
+  width:95%;
+  align-items: center;
+  height: 25px;
+  padding: 0 10px;
+  margin: 12px;
+//  flex-direction: bottom;
+  background-color:var(--bg-card);
+  font-size: 11px;
+  font-family: var(--font-family);
+  background: linear-gradient(90deg, 
+  #3b88a3 0%,    /* Azul Petróleo inicial */
+  #4ca9bd 70%,   /* Azul Océano (se mantiene hasta casi el final) */
+  #3eb082 100%   /* Verde Esmeralda (solo un toque al cerrar) */
+);
+  color: lightgray;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 11;
 }

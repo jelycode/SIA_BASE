@@ -1,22 +1,4 @@
 <div class="user-container">
-  
-
-
-  <div class="divider"></div>
-
-  <div class="user-profile">
-    <div class="avatar-wrapper">
-      <img src="https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png" alt="User Profile" class="avatar-img">
-    </div>
-    
-    <div class="user-details">
-      <div class="name-row">
-        <span class="user-name">Mario G.</span>
-        <!-- <lucide-icon [name]="ChevronIcon" class="icon-chevron"></lucide-icon> -->
-      </div>
-      <span class="user-badge">Admin User</span>
-    </div>
-  </div>
 
   <div class="divider"></div>
 
@@ -25,7 +7,78 @@
       <lucide-icon [name]="BellIcon" class="icon-action"></lucide-icon>
       <span class="notification-dot"></span>
     </div>
-    <lucide-icon [name]="SettingsIcon" class="icon-action"></lucide-icon>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Perfil + dropdown -->
+  <div class="user-profile-wrapper">
+    <div class="user-profile" (click)="toggleMenu(); $event.stopPropagation()">
+      <div class="avatar-wrapper">
+        <img
+          [src]="user()?.avatar"
+          alt="User Profile"
+          class="avatar-img"
+        />
+      </div>
+      <div class="user-details">
+        <span class="user-name">{{ user()?.nombre }}</span>
+        <span class="user-role">{{ user()?.rol }}</span>
+      </div>
+      <lucide-icon
+        [name]="ChevronIcon"
+        class="icon-chevron"
+        [class.icon-chevron--open]="isOpen()"
+      ></lucide-icon>
+    </div>
+
+    <!-- Dropdown -->
+    @if (isOpen()) {
+      <div class="dropdown-menu" (click)="$event.stopPropagation()">
+
+        <div class="dropdown-header">
+          <img [src]="user()?.avatar" alt="User" class="dropdown-avatar" />
+          <div class="dropdown-user-info">
+            <span class="dropdown-name">{{ user()?.nombre }}</span>
+            <span class="dropdown-email">{{ user()?.email }}</span>
+          </div>
+        </div>
+
+        <div class="dropdown-divider"></div>
+
+        <ul class="dropdown-list">
+          <li class="dropdown-item" (click)="onPerfil()">
+            <lucide-icon [name]="UserIcon" class="item-icon"></lucide-icon>
+            <span>Perfil</span>
+          </li>
+          <li class="dropdown-item" (click)="onSeguridad()">
+            <lucide-icon [name]="ShieldIcon" class="item-icon"></lucide-icon>
+            <span>Seguridad</span>
+          </li>
+          <li class="dropdown-item dropdown-item--danger" (click)="onSalir()">
+            <lucide-icon [name]="LogOutIcon" class="item-icon"></lucide-icon>
+            <span>Salir</span>
+          </li>
+        </ul>
+
+        <div class="dropdown-divider"></div>
+
+        <ul class="dropdown-list">
+          <li class="dropdown-item" (click)="onAyuda()">
+            <lucide-icon [name]="HelpIcon" class="item-icon"></lucide-icon>
+            <span>Centro de Ayuda</span>
+          </li>
+          <li class="dropdown-item" (click)="toggleDarkMode()">
+            <lucide-icon [name]="MoonIcon" class="item-icon"></lucide-icon>
+            <span>Modo Oscuro</span>
+            <span class="toggle-pill" [class.toggle-pill--on]="darkMode()">
+              <span class="toggle-thumb"></span>
+            </span>
+          </li>
+        </ul>
+
+      </div>
+    }
   </div>
 
 </div>

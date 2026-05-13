@@ -1,41 +1,53 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 
-const STORAGE_KEY = 'sia_auth_session';
-
-export interface AuthSession {
-  email: string;
-  at: number;
+export interface AppUser {
+  nombre:   string;
+  email:    string;
+  rol:      string;
+  avatar?:  string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+
+  /** Usuario autenticado. Null = no logueado. */
+  private readonly _currentUser = signal<AppUser | null>({
+    nombre:  'Mario González',
+    email:   'mario.gonzalez@empresa.com',
+    rol:     'Marketing Manager',
+    avatar:  'https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png'
+  });
+
+  /** Expuesto como readonly para los componentes */
+  readonly currentUser  = this._currentUser.asReadonly();
+  readonly isLoggedIn   = computed(() => this._currentUser() !== null);
+
+  /**
+   * Simula el login. En el futuro reemplaza por una llamada HTTP.
+   * Devuelve true si las credenciales son válidas (modo demo).
+   */
   login(email: string, password: string): boolean {
-    const e = email.trim();
-    if (!e || !password) {
-      return false;
+    const valid = !!email && password.length >= 4;
+    if (valid) {
+      this._currentUser.set({
+        nombre:  this.extractName(email),
+        email,
+        rol:     'Administrador',          // ← reemplaza con el rol real del backend
+        avatar:  'https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png'
+      });
     }
-    const session: AuthSession = { email: e, at: Date.now() };
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(session));
-    return true;
+    return valid;
   }
 
   logout(): void {
-    sessionStorage.removeItem(STORAGE_KEY);
+    this._currentUser.set(null);
   }
 
-  isLoggedIn(): boolean {
-    return sessionStorage.getItem(STORAGE_KEY) !== null;
-  }
-
-  getSession(): AuthSession | null {
-    const raw = sessionStorage.getItem(STORAGE_KEY);
-    if (!raw) {
-      return null;
-    }
-    try {
-      return JSON.parse(raw) as AuthSession;
-    } catch {
-      return null;
-    }
+  /** Utilidad: extrae un nombre legible del email mientras no hay BD */
+  private extractName(email: string): string {
+    const local = email.split('@')[0] ?? email;
+    return local
+      .replace(/[._-]/g, ' ')
+      .replace(/\b\w/g, c => c.toUpperCase());
   }
 }

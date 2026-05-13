@@ -1,125 +1,242 @@
 :host {
-  display: block; 
+  display: block;
 }
 
+/* ── Contenedor principal ────────────────────────────────────────────────── */
 .user-container {
   display: flex;
   align-items: center;
   gap: 16px;
   color: white;
   font-family: var(--font-family);
+}
 
-  .btn-add {
+/* ── Divisor ─────────────────────────────────────────────────────────────── */
+.divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Acciones del sistema (campana, settings) ────────────────────────────── */
+.system-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .notification-wrapper {
+    position: relative;
     display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    padding: 6px 14px;
-    border-radius: 8px;
-    color: white;
-    font-weight: 600;
-    font-size: var(--font-size);
-    cursor: pointer;
-    transition: all 0.2s ease;
 
-    &:hover {
-      background: var(--glass-bg-hover);
-      transform: translateY(-1px);
-    }
-    
-    lucide-icon { width: var(--btn-icon-size); height: var(--btn-icon-size); stroke-width: 1px; }
-  }
-
-  .divider {
-    width: 1px;
-    height: 28px;
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  .user-profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-
-    .avatar-img {
-      width: 36px;
-      height: 36px;
+    .notification-dot {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      background: var(--user-notification-dot-background-color, #f97316);
       border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      object-fit: cover;
-    }
-
-    .user-details {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.2;
-      
-      .name-row {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        
-        .user-name {
-          font-size: var(--user-name-font-size);
-          font-weight: 600;
-          white-space: nowrap;
-        }
-
-        .icon-chevron { width: 14px; height: 14px; opacity: 0.8; }
-      }
-
-      .user-badge {
-        font-size: var(--user-badge-font-size);
-        font-weight: 800;
-        color: var(--user-badge-color);
-        background: var(--user-badge-background-color);
-        padding: 1px 8px;
-        border-radius: 10px;
-        width: fit-content;
-        text-transform: uppercase;
-        margin-top: 2px;
-      }
+      border: 1.5px solid rgba(255,255,255,0.6);
     }
   }
 
-  .system-actions {
+  .icon-action {
+    width: 20px !important;
+    height: 20px !important;
+    padding: 2px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.15s;
+
+    &:hover { opacity: 1; }
+
+    ::ng-deep svg { width: 20px !important; height: 20px !important; }
+  }
+}
+
+/* ── Wrapper del perfil (posición relativa para el dropdown) ─────────────── */
+.user-profile-wrapper {
+  position: relative;
+}
+
+/* ── Perfil clickeable ───────────────────────────────────────────────────── */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 8px;
+  transition: background 0.15s;
+
+  &:hover { background: rgba(255, 255, 255, 0.1); }
+
+  .avatar-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .user-details {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    line-height: 1.25;
 
-    .notification-wrapper {
-      position: relative;
-      display: flex;
-      
-      .notification-dot {
-        position: absolute;
-        top: -2px;
-        right: -2px;
-        width: 8px;
-        height: 8px;
-        background: var(--user-notification-dot-background-color);
-        border-radius: var(--radius-full); // Usamos el token para consistencia
-        border: 1.5px solid var(--glass-border-notification); 
-      }
+    .user-name {
+      font-size: var(--user-name-font-size, 13px);
+      font-weight: 600;
+      white-space: nowrap;
     }
 
-    
-
-    .icon-action {
-      width: 20px !important;
-      height: 20px !important;
-      padding:2px;
-      cursor: pointer;
+    .user-role {
+      font-size: 11px;
       opacity: 0.8;
-      transition: opacity 0.1s;
-
-      &:hover { opacity: 1; }
-      ::ng-deep svg {
-          width: 20px !important;
-          height: 20px !important;
-        }      
+      white-space: nowrap;
     }
   }
+
+  .icon-chevron {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+
+    &--open { transform: rotate(180deg); }
+  }
+}
+
+/* ── Dropdown ────────────────────────────────────────────────────────────── */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 200;
+  width: 240px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: dropIn 0.15s ease;
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Cabecera del dropdown */
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
+  color: #fff;
+
+  .dropdown-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.6);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .dropdown-user-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .dropdown-name {
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dropdown-email {
+      font-size: 11px;
+      opacity: 0.85;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+/* Divisor interno */
+.dropdown-divider {
+  height: 1px;
+  background: #f1f5f9;
+}
+
+/* Lista de opciones */
+.dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #334155;
+  cursor: pointer;
+  transition: background 0.12s;
+
+  &:hover { background: #f8fafc; }
+
+  &--danger {
+    color: #ef4444;
+    &:hover { background: #fef2f2; }
+  }
+
+  .item-icon {
+    width: 16px !important;
+    height: 16px !important;
+    flex-shrink: 0;
+    opacity: 0.7;
+
+    ::ng-deep svg { width: 16px !important; height: 16px !important; }
+  }
+
+  /* Empuja el toggle al extremo derecho */
+  span:nth-child(2) { flex: 1; }
+}
+
+/* Toggle Modo Oscuro */
+.toggle-pill {
+  width: 32px;
+  height: 18px;
+  border-radius: 9px;
+  background: #cbd5e1;
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+
+  &--on { background: #0ea5e9; }
+
+  .toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    transition: left 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+}
+
+.toggle-pill--on .toggle-thumb {
+  left: 16px;
 }
